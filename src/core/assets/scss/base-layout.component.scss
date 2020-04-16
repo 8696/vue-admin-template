@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+.base-layout {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  .menu {
+    height: 100%;
+    overflow: auto;
+    width: 202px;
+    .logo {
+      height: 58px;
+    }
+  }
+  .header {
+    height: 58px;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+  .content {
+    display: flex;
+    height: calc(100% - 58px);
+  }
+  .header-component{
+    display: flex;
+
+  }
+}
+
+
+
