@@ -4,10 +4,27 @@ import Router from 'vue-router';
 Vue.use(Router);
 import merge from 'webpack-merge';
 import routes from '../../router/index';
+import vm from '../vm';
 
-const router = new Router(merge({
-  routes: []
-}, routes));
+const router = new Router(merge(routes, {
+  routes: [
+    {
+      path: '/',
+      redirect: '/home'
+    },
+    {
+      path: '/',
+      component: () => import('../view/layouts/base.layout'),
+      children: [
+        {
+          path: '*',
+          name: '404',
+          component: () => import('../view/page/404.page')
+        }
+      ]
+    }
+  ]
+}));
 
 
 /**

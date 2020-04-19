@@ -1,7 +1,7 @@
 <template>
-    <div>
-        login.page
-    </div>
+  <div @click="login">
+    login.page
+  </div>
 </template>
 
 <script>
@@ -12,7 +12,11 @@
     mounted() {
     },
     computed: {},
-    methods: {}
+    methods: {
+      login() {
+        this.$router.push({name: 'login2'});
+      }
+    }
   };
 </script>
 

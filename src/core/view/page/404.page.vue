@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <div v-for="item in 100">home.page {{item}}</div>
-    </div>
+  <div>
+    404.page
+  </div>
 </template>
 
 <script>
@@ -12,7 +12,10 @@
     mounted() {
     },
     computed: {},
-    methods: {}
+    methods: {},
+    activated() {
+
+    }
   };
 </script>
 

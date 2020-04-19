@@ -2,9 +2,9 @@ import {
   // Pagination,
   // Dialog,
   // Autocomplete,
-  // Dropdown,
-  // DropdownMenu,
-  // DropdownItem,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
   Menu,
   Submenu,
   MenuItem,
@@ -30,8 +30,8 @@ import {
   // TimePicker,
   // Popover,
   Tooltip,
-  // Breadcrumb,
-  // BreadcrumbItem,
+  Breadcrumb,
+  BreadcrumbItem,
   // Form,
   // FormItem,
   // Tabs,
@@ -82,9 +82,9 @@ export default function install(Vue) {
   // Vue.use(Pagination);
   // Vue.use(Dialog);
   // Vue.use(Autocomplete);
-  // Vue.use(Dropdown);
-  // Vue.use(DropdownMenu);
-  // Vue.use(DropdownItem);
+  Vue.use(Dropdown);
+  Vue.use(DropdownMenu);
+  Vue.use(DropdownItem);
   Vue.use(Menu);
   Vue.use(Submenu);
   Vue.use(MenuItem);
@@ -110,8 +110,8 @@ export default function install(Vue) {
   // Vue.use(TimePicker);
   // Vue.use(Popover);
   Vue.use(Tooltip);
-  // Vue.use(Breadcrumb);
-  // Vue.use(BreadcrumbItem);
+  Vue.use(Breadcrumb);
+  Vue.use(BreadcrumbItem);
   // Vue.use(Form);
   // Vue.use(FormItem);
   // Vue.use(Tabs);

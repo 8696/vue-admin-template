@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="item in 100">home.page {{item}}</div>
+        test2.page
     </div>
 </template>
 

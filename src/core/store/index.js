@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import merge from 'webpack-merge';
 
 Vue.use(Vuex);
-import userInfo from './module/userInfo.store';
+import __menu from './module/menu.store';
 
 
 import stores from '../../store/index';
@@ -11,6 +11,6 @@ import stores from '../../store/index';
 
 export default new Vuex.Store(merge({
   modules: {
-    userInfo
+    __menu
   },
 }, stores));

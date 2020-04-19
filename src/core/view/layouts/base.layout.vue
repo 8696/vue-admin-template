@@ -1,31 +1,97 @@
 <template>
   <div class="base-layout">
-    <div class="header">
-      <header-component/>
+    <div class="layout-menu" :class="{'layout-menu-collapse': __menuCollapseStatus}">
+      <el-menu :default-active="$route.name" @select="menuSelect" background-color="#2a3f54" text-color="#ffffff"
+               class="layout-menu-ls" :collapse="__menuCollapseStatus">
+        <menu-component :menu-list="__menuFormatList"/>
+      </el-menu>
     </div>
-    <div class="content">
-      <div class="menu">
-        <menu-component/>
+    <div class="layout-content" :class="{'layout-content-collapse': __menuCollapseStatus}">
+      <div class="layout-header">
+        <header-component/>
       </div>
-      <div class="body">
-        <router-view></router-view>
+      <div class="layout-page-tags">
+        <page-tags-component/>
+      </div>
+      <div class="layout-body">
+        <keep-alive>
+          <router-view/>
+        </keep-alive>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import vm from '../../vm';
+  import configHooks from '../../../config.hooks';
+
   const MenuComponent = () => import('../components/menu.component');
   const HeaderComponent = () => import('../components/header.component');
+  const PageTagsComponent = () => import('../components/page-tags.component');
+
   export default {
-    components: {MenuComponent,HeaderComponent},
-    data() {
-      return {};
+    components: {
+      MenuComponent, HeaderComponent,
+      PageTagsComponent
     },
-    mounted() {
+    beforeCreate() {
+
+
     },
-    computed: {},
-    methods: {}
+    methods: {
+
+      menuSelect(index, path, itemVm) {
+        // 优先级 routeName -> link
+        let item = itemVm.$attrs['data-item'];
+
+        if (!item.hasOwnProperty('routeName')
+          && !item.hasOwnProperty('link')
+        ) {
+          return this.routeTo404();
+        }
+        // 匹配
+        let resolved = this.$router.resolve({
+          name: item.routeName
+        });
+
+        if (resolved.resolved.matched.length === 0) {
+          return this.routeTo404();
+        }
+
+        if (item.hasOwnProperty('routeName')) {
+          return this.$router.push({
+            path: item.routeName
+          });
+        }
+        // 外部链接
+        if (item.hasOwnProperty('link') && /^http/.test(item.link)) {
+          window.open(item.link);
+        }
+      },
+      routeTo404() {
+        return this.$router.push({path: '/404'});
+      }
+
+    },
+    beforeRouteEnter(to, from, next) {
+      // 在渲染该组件的对应路由被 confirm 前调用
+      // 不！能！获取组件实例 `this`
+      // 因为当守卫执行前，组件实例还没被创建
+      next();
+    },
+    beforeRouteUpdate(to, from, next) {
+      // 在当前路由改变，但是该组件被复用时调用
+      // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+      // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+      // 可以访问组件实例 `this`
+      next();
+    },
+    beforeRouteLeave(to, from, next) {
+      // 导航离开该组件的对应路由时调用
+      // 可以访问组件实例 `this`
+      next();
+    }
   };
 </script>
 

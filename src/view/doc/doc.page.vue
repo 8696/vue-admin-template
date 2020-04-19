@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div v-for="item in 100">home.page {{item}}</div>
+      <div v-for="item in 100">doc.page {{item}}</div>
+
     </div>
 </template>
 

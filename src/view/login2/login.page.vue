@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <div v-for="item in 100">home.page {{item}}</div>
-    </div>
+  <div @click="login">
+    login2.page
+  </div>
 </template>
 
 <script>
@@ -12,7 +12,11 @@
     mounted() {
     },
     computed: {},
-    methods: {}
+    methods: {
+      login() {
+        this.$router.push({name: 'home'});
+      }
+    }
   };
 </script>
 

@@ -31,8 +31,10 @@ Vue.prototype.vm = vm;
  * @description 全局 mixin
  * */
 import baseMixin from './mixins/base.mixin';
+import storeMixin from './mixins/store.mixin';
 
 Vue.mixin(baseMixin);
+Vue.mixin(storeMixin);
 
 /**
  * @description element-ui
@@ -43,6 +45,7 @@ Vue.config.productionTip = false;
 
 const App = () => import('./view/App');
 
+
 elementUI().then(({default: elementUIInstall}) => {
   elementUIInstall(Vue);
   new Vue({
@@ -52,7 +55,7 @@ elementUI().then(({default: elementUIInstall}) => {
     components: {App},
     template: '<App/>',
     mounted() {
-      vm.$emit('__app-mounted');
+      //
     }
   });
 });
