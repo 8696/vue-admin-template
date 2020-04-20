@@ -8,7 +8,7 @@ export default {
      * */
     collapse: false,
     /**
-     * @description 当前页面的标题路径
+     * @description 当前页面的菜单父子路径
      * */
     currentPaths: [],
     /**
@@ -31,10 +31,10 @@ export default {
     /**
      * @description
      * @param state {Object}
-     * @param title {String}
+     * @param list {Array}
      * */
-    setCurrentPaths(state, title) {
-      state.currentPaths = title;
+    setCurrentPaths(state, list) {
+      state.currentPaths = list;
     },
     /**
      * @description

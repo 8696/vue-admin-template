@@ -30,16 +30,8 @@
 </template>
 
 <script>
-  import configHooks from '../../../config.hooks';
-
   export default {
     name: 'menuComponent',
-    watch: {
-      $route() {
-        if (this.loop) return;
-        this.__initMenuCurrentPaths();
-      }
-    },
     props: {
       menuList: {
         type: Array,
@@ -47,25 +39,8 @@
           return [];
         }
       },
-      /**
-       * @description 循环组件的状态 false | 首次循环
-       * */
-      loop: {
-        type: Boolean,
-        default: false
-      }
-    },
-    async mounted() {
-      if (this.loop) return;
-      /**
-       * @description 加载菜单
-       * */
-      let menu = await configHooks.getMenuList.call(this);
-      this.__setMenuList(menu);
-      this.__initMenuCurrentPaths();
 
     },
-
   };
 </script>
 

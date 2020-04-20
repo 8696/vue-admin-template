@@ -10,17 +10,21 @@ const router = new Router(merge(routes, {
   routes: [
     {
       path: '/',
-      redirect: '/home'
     },
     {
       path: '/',
       component: () => import('../view/layouts/base.layout'),
       children: [
+
         {
-          path: '*',
+          path: '404',
           name: '404',
           component: () => import('../view/page/404.page')
-        }
+        },
+        {
+          path: '*',
+          redirect: '/404'
+        },
       ]
     }
   ]

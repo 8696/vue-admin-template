@@ -1,10 +1,22 @@
 <template>
   <div class="header-component">
     <div class="l-left">
-      <i :class="{'el-icon-s-fold':!__menuCollapseStatus,
+      <div class="change-menu-collapse">
+        <i :class="{'el-icon-s-fold':!__menuCollapseStatus,
       'el-icon-s-unfold':__menuCollapseStatus}"
-         class="change-menu-collapse"
-         @click="__setMenuCollapseStatus(!__menuCollapseStatus)"/>
+           class=""
+           @click="__setMenuCollapseStatus(!__menuCollapseStatus)"/>
+      </div>
+      <div class="route-breadcrumb">
+        <el-breadcrumb separator="/" v-if="__menuCurrentPaths.length > 0">
+          <el-breadcrumb-item :to="{name: item.routeName ||
+      (item.children.length > 0 ?item.children[0].routeName:'')
+      }" :key="index" v-for="(item,index) in __menuCurrentPaths">
+            {{item.title}}
+          </el-breadcrumb-item>
+        </el-breadcrumb>
+      </div>
+      {{__currentRoute}}
 
 
     </div>

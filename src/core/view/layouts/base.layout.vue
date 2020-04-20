@@ -1,7 +1,7 @@
 <template>
   <div class="base-layout">
     <div class="layout-menu" :class="{'layout-menu-collapse': __menuCollapseStatus}">
-      <el-menu :default-active="$route.name" @select="menuSelect" background-color="#2a3f54" text-color="#ffffff"
+      <el-menu :default-active="$route.name" @select="onMenuSelect" background-color="#2a3f54" text-color="#ffffff"
                class="layout-menu-ls" :collapse="__menuCollapseStatus">
         <menu-component :menu-list="__menuFormatList"/>
       </el-menu>
@@ -12,11 +12,13 @@
       </div>
       <div class="layout-page-tags">
         <page-tags-component/>
+
       </div>
       <div class="layout-body">
         <keep-alive>
           <router-view/>
         </keep-alive>
+
       </div>
     </div>
   </div>
@@ -25,6 +27,7 @@
 <script>
   import vm from '../../vm';
   import configHooks from '../../../config.hooks';
+  import {sleep} from '../../../view/utils/utils';
 
   const MenuComponent = () => import('../components/menu.component');
   const HeaderComponent = () => import('../components/header.component');
@@ -35,13 +38,29 @@
       MenuComponent, HeaderComponent,
       PageTagsComponent
     },
-    beforeCreate() {
 
+    async mounted() {
+      /**
+       * @description 加载菜单
+       * */
+      let menu = await configHooks.getMenuList.call(this);
+      this.__setMenuList(menu);
 
+      // -------------
+      this.onRouteUpdate();
+      // -----
+    },
+    watch: {
+      $route() {
+        this.onRouteUpdate();
+      }
     },
     methods: {
-
-      menuSelect(index, path, itemVm) {
+      /**
+       * @description 监听菜单选中
+       * @doc https://element.eleme.cn/#/zh-CN/component/menu
+       * */
+      onMenuSelect(index, path, itemVm) {
         // 优先级 routeName -> link
         let item = itemVm.$attrs['data-item'];
 
@@ -69,8 +88,21 @@
           window.open(item.link);
         }
       },
+      /**
+       * @description 未匹配到路由跳转至 404
+       * */
       routeTo404() {
         return this.$router.push({path: '/404'});
+      },
+      /**
+       * @description 监听路由更新
+       * */
+      async onRouteUpdate() {
+        // -------
+        this.__initMenuCurrentPaths();
+        // ------- 追加 tags 的一项
+        this.__pushTagsList(this.__currentRoute);
+
       }
 
     },

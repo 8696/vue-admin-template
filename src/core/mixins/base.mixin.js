@@ -1,5 +1,7 @@
 import vm from '../vm';
+import {sleep} from '../../view/utils/utils';
 
+const cache = {};
 export default {
   methods: {
     __appMounted() {
@@ -21,5 +23,6 @@ export default {
       });
     },
 
-  }
+  },
+
 };

@@ -75,6 +75,7 @@ export default {
         {
           title: '404',
           icon: 'el-icon-location',
+          routeName: '404',
           id: 10,
           parentID: 6
         },
