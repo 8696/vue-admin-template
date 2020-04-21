@@ -11,7 +11,15 @@
       return {};
     },
     mounted() {
-      console.log('doc')
+      console.log('doc');
+      setTimeout(() => {
+        this.__setStoreConfig('logo', {
+          miniPath: '@/assets/logo/logo.png',
+          path: '@/assets/logo/mini-logo.png',
+          backgroundColor: '#076ac7',
+          fixed: true
+        });
+      }, 3000);
     },
     computed: {},
     methods: {}

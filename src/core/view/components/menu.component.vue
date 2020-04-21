@@ -1,7 +1,6 @@
 <template>
   <section>
     <template v-for="(item,index) in menuList">
-
       <template v-if="item.children && item.children.length > 0">
         <el-submenu
           :disabled="item.disabled === true"
@@ -30,6 +29,8 @@
 </template>
 
 <script>
+
+
   export default {
     name: 'menuComponent',
     props: {
@@ -39,8 +40,8 @@
           return [];
         }
       },
-
     },
+
   };
 </script>
 

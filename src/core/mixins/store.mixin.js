@@ -1,6 +1,6 @@
 import {mapState, mapMutations} from 'vuex';
 import {deepCopy, getParentJson} from '../utils/utils';
-
+import * as storeConfig from '../../store.config';
 
 export default {
 
@@ -26,11 +26,20 @@ export default {
        * @type {Array}
        * */
       __menuFormatList: state => state.__menu.formatList,
+
+    }),
+    ...mapState({
+
       /**
        * @description tags 对象集合
        * @type {Array}
        * */
       __tagsList: state => state.__tags.list,
+    }),
+    ...mapState({
+
+      __logo: state => state.__base.logo,
+
     }),
     /**
      * @description 当前路由菜单项
@@ -76,7 +85,11 @@ export default {
        * */
       __setTagsOneItemActive: 'setOneItemActive'
     }),
+    ...mapMutations('__base', {
 
+      __setBaseLogo: 'setLogo',
+
+    }),
 
     /**
      * @description 设置当前菜单的路由父子集合
@@ -91,9 +104,10 @@ export default {
       let home = this.__menuList.find(item => {
         return item.routeName === homeRouteName;
       });
-      let paths = [home];
 
+      let paths = home ? [home] : [];
       if (activeRouteItem) {
+
         // 合并其他
         paths = paths.concat(getParentJson(this.__menuList, activeRouteItem.id).map(item => {
           item = deepCopy(item);
@@ -108,6 +122,7 @@ export default {
         this.__setMenuCurrentPaths(paths);
 
       } else {
+
         paths = paths.concat([{routerName: '404', title: '404', children: []}]);
         // 404
         this.__setMenuCurrentPaths(paths);
@@ -123,7 +138,87 @@ export default {
         __menuCurrentPaths.splice(0, 1);
       }
       document.title = __menuCurrentPaths.map(item => item.title).join('-') + ' - 后台管理系统';
-    }
+    },
+    /**
+     * @description 初始化全局 store config
+     * @param itemKey {Array}
+     * */
+    __initStoreConfig(itemKey) {
+
+      Object.keys(storeConfig).forEach(item => {
+        if (!itemKey.includes(item)) return;
+        this.__setStoreConfig(item, storeConfig[item]);
+      });
+
+    },
+    /**
+     * @description 设置全局 store config
+     * @param key {String}
+     * @param value {*}
+     * */
+    __setStoreConfig(key, value) {
+
+      //
+      switch (key) {
+        case 'menuList':
+          this.__setMenuList(deepCopy(value));
+          this.__onRouteUpdate();
+          break;
+        case 'menuCollapseStatus':
+          this.__setMenuCollapseStatus(value);
+          break;
+        case 'logo':
+          if (!value) {
+            return this.__setBaseLogo(null);
+          }
+
+          if (value.path !== undefined) {
+            let logo = value.path.split('/');
+            logo.splice(0, 1);
+            let logoPath = require('../../' + logo.join('/'));
+            this.__setBaseLogo({
+              path: logoPath,
+            });
+          }
+          if (value.miniPath !== undefined) {
+            let miniLogo = value.miniPath.split('/');
+            miniLogo.splice(0, 1);
+            let miniLogoPath = require('../../' + miniLogo.join('/'));
+            this.__setBaseLogo({
+              miniPath: miniLogoPath,
+            });
+          }
+          if (value.fixed !== undefined) {
+            this.__setBaseLogo({
+              fixed: value.fixed
+            });
+          }
+
+          if (value.backgroundColor !== undefined) {
+            this.__setBaseLogo({
+              backgroundColor: value.backgroundColor,
+            });
+          }
+
+          break;
+
+      }
+    },
+    /**
+     * @description 获取全局 store config
+     * @param key {String}
+     * */
+    __getStoreConfig(key) {
+
+      switch (key) {
+        case 'menuList':
+          return deepCopy(this.__menuList);
+        case 'menuCollapseStatus':
+          return this.__setMenuCollapseStatus(value);
+
+      }
+    },
+
   }
 };
 

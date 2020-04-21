@@ -10,7 +10,17 @@ export default {
           resolve();
         });
       });
+    },
+    /**
+     * @description 监听路由更新
+     * */
+    __onRouteUpdate() {
+      // -------
+      this.__initMenuCurrentPaths();
+      // ------- 追加 tags 的一项
+      this.__pushTagsList(this.__currentRoute);
     }
-  }
+  },
+
 
 };

@@ -7,11 +7,12 @@
 <script>
   import vm from '../vm';
 
-
   export default {
-    name: 'App',
-    async mounted() {
+    mounted() {
       vm.$emit('__app-mounted');
+    },
+    beforeMount() {
+      //
     }
   };
 </script>

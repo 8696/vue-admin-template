@@ -19,6 +19,7 @@ export default {
      * @param route {Object}
      * */
     pushList(state, route) {
+      if (!route) return;
       route = deepCopy(route);
       let findStatus = state.list.some(item => {
         return item.id === route.id;

@@ -17,6 +17,12 @@ export function parseDateTime(options = {format: null, timestamp: null}) {
 
 
 export function deepCopy(data) {
+
+  if (!['[object Array]', '[object Object]']
+    .includes(({}).toString.call(data))) {
+    return data;
+  }
+
   return JSON.parse(JSON.stringify(data));
 }
 

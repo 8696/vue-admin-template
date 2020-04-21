@@ -17,8 +17,6 @@
         </el-breadcrumb>
       </div>
       {{__currentRoute}}
-
-
     </div>
     <div class="l-right">
       <div class="user">
