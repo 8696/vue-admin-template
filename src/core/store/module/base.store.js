@@ -10,7 +10,7 @@ export default {
   mutations: {
     setLogo(state, logo) {
       if (!logo) return state.logo = null;
-      // 
+      //
       state.logo = !state.logo ? {} : state.logo;
       state.logo = merge(state.logo, logo);
     }
