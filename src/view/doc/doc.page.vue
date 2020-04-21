@@ -1,8 +1,8 @@
 <template>
-    <div>
-      <div v-for="item in 100">doc.page {{item}}</div>
+  <div>
+    <div v-for="item in 100">doc.page {{item}}</div>
 
-    </div>
+  </div>
 </template>
 
 <script>
@@ -11,6 +11,7 @@
       return {};
     },
     mounted() {
+      console.log('doc')
     },
     computed: {},
     methods: {}

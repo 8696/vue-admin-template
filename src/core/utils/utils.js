@@ -20,7 +20,6 @@ export function deepCopy(data) {
   return JSON.parse(JSON.stringify(data));
 }
 
-
 export function parseJsonTree(data, parentID = 0) {
   let tree = [];
   let temp;
@@ -45,4 +44,12 @@ export function getParentJson(list, id, parents = []) {
     }
   }
   return parents;
+}
+
+export function sleep(time = 1000) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve();
+    }, time);
+  });
 }

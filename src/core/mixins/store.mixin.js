@@ -3,9 +3,7 @@ import {deepCopy, getParentJson} from '../utils/utils';
 
 
 export default {
-  data() {
-    return {};
-  },
+
   computed: {
     ...mapState({
       /**
@@ -93,26 +91,26 @@ export default {
       let home = this.__menuList.find(item => {
         return item.routeName === homeRouteName;
       });
-      let title = [home];
+      let paths = [home];
 
       if (activeRouteItem) {
         // 合并其他
-        title = title.concat(getParentJson(this.__menuList, activeRouteItem.id).map(item => {
+        paths = paths.concat(getParentJson(this.__menuList, activeRouteItem.id).map(item => {
           item = deepCopy(item);
           return item;
         }).reverse());
 
         // 去重,两个都是首页的情况
-        if (title[0].routeName === title[1].routeName) {
-          title.length = 1;
+        if (paths[0].routeName === paths[1].routeName) {
+          paths.length = 1;
         }
 
-        this.__setMenuCurrentPaths(title);
+        this.__setMenuCurrentPaths(paths);
 
       } else {
-        title = title.concat([{routerName: '404', title: '404', children: []}]);
+        paths = paths.concat([{routerName: '404', title: '404', children: []}]);
         // 404
-        this.__setMenuCurrentPaths(title);
+        this.__setMenuCurrentPaths(paths);
       }
       this.__setDocumentTitle();
     },

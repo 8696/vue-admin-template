@@ -10,12 +10,8 @@ const router = new Router(merge(routes, {
   routes: [
     {
       path: '/',
-    },
-    {
-      path: '/',
       component: () => import('../view/layouts/base.layout'),
       children: [
-
         {
           path: '404',
           name: '404',
@@ -67,4 +63,25 @@ router.beforeResolve(async (...args) => {
 router.afterEach(async (...args) => {
   routes.hooks.afterEach.call(router, ...args);
 });
+
+/**
+ * @description 扩展实例方法
+ * */
+router.back2 = function (...arg) {
+  this.viewChangeType = 'back';
+  return this.back(...arg);
+};
+router.go2 = function (...arg) {
+  this.viewChangeType = 'go';
+  return this.go(...arg);
+};
+router.push2 = function (...arg) {
+  this.viewChangeType = 'push';
+  return this.push(...arg);
+};
+router.replace2 = function (...arg) {
+  this.viewChangeType = 'replace';
+  return this.replace(...arg);
+};
+
 export default router;

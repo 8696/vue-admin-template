@@ -1,7 +1,7 @@
 <template>
-    <div>
-        test3.page
-    </div>
+  <div>
+    test3.page
+  </div>
 </template>
 
 <script>
@@ -10,6 +10,7 @@
       return {};
     },
     mounted() {
+      console.log('test333')
     },
     computed: {},
     methods: {}

@@ -7,7 +7,6 @@
 <script>
   import vm from '../vm';
 
-  import configHooks from '../../config.hooks';
 
   export default {
     name: 'App',

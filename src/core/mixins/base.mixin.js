@@ -1,7 +1,5 @@
 import vm from '../vm';
-import {sleep} from '../../view/utils/utils';
 
-const cache = {};
 export default {
   methods: {
     __appMounted() {
@@ -12,17 +10,7 @@ export default {
           resolve();
         });
       });
-    },
-    __baseLayoutMounted() {
-      return new Promise(resolve => {
-        if (vm.__baseLayoutMountedStatus) return resolve();
-        vm.$once('__base-layout-mounted', () => {
-          vm.__baseLayoutMountedStatus = true;
-          resolve();
-        });
-      });
-    },
-
-  },
+    }
+  }
 
 };

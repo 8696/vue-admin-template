@@ -1,4 +1,4 @@
-import {sleep} from './view/utils/utils';
+import {sleep} from './utils/utils';
 
 export default {
   /**
@@ -8,7 +8,7 @@ export default {
   getMenuList() {
     return new Promise(async resolve => {
       console.log('getMenuList');
-      await sleep();
+      await sleep()
       let menuData = [
         {
           title: '首页',

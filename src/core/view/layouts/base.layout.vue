@@ -12,22 +12,20 @@
       </div>
       <div class="layout-page-tags">
         <page-tags-component/>
-
       </div>
       <div class="layout-body">
-        <keep-alive>
-          <router-view/>
-        </keep-alive>
-
+        <section v-for="item in __tagsList" :key="item.id">
+          <keep-alive>
+            <router-view v-if="$route.name === item.routeName"/>
+          </keep-alive>
+        </section>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import vm from '../../vm';
   import configHooks from '../../../config.hooks';
-  import {sleep} from '../../../view/utils/utils';
 
   const MenuComponent = () => import('../components/menu.component');
   const HeaderComponent = () => import('../components/header.component');
@@ -79,7 +77,7 @@
         }
 
         if (item.hasOwnProperty('routeName')) {
-          return this.$router.push({
+          return this.$router.push2({
             path: item.routeName
           });
         }
@@ -92,38 +90,20 @@
        * @description 未匹配到路由跳转至 404
        * */
       routeTo404() {
-        return this.$router.push({path: '/404'});
+        return this.$router.push2({path: '/404'});
       },
       /**
        * @description 监听路由更新
        * */
-      async onRouteUpdate() {
+      onRouteUpdate() {
         // -------
         this.__initMenuCurrentPaths();
         // ------- 追加 tags 的一项
         this.__pushTagsList(this.__currentRoute);
 
       }
-
-    },
-    beforeRouteEnter(to, from, next) {
-      // 在渲染该组件的对应路由被 confirm 前调用
-      // 不！能！获取组件实例 `this`
-      // 因为当守卫执行前，组件实例还没被创建
-      next();
-    },
-    beforeRouteUpdate(to, from, next) {
-      // 在当前路由改变，但是该组件被复用时调用
-      // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
-      // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
-      // 可以访问组件实例 `this`
-      next();
-    },
-    beforeRouteLeave(to, from, next) {
-      // 导航离开该组件的对应路由时调用
-      // 可以访问组件实例 `this`
-      next();
     }
+
   };
 </script>
 

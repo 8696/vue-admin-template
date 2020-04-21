@@ -15,6 +15,9 @@ export default {
      * @description 菜单列表
      * */
     list: [],
+    /**
+     * @description 格式化菜单
+     * */
     formatList: []
   },
   getters: {},

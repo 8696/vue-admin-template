@@ -33,12 +33,12 @@ let timer = setInterval(function () {
     p = String(parseInt(p * 100));
     if (pp !== p) {
       console.log(chalk.green(
-        `----------------------------------------------${v}---` + p + '%'));
+        `building----------------------------------------------${v}---` + p + '%'));
     }
     pp = p;
     return;
   }
-  console.log(chalk.green('building...'));
+  console.log(chalk.green(`building----------------------------------------------${v}`));
   clearInterval(timer);
 }, 100);
 
@@ -92,28 +92,6 @@ exports.buildNext = function () {
       await fsExtra.remove(path.resolve(distPath, 'index.html'));
       await fsExtra.remove(path.resolve(distPath, 'static'));
       fs.writeFileSync(path.resolve(__dirname, '../node_modules/.__build.time'), String(new Date().getTime() - buildStartTime));
-
-      console.log(chalk.redBright(`
-
-                       .::::.
-                     .::::::::.
-                    :::::::::::
-                 ..:::::::::::'
-              '::::::::::::'
-                .::::::::::
-           '::::::::::::::..
-                ..::::::::::::.
-              \`\`::::::::::::::::
-               ::::\`\`:::::::::'        .:::.
-              ::::'   ':::::'       .::::::::.
-            .::::'      ::::     .:::::::'::::.
-           .:::'       :::::  .:::::::::' ':::::.
-          .::'        :::::.:::::::::'      ':::::.
-         .::'         ::::::::::::::'         \`\`::::.
-     ...:::           ::::::::::::'              \`\`::.
-    \`\`\`\` ':.          ':::::::::'                  ::::..
-                       '.:::::'                    ':'\`\`\`\`..
-            `));
 
       console.log(chalk.cyan('build complete: '));
       console.log(chalk.cyan(`    v:            ${v}`));
