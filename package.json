@@ -1,22 +1,28 @@
 {
-  "name": "vue-template",
-  "version": "1.0.0",
-  "description": "A Vue.js project",
+  "name": "vue-admin-template",
+  "version": "0.0.2019",
+  "description": "基于vue2.x+element-ui的后台管理系统模板",
   "author": "longjinwen<204084802@qq.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js production",
-    "build-test": "node build/build.js test",
-    "build-dev": "node build/build.js dev",
-    "build-local": "node build/build.js local"
+    "build": "node build/build.js production"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/8696/vue-admin-template"
+  },
+  "bugs": {
+    "url": "https://github.com/8696/vue-admin-template/issues"
+  },
+  "homepage": "https://github.com/8696/vue-admin-template#readme",
+  "license": "ISC",
   "dependencies": {
-    "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "vue": "^2.5.2",
+    "vue-router": "^3.0.1",
     "address": "^1.1.2",
     "autoprefixer": "^7.1.2",
     "axios": "^0.19.0",

@@ -6,31 +6,19 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>loading...</title>
   <% if (process.env.NODE_ENV === 'production') { %>
-  <!-- 生产环境 -->
-  <link rel="shortcut icon" href="/<assetsPublicPath>/static/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/<assetsPublicPath>/static/favicon.ico" type="image/x-icon"/>
   <% }else { %>
-  <!-- 开发环境 -->
-  <link rel="shortcut icon" href="./static/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="./static/favicon.ico" type="image/x-icon"/>
   <% } %>
-  <!----------------->
+  <!------------------------------->
   <% if (process.env.NODE_ENV === 'production') { %>
-  <!-- 生产环境 -->
   <% }else { %>
-  <!-- 开发环境 -->
   <script type="text/javascript">
-      window.__static = '/';
+    window.__static = '/';
   </script>
   <% } %>
 </head>
 <body>
-<div id="app">
-</div>
-<% if (process.env.NODE_ENV === 'production') { %>
-<!-- 生产环境 -->
-<script type="text/javascript" src="/<assetsPublicPath>/static/assets/app.js"></script>
-<% }else { %>
-<!-- 开发环境 -->
-<script src="/static/assets/app.js"></script>
-<% } %>
+<div id="app"></div>
 </body>
 </html>
