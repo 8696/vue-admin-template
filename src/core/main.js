@@ -27,27 +27,38 @@ Object.keys(globalFilters).forEach(filterName => {
 import vm from './vm';
 
 Vue.prototype.vm = vm;
+Vue.vm = vm;
+
 /**
  * @description 全局 mixin
  * */
-import baseMixin from './mixins/base.mixin';
-import storeMixin from './mixins/store.mixin';
+const baseMixin = () => import('./mixins/base.mixin');
 
-Vue.mixin(baseMixin);
-Vue.mixin(storeMixin);
+const storeMixin = () => import('./mixins/store.mixin');
 
 /**
  * @description element-ui
  * */
 const elementUI = () => import('../element-ui/index');
 
-Vue.config.productionTip = false;
 
 const App = () => import('./view/App');
 
+Vue.config.productionTip = false;
 
-elementUI().then(({default: elementUIInstall}) => {
+
+(async () => {
+
+  let {default: _baseMixin} = await baseMixin();
+  let {default: _storeMixin} = await storeMixin();
+
+  Vue.mixin(_baseMixin);
+  Vue.mixin(_storeMixin);
+
+
+  let {default: elementUIInstall} = await elementUI();
   elementUIInstall(Vue);
+
   new Vue({
     el: '#app',
     router,
@@ -58,4 +69,6 @@ elementUI().then(({default: elementUIInstall}) => {
       //
     }
   });
-});
+
+})();
+

@@ -180,12 +180,24 @@ export default {
                 path: value.path,
               });
             } else {
+              if (process.env.NODE_ENV === 'production') {
+                // 生产模式
+                this.__setBaseLogo({
+                  path: window.__static + value.path,
+                });
+              } else {
+                this.__setBaseLogo({
+                  path: value.path,
+                });
+              }
+              /*
               let logo = value.path.split('/');
               logo.splice(0, 1);
               let logoPath = require('../../' + logo.join('/'));
               this.__setBaseLogo({
                 path: logoPath,
               });
+              */
             }
           }
           if (value.hasOwnProperty('miniPath')) {
@@ -193,13 +205,27 @@ export default {
               this.__setBaseLogo({
                 miniPath: value.miniPath,
               });
+
             } else {
+              if (process.env.NODE_ENV === 'production') {
+                // 生产模式
+                this.__setBaseLogo({
+                  miniPath: window.__static + value.miniPath,
+                });
+              } else {
+                this.__setBaseLogo({
+                  miniPath: value.miniPath,
+                });
+              }
+
+              /*
               let miniLogo = value.miniPath.split('/');
               miniLogo.splice(0, 1);
               let miniLogoPath = require('../../' + miniLogo.join('/'));
               this.__setBaseLogo({
                 miniPath: miniLogoPath,
               });
+              */
             }
 
           }

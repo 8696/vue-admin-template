@@ -98,8 +98,8 @@ export const menuCollapseStatus = false;
  * */
 
 export const logo = {
-  path: '@/assets/logo/logo.png',
-  miniPath: '@/assets/logo/mini-logo.png',
+  path: '/static/logo/logo.png',
+  miniPath: '/static/logo/mini-logo.png',
   backgroundColor: '#192632',
   fixed: true
 };

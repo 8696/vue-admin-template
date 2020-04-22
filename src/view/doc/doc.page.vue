@@ -12,7 +12,7 @@
       setTimeout(() => {
         this.__setStoreConfig('logo', {
           miniPath: 'http://explorer.moac.io/img/new-logo.png',
-          path: '@/assets/logo/mini-logo.png',
+          path: '/static/微信截图_20200422094423.png',
           backgroundColor: '#076ac7',
           fixed: false
         });
