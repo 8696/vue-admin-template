@@ -12,14 +12,6 @@ console.log('vue version: ' + Vue.version);
  * */
 import './assets/scss/app.scss';
 
-/**
- * @description 注册全局 filter
- * */
-import * as globalFilters from './filters/global.filters';
-
-Object.keys(globalFilters).forEach(filterName => {
-  Vue.filter(filterName, globalFilters[filterName]);
-});
 
 /**
  * @description 自定义 vm 实例

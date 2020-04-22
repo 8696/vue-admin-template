@@ -10,9 +10,6 @@
   export default {
     mounted() {
       vm.$emit('__app-mounted');
-    },
-    beforeMount() {
-      //
     }
   };
 </script>

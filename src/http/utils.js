@@ -2,7 +2,7 @@ import qs from 'qs';
 
 /**
  * @deprecated 将对象转成 FormData
- * @param object {Object}
+ * @param object {FormData}
  * */
 export function makeFormData (object) {
   let formData = new FormData();
