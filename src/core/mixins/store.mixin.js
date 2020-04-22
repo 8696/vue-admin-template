@@ -37,7 +37,10 @@ export default {
       __tagsList: state => state.__tags.list,
     }),
     ...mapState({
-
+      /**
+       * @description logo 配置
+       * @type {Null | Object}
+       * */
       __logo: state => state.__base.logo,
 
     }),
@@ -157,7 +160,6 @@ export default {
      * @param value {*}
      * */
     __setStoreConfig(key, value) {
-
       //
       switch (key) {
         case 'menuList':
@@ -172,29 +174,42 @@ export default {
             return this.__setBaseLogo(null);
           }
 
-          if (value.path !== undefined) {
-            let logo = value.path.split('/');
-            logo.splice(0, 1);
-            let logoPath = require('../../' + logo.join('/'));
-            this.__setBaseLogo({
-              path: logoPath,
-            });
+          if (value.hasOwnProperty('path')) {
+            if (/^http/.test(value.path)) {
+              this.__setBaseLogo({
+                path: value.path,
+              });
+            } else {
+              let logo = value.path.split('/');
+              logo.splice(0, 1);
+              let logoPath = require('../../' + logo.join('/'));
+              this.__setBaseLogo({
+                path: logoPath,
+              });
+            }
           }
-          if (value.miniPath !== undefined) {
-            let miniLogo = value.miniPath.split('/');
-            miniLogo.splice(0, 1);
-            let miniLogoPath = require('../../' + miniLogo.join('/'));
-            this.__setBaseLogo({
-              miniPath: miniLogoPath,
-            });
+          if (value.hasOwnProperty('miniPath')) {
+            if (/^http/.test(value.miniPath)) {
+              this.__setBaseLogo({
+                miniPath: value.miniPath,
+              });
+            } else {
+              let miniLogo = value.miniPath.split('/');
+              miniLogo.splice(0, 1);
+              let miniLogoPath = require('../../' + miniLogo.join('/'));
+              this.__setBaseLogo({
+                miniPath: miniLogoPath,
+              });
+            }
+
           }
-          if (value.fixed !== undefined) {
+          if (value.hasOwnProperty('fixed')) {
             this.__setBaseLogo({
               fixed: value.fixed
             });
           }
 
-          if (value.backgroundColor !== undefined) {
+          if (value.hasOwnProperty('backgroundColor')) {
             this.__setBaseLogo({
               backgroundColor: value.backgroundColor,
             });
@@ -214,8 +229,9 @@ export default {
         case 'menuList':
           return deepCopy(this.__menuList);
         case 'menuCollapseStatus':
-          return this.__setMenuCollapseStatus(value);
-
+          return this.__setMenuCollapseStatus;
+        case 'logo':
+          return this.__logo;
       }
     },
 

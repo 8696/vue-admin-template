@@ -4,13 +4,24 @@
   display: flex;
   height: 100%;
 
+  .__vuescroll, .__panel, .__view {
+    position: static !important;
+  }
+
+  .__rail-is-vertical {
+    right: 0 !important;
+  }
+
+  .layout-menu-p {
+    height: 100vh;
+    position: relative;
+    background-color: rgb(42, 63, 84);
+  }
 
   .layout-menu {
-    overflow: auto;
     width: 202px;
     transition: width .5s;
-    background-color: rgb(42, 63, 84);
-
+    height: 100vh;
     .el-menu {
       border-right: none;
     }
@@ -18,28 +29,7 @@
 
   .layout-menu-ls {
     height: 100vh;
-    overflow: auto;
   }
-
-  .layout-menu::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
-
-  .layout-menu::-webkit-scrollbar-track {
-    width: 0
-  }
-
-  .layout-menu-ls::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
-
-  .layout-menu-ls::-webkit-scrollbar-track {
-    width: 0;
-    height: 0;
-  }
-
 
   .layout-content {
     width: calc(100% - 202px);
@@ -253,11 +243,13 @@
       max-width: 100%;
     }
   }
-  .exist-logo{
+
+  .exist-logo {
     .layout-menu-ls {
       height: auto;
     }
   }
+
   .fixed-logo {
     .layout-menu-ls {
       height: 100vh;
@@ -266,8 +258,6 @@
   }
 
   .fixed-logo {
-    position: relative;
-
     .logo {
       position: absolute;
       left: 0;

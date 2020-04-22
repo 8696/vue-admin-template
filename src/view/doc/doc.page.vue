@@ -7,22 +7,18 @@
 
 <script>
   export default {
-    data() {
-      return {};
-    },
     mounted() {
       console.log('doc');
       setTimeout(() => {
         this.__setStoreConfig('logo', {
-          miniPath: '@/assets/logo/logo.png',
+          miniPath: 'http://explorer.moac.io/img/new-logo.png',
           path: '@/assets/logo/mini-logo.png',
           backgroundColor: '#076ac7',
-          fixed: true
+          fixed: false
         });
-      }, 3000);
-    },
-    computed: {},
-    methods: {}
+      }, 2000);
+    }
+
   };
 </script>
 

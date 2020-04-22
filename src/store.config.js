@@ -8,6 +8,8 @@
  * Time: 9:08 下午
  */
 
+import fa from 'element-ui/src/locale/lang/fa';
+
 /**
  * @description 菜单数据
  * @type {Array}
@@ -99,7 +101,7 @@ export const logo = {
   path: '@/assets/logo/logo.png',
   miniPath: '@/assets/logo/mini-logo.png',
   backgroundColor: '#192632',
-  fixed: false
+  fixed: true
 };
 
 // export const logo = null;

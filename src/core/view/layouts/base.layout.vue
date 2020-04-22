@@ -1,22 +1,29 @@
 <template>
   <div class="base-layout">
 
-    <div class="layout-menu"
-         :class="{
+
+    <div class="layout-menu-p">
+      <vue-scroll :ops="scrollOptions">
+
+        <div class="layout-menu"
+             :class="{
             'layout-menu-collapse': __menuCollapseStatus,
             'exist-logo': __logo,
             'fixed-logo': __logo && __logo.fixed
          }">
 
-      <div v-if="__logo" class="logo" :style="{backgroundColor: __logo.backgroundColor}">
-        <img :src="__menuCollapseStatus ? __logo.miniPath : __logo.path"/>
-      </div>
+          <div v-if="__logo" class="logo" :style="{backgroundColor: __logo.backgroundColor}">
+            <img :src="__menuCollapseStatus ? __logo.miniPath : __logo.path"/>
+          </div>
 
-      <el-menu :default-active="$route.name" @select="onMenuSelect" background-color="#2a3f54" text-color="#ffffff"
-               class="layout-menu-ls" :collapse="__menuCollapseStatus">
-        <menu-component :menu-list="__menuFormatList"/>
-      </el-menu>
+          <el-menu :default-active="$route.name" @select="onMenuSelect" background-color="#2a3f54" text-color="#ffffff"
+                   class="layout-menu-ls" :collapse="__menuCollapseStatus">
+            <menu-component :menu-list="__menuFormatList"/>
+          </el-menu>
+        </div>
+      </vue-scroll>
     </div>
+
     <div class="layout-content" :class="{'layout-content-collapse': __menuCollapseStatus}">
       <div class="layout-header">
         <header-component/>
@@ -38,6 +45,7 @@
 <script>
 
   import {sleep} from '../../utils/utils';
+  import vueScroll from 'vuescroll';
 
   const MenuComponent = () => import('../components/menu.component');
   const HeaderComponent = () => import('../components/header.component');
@@ -48,7 +56,26 @@
     components: {
       MenuComponent,
       HeaderComponent,
-      PageTagsComponent
+      PageTagsComponent,
+      vueScroll
+    },
+    data() {
+      return {
+        scrollOptions: {
+          rail: {
+            opacity: 0,
+          },
+          bar: {
+            size: '6px',
+            showDelay: 500,
+            keepShow: false,
+            background: '#ffffff',
+            opacity: .2,
+            specifyBorderRadius: '0',
+            onlyShowBarOnScroll: false
+          }
+        }
+      };
     },
 
     async created() {
