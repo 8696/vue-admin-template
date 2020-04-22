@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import vm from '../vm';
+  import vm from './vm';
 
   export default {
     mounted() {

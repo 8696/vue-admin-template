@@ -1,6 +1,6 @@
 <template>
   <div>
-    test3.page
+    404.page
   </div>
 </template>
 
@@ -10,7 +10,6 @@
       return {};
     },
     mounted() {
-      console.log('test333')
     },
     computed: {},
     methods: {}

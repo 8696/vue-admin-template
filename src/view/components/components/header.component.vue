@@ -2,9 +2,7 @@
   <div class="header-component">
     <div class="l-left">
       <div class="change-menu-collapse">
-        <i :class="{'el-icon-s-fold':!__menuCollapseStatus,
-      'el-icon-s-unfold':__menuCollapseStatus}"
-           class=""
+        <i :class="{'el-icon-s-fold':!__menuCollapseStatus,'el-icon-s-unfold':__menuCollapseStatus}"
            @click="__setMenuCollapseStatus(!__menuCollapseStatus)"/>
       </div>
       <div class="route-breadcrumb">
@@ -16,14 +14,13 @@
           </el-breadcrumb-item>
         </el-breadcrumb>
       </div>
-      {{__currentRoute}}
     </div>
     <div class="l-right">
       <div class="user">
 
         <el-dropdown @command="userActionHandleCommand">
         <span class="el-dropdown-link">
-          <img class="avatar" src="../../assets/images/avatar.jpeg" alt="">
+          <img class="avatar" src="../../../assets/images/avatar.jpeg" alt="">
           龙锦文<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
           <el-dropdown-menu slot="dropdown">

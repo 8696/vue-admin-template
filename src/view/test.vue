@@ -1,21 +1,16 @@
 <template>
   <div>
-    test.page
-    {{str}}
+    {{__currentRoute}}
   </div>
 </template>
 
 <script>
-
   export default {
+    name: 'test',
     data() {
-      return {
-        str: ''
-      };
+      return {};
     },
     mounted() {
-      this.str = Math.random();
-      console.log('123456');
     },
     computed: {},
     methods: {}

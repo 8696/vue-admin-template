@@ -9,7 +9,7 @@ export default {
     },
     {
       path: '/',
-      component: () => import('../core/view/layouts/base.layout'),
+      component: () => import('../view/components/layouts/base.layout'),
       children: [
         {
           path: 'home',
@@ -24,32 +24,46 @@ export default {
         },
 
         {
-          path: '/test',
-          name: 'test',
-          component: () => import('../view/test/test.page')
+          path: '/test1',
+          name: 'test1',
+          component: () => import('../view/test')
         },
-
         {
           path: '/test2',
           name: 'test2',
-          component: () => import('../view/test2/test.page')
+          component: () => import('../view/test')
         },
         {
           path: '/test3',
           name: 'test3',
-          component: () => import('../view/test3/test.page')
+          component: () => import('../view/test')
         },
         {
           path: '/test4',
           name: 'test4',
-          component: () => import('../view/test4/test.page')
+          component: () => import('../view/test')
+        },
+        {
+          path: '/test5',
+          name: 'test5',
+          component: () => import('../view/test')
+        },
+        {
+          path: '/test6',
+          name: 'test6',
+          component: () => import('../view/test')
+        },
+        {
+          path: '/test7',
+          name: 'test7',
+          component: () => import('../view/test')
         },
 
       ]
     },
     {
       path: '/',
-      component: () => import('../core/view/layouts/default.layout'),
+      component: () => import('../view/components/layouts/default.layout'),
       children: [
         {
           path: '/login',
@@ -62,6 +76,8 @@ export default {
         },
       ]
     },
+
+
 
   ],
   hooks: {

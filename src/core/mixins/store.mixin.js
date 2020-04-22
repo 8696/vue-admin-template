@@ -89,9 +89,7 @@ export default {
       __setTagsOneItemActive: 'setOneItemActive'
     }),
     ...mapMutations('__base', {
-
       __setBaseLogo: 'setLogo',
-
     }),
 
     /**
@@ -99,9 +97,15 @@ export default {
      * */
     __initMenuCurrentPaths() {
       let routerName = this.$route.name;
-      let activeRouteItem = this.__menuList.find(item => {
+      // 存在菜单列表中
+      let activeMenuItem = this.__menuList.find(item => {
         return item.routeName === routerName;
       });
+
+      // 匹配当前路由
+      let currentRoute = this.$router.resolve({name: routerName});
+
+
       // 匹配首页
       let homeRouteName = this.$router.resolve('/').resolved.name;
       let home = this.__menuList.find(item => {
@@ -109,10 +113,9 @@ export default {
       });
 
       let paths = home ? [home] : [];
-      if (activeRouteItem) {
-
+      if (activeMenuItem) {
         // 合并其他
-        paths = paths.concat(getParentJson(this.__menuList, activeRouteItem.id).map(item => {
+        paths = paths.concat(getParentJson(this.__menuList, activeMenuItem.id).map(item => {
           item = deepCopy(item);
           return item;
         }).reverse());
@@ -121,11 +124,19 @@ export default {
         if (paths[0].routeName === paths[1].routeName) {
           paths.length = 1;
         }
-
         this.__setMenuCurrentPaths(paths);
 
-      } else {
+      } else if (currentRoute.resolved.matched.length > 0) {
+        // 存在路由表中
+        paths = paths.concat([{
+          routeName: currentRoute.resolved.name,
+          title: currentRoute.resolved.meta.title,
+          id: new Date().getTime(),
+          children: []
+        }]);
+        this.__setMenuCurrentPaths(deepCopy(paths));
 
+      } else {
         paths = paths.concat([{routerName: '404', title: '404', children: []}]);
         // 404
         this.__setMenuCurrentPaths(paths);
@@ -257,7 +268,7 @@ export default {
         case 'menuCollapseStatus':
           return this.__setMenuCollapseStatus;
         case 'logo':
-          return this.__logo;
+          return deepCopy(this.__logo);
       }
     },
 

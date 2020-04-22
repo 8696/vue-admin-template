@@ -8,12 +8,11 @@
  * Time: 9:08 下午
  */
 
-import fa from 'element-ui/src/locale/lang/fa';
-
 /**
  * @description 菜单数据
  * @type {Array}
  * */
+
 export const menuList = [
   {
     title: '首页',
@@ -37,52 +36,78 @@ export const menuList = [
     parentID: 0
   },
   {
-    title: '组件',
+    title: '组件A',
     icon: 'el-icon-location',
+    routeName: '',
     id: 4,
     parentID: 0
   },
   {
-    title: '富文本编辑器',
+    title: '组件A1',
     icon: 'el-icon-location',
-    routeName: 'test',
+    routeName: 'test1',
     id: 5,
-    parentID: 4
-  },
-  {
-    title: '其他组件',
-    icon: 'el-icon-location',
-    id: 6,
     parentID: 4
   },
 
   {
-    title: '富文本编辑器22',
+    title: '组件A2',
     icon: 'el-icon-location',
     routeName: 'test2',
-    id: 7,
+    id: 6,
     parentID: 4
   },
   {
-    title: '富文本编辑器33',
-    icon: 'el-icon-location',
-    routeName: 'test4',
-    id: 8,
-    parentID: 6
-  },
-  {
-    title: '头像上传',
+    title: '组件A3',
     icon: 'el-icon-location',
     routeName: 'test3',
+    id: 7,
+    parentID: 4
+  },
+
+  {
+    title: '组件B',
+    icon: 'el-icon-location',
+    routeName: '',
+    id: 8,
+    parentID: 0
+  },
+
+  {
+    title: '组件B1',
+    icon: 'el-icon-location',
+    routeName: 'test4',
     id: 9,
-    parentID: 6
+    parentID: 8
   },
   {
-    title: '404',
+    title: '组件B2',
     icon: 'el-icon-location',
-    routeName: '404',
+    routeName: 'test5',
     id: 10,
-    parentID: 6
+    parentID: 8
+  },
+  {
+    title: '组件B3',
+    icon: 'el-icon-location',
+    routeName: 'test6',
+    id: 11,
+    parentID: 8
+  },
+  {
+    title: '组件C',
+    icon: 'el-icon-location',
+    routeName: '',
+    id: 12,
+    parentID: 0
+  },
+
+  {
+    title: '组件C1',
+    icon: 'el-icon-location',
+    routeName: 'test7',
+    id: 13,
+    parentID: 12
   },
 ];
 
@@ -103,7 +128,6 @@ export const logo = {
   backgroundColor: '#192632',
   fixed: true
 };
-
 // export const logo = null;
 
 

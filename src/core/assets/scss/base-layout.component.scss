@@ -22,6 +22,7 @@
     width: 202px;
     transition: width .5s;
     height: 100vh;
+
     .el-menu {
       border-right: none;
     }
@@ -264,6 +265,10 @@
       top: 0;
       z-index: 1;
     }
+  }
+
+  .is-active {
+    background-color: #203042 !important;
   }
 }
 

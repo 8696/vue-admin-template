@@ -42,7 +42,7 @@ const storeMixin = () => import('./mixins/store.mixin');
 const elementUI = () => import('../element-ui/index');
 
 
-const App = () => import('./view/App');
+const App = () => import('./App');
 
 Vue.config.productionTip = false;
 
@@ -64,10 +64,7 @@ Vue.config.productionTip = false;
     router,
     store,
     components: {App},
-    template: '<App/>',
-    mounted() {
-      //
-    }
+    template: '<App/>'
   });
 
 })();

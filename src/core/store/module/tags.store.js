@@ -22,13 +22,13 @@ export default {
       if (!route) return;
       route = deepCopy(route);
       let findStatus = state.list.some(item => {
-        return item.id === route.id;
+        return item.routeName === route.routeName;
       });
       if (!findStatus) {
         state.list.push(route);
       }
       state.list = state.list.map(item => {
-        item.__active = item.id === route.id;
+        item.__active = item.routeName === route.routeName;
         return item;
       });
     },

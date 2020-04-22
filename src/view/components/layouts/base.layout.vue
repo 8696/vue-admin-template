@@ -2,7 +2,9 @@
   <div class="base-layout">
 
 
-    <div class="layout-menu-p">
+    <div class="layout-menu-p"
+         element-loading-background="rgba(255, 255, 255, 0.8)"
+         v-loading="__menuList.length === 0">
       <vue-scroll :ops="scrollOptions">
 
         <div class="layout-menu"
@@ -44,7 +46,7 @@
 
 <script>
 
-  import {sleep} from '../../utils/utils';
+  import {sleep} from '../../../core/utils/utils';
   import vueScroll from 'vuescroll';
 
   const MenuComponent = () => import('../components/menu.component');
@@ -62,17 +64,21 @@
     data() {
       return {
         scrollOptions: {
+          vuescroll: {
+            detectResize: true
+
+          },
           rail: {
             opacity: 0,
           },
           bar: {
             size: '6px',
             showDelay: 500,
-            keepShow: false,
+            keepShow: true,
             background: '#ffffff',
             opacity: .2,
             specifyBorderRadius: '0',
-            onlyShowBarOnScroll: false
+            onlyShowBarOnScroll: true
           }
         }
       };
@@ -80,11 +86,14 @@
 
     async created() {
 
-      this.__initStoreConfig(['menuList', 'menuCollapseStatus', 'logo']);
+      this.__initStoreConfig(['', 'menuCollapseStatus', 'logo']);
       // -------------
       if (this.__menuList.length > 0) {
-        this.__onRouteUpdate();
+        // this.__onRouteUpdate();
       }
+      await sleep();
+      this.__initStoreConfig(['menuList', 'menuCollapseStatus', 'logo']);
+
 
     },
     watch: {
@@ -118,6 +127,7 @@
         if (item.hasOwnProperty('routeName')) {
           return this.$router.push2({
             path: item.routeName
+          }, () => {
           });
         }
         // 外部链接
@@ -129,7 +139,8 @@
        * @description 未匹配到路由跳转至 404
        * */
       routeTo404() {
-        return this.$router.push2({path: '/404'});
+        return this.$router.push2({path: '/404'}, () => {
+        });
       },
 
     }

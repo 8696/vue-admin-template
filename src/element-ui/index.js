@@ -153,7 +153,7 @@ export default function install(Vue) {
   // Vue.use(PageHeader);
   // Vue.use(CascaderPanel);
   //
-  // Vue.use(Loading.directive);
+  Vue.use(Loading.directive);
 
   Vue.prototype.$loading = Loading.service;
   // Vue.prototype.$msgbox = MessageBox;
