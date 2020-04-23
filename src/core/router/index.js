@@ -13,6 +13,14 @@ const router = new Router(merge(routes, {
       component: () => import('../../view/components/layouts/base.layout'),
       children: [
         {
+          path: 'reload',
+          name: 'reload',
+          meta: {
+            title: '...'
+          },
+          component: () => import('../../view/components/page/reload.page')
+        },
+        {
           path: '*',
           name: '404',
           meta: {
@@ -20,7 +28,6 @@ const router = new Router(merge(routes, {
           },
           component: () => import('../../view/components/page/404.page')
         },
-
       ]
     }
   ]

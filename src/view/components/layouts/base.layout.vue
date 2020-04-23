@@ -45,7 +45,6 @@
 </template>
 
 <script>
-
   import {sleep} from '../../../core/utils/utils';
   import vueScroll from 'vuescroll';
 
@@ -85,7 +84,6 @@
     },
 
     async created() {
-
       this.__initStoreConfig(['', 'menuCollapseStatus', 'logo']);
       // -------------
       if (this.__menuList.length > 0) {

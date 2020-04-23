@@ -49,5 +49,11 @@ export default {
         return item;
       });
     },
+    /**
+     * @description 根据ID将移动到指定位置
+     * */
+    setIdToIndex(state, {id = '', index = ''}) {
+
+    },
   }
 };

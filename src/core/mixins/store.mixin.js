@@ -86,7 +86,12 @@ export default {
        * 根据 ID 设置一项为 active
        * @param id {Number}
        * */
-      __setTagsOneItemActive: 'setOneItemActive'
+      __setTagsOneItemActive: 'setOneItemActive',
+      /**
+       * 根据 ID 根据ID将移动到指定位置 active
+       * @param data {Object}
+       * */
+      __setTagsIdToIndex: 'setIdToIndex'
     }),
     ...mapMutations('__base', {
       __setBaseLogo: 'setLogo',

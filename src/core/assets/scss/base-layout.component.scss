@@ -155,13 +155,89 @@
     padding: 15px;
   }
 
+  $tags-height: 26px;
+
+  .layout-page-tags {
+    height: $tags-height;
+    box-shadow: 5px 4px 6px 0 rgba(58, 58, 58, 0.1);
+
+    > div {
+      height: 100%;
+    }
+
+    .__vuescroll {
+      height: 100%;
+      position: relative !important;
+
+      .__bar-is-horizontal {
+        bottom: -3px !important;
+      }
+    }
+  }
+
+  .tags-right-action {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    //background-color: rgba(0, 0, 0, 0);
+
+    z-index: 9;
+
+    .el-card__body {
+      padding: 0px;
+    }
+
+    .tags-right-action-menu {
+      position: absolute;
+      width: 170px;
+    }
+
+    .item {
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      cursor: pointer;
+      span {
+        display: flex;
+        align-items: center;
+
+        height: 100%;
+        font-size: 12px;
+      }
+
+      span:nth-child(1) {
+        width: 28px;
+        border-right: 1px solid #ccc;
+      }
+
+      span:nth-child(2) {
+        padding-left: 10px;
+      }
+    }
+
+    .line {
+      width: 100%;
+      height: 1px;
+      background-color: #ccc;
+      margin-left: 39px;
+      //margin-top: 4px;
+      //margin-bottom: 4px;
+    }
+    .item:hover{
+      background-color: #f1f1f1;
+    }
+  }
 
   .tags-list {
+    //overflow-y: auto;
     width: 100%;
-    display: flex;
-    height: 26px;
+    height: $tags-height;
+    display: -webkit-box;
     background-color: #fff;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+    //box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
     align-items: center;
     //padding: 0 14px;
 
@@ -174,6 +250,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      user-select: none;
 
       span {
         font-size: 12px;

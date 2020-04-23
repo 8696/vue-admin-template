@@ -28,7 +28,7 @@ import {
   // DatePicker,
   // TimeSelect,
   // TimePicker,
-  // Popover,
+  Popover,
   Tooltip,
   Breadcrumb,
   BreadcrumbItem,
@@ -47,7 +47,7 @@ import {
   // Progress,
   // Spinner,
   // Badge,
-  // Card,
+  Card,
   // Rate,
   // Steps,
   // Step,
@@ -108,7 +108,7 @@ export default function install(Vue) {
   // Vue.use(DatePicker);
   // Vue.use(TimeSelect);
   // Vue.use(TimePicker);
-  // Vue.use(Popover);
+  Vue.use(Popover);
   Vue.use(Tooltip);
   Vue.use(Breadcrumb);
   Vue.use(BreadcrumbItem);
@@ -127,7 +127,7 @@ export default function install(Vue) {
   // Vue.use(Progress);
   // Vue.use(Spinner);
   // Vue.use(Badge);
-  // Vue.use(Card);
+  Vue.use(Card);
   // Vue.use(Rate);
   // Vue.use(Steps);
   // Vue.use(Step);
