@@ -34,7 +34,8 @@
         <page-tags-component/>
       </div>
       <div class="layout-body" :class="[$route.name + '-page-body']">
-        <section v-for="item in __tagsList" :key="item.id">
+        <section style="overflow: auto;max-height: 100%" v-show="$route.name === item.routeName"
+                 v-for="item in __tagsList" :key="item.id">
           <keep-alive>
             <router-view v-if="$route.name === item.routeName"/>
           </keep-alive>
