@@ -3,7 +3,7 @@
     <template v-if="__menuCurrentPaths.length > 0">
       <vue-scroll :ops="scrollOptions">
         <div @click="navAction" @contextmenu.prevent="navActionRight" class="tags-list">
-          <div data-type="to"
+          <div draggable="true" data-type="to"
                :data-name="item.routeName"
                :data-id="item.id"
                v-for="item in __tagsList" :class="{active: item.__active}"
@@ -11,7 +11,6 @@
             <span data-type="to"
                   :data-name="item.routeName"
                   :data-id="item.id">{{item.title}}
-
             </span>
             <i data-type="delete"
                :data-name="item.routeName"
@@ -20,42 +19,41 @@
         </div>
       </vue-scroll>
     </template>
-    <transition name="el-fade-in-linear">
-      <div @click="showTagsRightAction = false" v-if="showTagsRightAction" class="tags-right-action">
-        <div :style="tagsRightActionMenuPosition" class="tags-right-action-menu">
-          <el-card class="box-card">
-            <div @click="navActionRightHandle('刷新')" class="item">
-              <span><i class="el-icon-refresh-right"></i></span>
-              <span>刷新</span>
-            </div>
-            <div @click="navActionRightHandle('关闭')" class="item">
-              <span><i class="el-icon-close"></i></span>
-              <span>关闭</span>
-            </div>
-            <div class="line"></div>
-            <div @click="navActionRightHandle('关闭其他标签')" class="item">
-              <span></span>
-              <span>关闭其他标签</span>
-            </div>
-            <div @click="navActionRightHandle('关闭左侧标签')" class="item">
-              <span></span>
-              <span>关闭左侧标签</span>
-            </div>
-            <div @click="navActionRightHandle('关闭右侧标签')" class="item">
-              <span></span>
-              <span>关闭右侧标签</span>
-            </div>
-            <div class="line"></div>
-            <div @click="navActionRightHandle('新窗口打开')" class="item">
-              <span></span>
-              <span>新窗口打开</span>
-            </div>
-          </el-card>
-        </div>
-
-
+    <div
+      @click="showTagsRightAction = false"
+      v-if="showTagsRightAction"
+      class="tags-right-action">
+      <div v-if="showTagsRightAction" :style="tagsRightActionMenuPosition" class="tags-right-action-menu">
+        <el-card class="box-card">
+          <div @click="navActionRightHandle('刷新')" class="item">
+            <span><i class="el-icon-refresh-right"></i></span>
+            <span>刷新</span>
+          </div>
+          <div @click="navActionRightHandle('关闭')" class="item">
+            <span><i class="el-icon-close"></i></span>
+            <span>关闭</span>
+          </div>
+          <div class="line"></div>
+          <div :class="{disable: !currentActionHasOther}" @click.stop="navActionRightHandle('关闭其他标签')" class="item">
+            <span></span>
+            <span>关闭其他标签</span>
+          </div>
+          <div :class="{disable: !currentActionHasLeft}" @click.stop="navActionRightHandle('关闭左侧标签')" class="item">
+            <span></span>
+            <span>关闭左侧标签</span>
+          </div>
+          <div :class="{disable: !currentActionHasRight}" @click.stop="navActionRightHandle('关闭右侧标签')" class="item">
+            <span></span>
+            <span>关闭右侧标签</span>
+          </div>
+          <div class="line"></div>
+          <div @click="navActionRightHandle('新窗口打开')" class="item">
+            <span></span>
+            <span>新窗口打开</span>
+          </div>
+        </el-card>
       </div>
-    </transition>
+    </div>
   </div>
 </template>
 
@@ -93,10 +91,57 @@
         showTagsRightAction: false,
         tagsRightActionID: null,
         tagsRightActionName: null,
+
       };
+    },
+    computed: {
+      /**
+       * @description 当前选中的标签是否存在左侧的标签
+       * */
+      currentActionHasLeft() {
+        let index = this.__tagsList.findIndex(item => {
+          return this.tagsRightActionID === item.id;
+        });
+        let __tagsList = deepCopy(this.__tagsList);
+        let t = [];
+        for (let i = 0; i < __tagsList.length; i++) {
+          if (i === index) {
+            break;
+          }
+          t.push(this.__tagsList[i].id);
+        }
+        return t.length > 0;
+      },
+      /**
+       * @description 当前选中的标签是否存在右侧的标签
+       * */
+      currentActionHasRight() {
+        let index2 = this.__tagsList.findIndex(item => {
+          return this.tagsRightActionID === item.id;
+        });
+        let __tagsList2 = deepCopy(this.__tagsList);
+        let t2 = [];
+        for (let i = 0; i < __tagsList2.length; i++) {
+          if (i <= index2) {
+            continue;
+          }
+          t2.push(this.__tagsList[i].id);
+        }
+        return t2.length > 0;
+      },
+      /**
+       * @description 当前选中的标签是否存在其他标签
+       * */
+      currentActionHasOther() {
+        return this.__tagsList.length > 1;
+      },
+
     },
 
     methods: {
+      /**
+       * @description tags 操作
+       * */
       navAction($event, deleteID = null, deleteName = null) {
         let type = '',
           name = '',
@@ -133,7 +178,9 @@
         }
 
       },
-
+      /**
+       * @description tags 一项触发右键
+       * */
       navActionRight($event) {
         this.showTagsRightAction = true;
         this.tagsRightActionID = Number($event.target.getAttribute('data-id'));
@@ -146,7 +193,16 @@
           this.tagsRightActionMenuPosition.right = 'auto';
         }
         this.tagsRightActionMenuPosition.top = $event.pageY + 'px';
+        let c = () => {
+          this.showTagsRightAction = false;
+          document.removeEventListener('click', c);
+        };
+        document.addEventListener('click', c);
       },
+      /**
+       * @description 右键详细操作
+       * @param type {String}
+       * */
       navActionRightHandle(type) {
 
         switch (type) {
@@ -154,9 +210,6 @@
             let activeIndex = this.__tagsList.findIndex(item => {
               return this.tagsRightActionID === item.id;
             });
-
-            // 删除当前标签
-            this.navAction(null, this.tagsRightActionID);
 
             this.$router.replace2({
               name: 'reload',
@@ -166,17 +219,20 @@
                 id: this.tagsRightActionID
               }
             });
-
             break;
           case '关闭':
             this.navAction(null, this.tagsRightActionID);
             break;
           case '关闭其他标签':
+            if (this.__tagsList.length > 1) {
+              this.showTagsRightAction = false;
+            }
             this.__tagsList.forEach(item => {
               if (this.tagsRightActionID !== item.id) {
                 this.navAction(null, item.id);
               }
             });
+
             break;
           case '新窗口打开':
             let matchedRoute = this.$router.resolve({name: this.tagsRightActionName});
@@ -197,6 +253,10 @@
             t.forEach(item => {
               this.navAction(null, item);
             });
+            if (t.length > 0) {
+              this.showTagsRightAction = false;
+            }
+
             break;
           case '关闭右侧标签':
             let index2 = this.__tagsList.findIndex(item => {
@@ -213,9 +273,14 @@
             t2.forEach(item => {
               this.navAction(null, item);
             });
+            if (t2.length > 0) {
+              this.showTagsRightAction = false;
+            }
+
             break;
         }
       }
+
     }
   };
 </script>

@@ -45,7 +45,7 @@ export default {
      * */
     setOneItemActive(state, id) {
       state.list = state.list.map(item => {
-        item.__active = item.id === Number(id);
+        item.active = item.id === Number(id);
         return item;
       });
     },
@@ -53,7 +53,12 @@ export default {
      * @description 根据ID将移动到指定位置
      * */
     setIdToIndex(state, {id = '', index = ''}) {
-
+      let list = deepCopy(state.list);
+      let tag = list.splice(list.findIndex(item => {
+        return item.id === Number(id);
+      }), 1);
+      list.splice(index, 0, tag[0]);
+      state.list = list;
     },
   }
 };
