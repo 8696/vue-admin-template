@@ -9,70 +9,77 @@ export default {
     },
     {
       path: '/',
-      component: () => import('../view/components/layouts/base.layout'),
+      component: () => import('../components/default-components/route/base.route.component'),
       children: [
         {
           path: 'home',
           name: 'home',
-          component: () => import('../view/home/home.page')
+          component: () => import('../pages/home/home.page')
+        },
+
+        {
+          path: '/base-layout',
+          name: 'base-layout',
+          component: () => import('../pages/base-layout/base-layout.page')
         },
 
         {
           path: '/doc',
           name: 'doc',
-          component: () => import('../view/doc/doc.page')
+          component: () => import('../pages/doc/doc.page')
         },
 
         {
           path: '/test1',
           name: 'test1',
-          component: () => import('../view/test')
+          component: () => import('../pages/test')
         },
         {
           path: '/test2',
           name: 'test2',
-          component: () => import('../view/test')
+          component: () => import('../pages/test')
         },
         {
           path: '/test3',
           name: 'test3',
-          component: () => import('../view/test')
+          component: () => import('../pages/test')
         },
         {
           path: '/test4',
           name: 'test4',
-          component: () => import('../view/test')
+          component: () => import('../pages/test')
         },
         {
           path: '/test5',
           name: 'test5',
-          component: () => import('../view/test')
+          component: () => import('../pages/test')
         },
         {
           path: '/test6',
           name: 'test6',
-          component: () => import('../view/test')
+          component: () => import('../pages/test')
         },
         {
           path: '/test7',
           name: 'test7',
-          component: () => import('../view/test')
+          component: () => import('../pages/test')
         },
 
       ]
     },
     {
       path: '/',
-      component: () => import('../view/components/layouts/default.layout'),
+      component: () => import('../components/default-components/route/default.route.component'),
       children: [
         {
           path: '/login',
           name: 'login',
-          component: () => import('../view/login/login.page')
-        }, {
+          component: () => import('../pages/login/login.page')
+        },
+        {
           path: '/login2',
           name: 'login2',
-          component: () => import('../view/login2/login.page')
+          component: () => import('../pages/login2/login.page')
         },
       ]
     },

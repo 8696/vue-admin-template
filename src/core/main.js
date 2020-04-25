@@ -36,6 +36,8 @@ const elementUI = () => import('../element-ui/index');
 
 const App = () => import('./App');
 
+import '../extend.main'
+
 Vue.config.productionTip = false;
 
 

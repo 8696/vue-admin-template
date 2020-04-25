@@ -16,21 +16,28 @@
 export const menuList = [
   {
     title: '首页',
-    icon: 'el-icon-location',
+    icon: 'tachometer-alt',
     routeName: 'home',
     id: 1,
     parentID: 0
   },
   {
+    title: '基础布局',
+    icon: 'pager',
+    routeName: 'base-layout',
+    id: 101,
+    parentID: 0
+  },
+  {
     title: '文档',
-    icon: 'el-icon-location',
+    icon: 'file-alt',
     routeName: 'doc',
     id: 2,
     parentID: 0
   },
   {
     title: '百度外链',
-    icon: 'el-icon-location',
+    icon: 'hubspot',
     link: 'https://baidu.com',
     id: 3,
     parentID: 0

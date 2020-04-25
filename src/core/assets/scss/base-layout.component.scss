@@ -152,7 +152,7 @@
 
   .layout-body {
     height: 100%;
-    padding: 15px;
+    //padding: 15px;
   }
 
   $tags-height: 26px;
@@ -160,7 +160,7 @@
   .layout-page-tags {
     height: $tags-height;
     box-shadow: 5px 4px 6px 0 rgba(58, 58, 58, 0.1);
-
+    z-index: 1;
     > div {
       height: 100%;
     }

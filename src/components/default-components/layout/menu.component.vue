@@ -8,7 +8,9 @@
           :key="index"
           :index="item.routeName || item.title">
           <template slot="title">
-            <i v-if="item.icon" :class="[item.icon]"></i>
+            <font-awesome-icon v-if="item.icon"
+                               size="1x" :icon="item.icon"/>
+
             <span class="children-title" slot="title">{{item.title}}</span>
           </template>
           <menu-component :loop="true" :menu-list="item.children"/>
@@ -21,7 +23,9 @@
         :disabled="item.disabled === true"
         :data-item="item"
         :index="item.routeName || String(Math.random())">
-        <i v-if="item.icon" :class="[item.icon]"></i>
+        <font-awesome-icon v-if="item.icon"
+                           size="1x" :icon="item.icon"/>
+
         <span slot="title">{{item.title}}</span>
       </el-menu-item>
     </template>

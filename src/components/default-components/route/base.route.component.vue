@@ -49,9 +49,9 @@
   import {sleep} from '../../../core/utils/utils';
   import vueScroll from 'vuescroll';
 
-  const MenuComponent = () => import('../components/menu.component');
-  const HeaderComponent = () => import('../components/header.component');
-  const PageTagsComponent = () => import('../components/page-tags.component');
+  const MenuComponent = () => import('../layout/menu.component');
+  const HeaderComponent = () => import('../layout/header.component');
+  const PageTagsComponent = () => import('../layout/page-tags.component');
 
 
   export default {
