@@ -3,14 +3,13 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 import merge from 'webpack-merge';
-import routes from '../../router/index';
-import vm from '../vm';
+import routes from '../../route/index';
 
 const router = new Router(merge(routes, {
   routes: [
     {
       path: '/',
-      component: () => import('../../components/default-components/route/base.route.component'),
+      component: () => import('@/views/default/route/base.route.component'),
       children: [
         {
           path: 'reload',
@@ -18,7 +17,7 @@ const router = new Router(merge(routes, {
           meta: {
             title: '...'
           },
-          component: () => import('../../components/default-components/page/reload.page')
+          component: () => import('@/views/default/page/reload.page')
         },
         {
           path: '*',
@@ -26,7 +25,7 @@ const router = new Router(merge(routes, {
           meta: {
             title: '404'
           },
-          component: () => import('../../components/default-components/page/404.page')
+          component: () => import('@/views/default/page/404.page')
         },
       ]
     }

@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
 import Vue from 'vue';
-import router from './router';
+import router from './route';
 import store from './store';
 
 console.log('vue version: ' + Vue.version);

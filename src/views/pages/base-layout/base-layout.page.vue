@@ -20,16 +20,11 @@
       </div>
     </el-row>
     <el-row>
-      <div class="container" v-highlight>
+      <div class="container">
         <div class="container-title">
           代码演示
         </div>
-        <div class="container-body" v-highlight>
-          <pre>
-          <code class="html">
-              {{html001}}
-          </code>
-        </pre>
+        <div class="container-body">
         </div>
       </div>
     </el-row>
@@ -68,16 +63,12 @@
 
     </el-row>
     <el-row>
-      <div class="container" v-highlight>
+      <div class="container">
         <div class="container-title">
           代码演示
         </div>
-        <div class="container-body" v-highlight>
-          <pre>
-          <code class="html">
-              {{html002}}
-          </code>
-        </pre>
+        <div class="container-body">
+
         </div>
       </div>
     </el-row>
@@ -124,16 +115,12 @@
       </el-col>
     </el-row>
     <el-row>
-      <div class="container" v-highlight>
+      <div class="container">
         <div class="container-title">
           代码演示
         </div>
-        <div class="container-body" v-highlight>
-          <pre>
-          <code class="html">
-              {{html003}}
-          </code>
-        </pre>
+        <div class="container-body">
+          <highlight-component type="html" :code="code003" />
         </div>
       </div>
     </el-row>
@@ -141,49 +128,15 @@
 </template>
 
 <script>
+  const HighlightComponent = () => import('@/views/general/highlight/highlight.component');
+
   export default {
-    name: 'base-layout.page',
+    components: {
+      HighlightComponent
+    },
     data() {
       return {
-        html001: `
-  <el-row>
-    <div class="container">
-      <div class="container-title">
-        这里标题
-      </div>
-      <div class="container-body">
-        这里是内容区
-      </div>
-    </div>
-  </el-row>
-`,
-        html002:`
-  <el-row>
-    <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-      <div class="container">
-        <div class="container-title">
-          这里标题
-        </div>
-        <div class="container-body">
-          这里是内容区
-        </div>
-      </div>
-    </el-col>
-
-    <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-      <div class="container">
-        <div class="container-title">
-          这里标题
-        </div>
-        <div class="container-body">
-          这里是内容区
-        </div>
-      </div>
-    </el-col>
-
-  </el-row>
-        `,
-        html003:`
+        code003:`
   <el-row>
     <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8">
       <div class="container">
@@ -195,7 +148,6 @@
         </div>
       </div>
     </el-col>
-
     <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8">
       <div class="container">
         <div class="container-title">
@@ -206,7 +158,6 @@
         </div>
       </div>
     </el-col>
-    
     <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8">
       <div class="container">
         <div class="container-title">
@@ -218,10 +169,11 @@
       </div>
     </el-col>
   </el-row>
-        `
+`
       };
     },
     mounted() {
+
     },
     computed: {},
     methods: {}

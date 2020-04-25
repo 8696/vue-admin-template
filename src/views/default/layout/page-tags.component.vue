@@ -59,7 +59,7 @@
 
 <script>
   import vueScroll from 'vuescroll';
-  import {deepCopy} from '../../../core/utils/utils';
+  import {deepCopy} from '@/core/utils/utils';
 
   export default {
     components: {vueScroll},

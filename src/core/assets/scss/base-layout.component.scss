@@ -26,6 +26,11 @@
     .el-menu {
       border-right: none;
     }
+
+    svg {
+      margin-right: 4px;
+      width: 16px;
+    }
   }
 
   .layout-menu-ls {
@@ -161,6 +166,7 @@
     height: $tags-height;
     box-shadow: 5px 4px 6px 0 rgba(58, 58, 58, 0.1);
     z-index: 1;
+
     > div {
       height: 100%;
     }

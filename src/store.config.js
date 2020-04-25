@@ -21,13 +21,7 @@ export const menuList = [
     id: 1,
     parentID: 0
   },
-  {
-    title: '基础布局',
-    icon: 'pager',
-    routeName: 'base-layout',
-    id: 101,
-    parentID: 0
-  },
+
   {
     title: '文档',
     icon: 'file-alt',
@@ -36,86 +30,119 @@ export const menuList = [
     parentID: 0
   },
   {
+    title: '源代码',
+    icon: '',
+    link: 'https://github.com/8696/vue-admin-template',
+    id: 101,
+    parentID: 2
+  },
+  {
+    title: '目录介绍',
+    icon: '',
+    routeName: 'folder',
+    id: 102,
+    parentID: 2
+  },
+  {
+    title: 'antv可视化',
+    icon: 'chart-area',
+    routeName: '',
+    id: 501,
+    parentID: 0
+  },
+  {
+    title: 'G2',
+    icon: '',
+    id: 502,
+    parentID: 501
+  },
+  {
+    title: '折线图',
+    icon: '',
+    routeName: 'antv-g2-line',
+    id: 503,
+    parentID: 502
+  },
+  {
+    title: '基础布局',
+    icon: '',
+    routeName: 'base-layout',
+    id: 103,
+    parentID: 2
+  },
+
+  {
     title: '百度外链',
-    icon: 'hubspot',
+    icon: 'link',
     link: 'https://baidu.com',
     id: 3,
     parentID: 0
   },
+  // 菜单
   {
-    title: '组件A',
-    icon: 'el-icon-location',
+    title: '无限级菜单',
+    icon: 'bars',
     routeName: '',
-    id: 4,
+    id: 301,
     parentID: 0
   },
   {
-    title: '组件A1',
-    icon: 'el-icon-location',
-    routeName: 'test1',
-    id: 5,
-    parentID: 4
+    title: '菜单A组',
+    icon: 'bars',
+    id: 302,
+    parentID: 301
+  },
+  {
+    title: '菜单A组01',
+    icon: 'link',
+    routeName: 'menu',
+    id: 303,
+    parentID: 302
+  },
+  {
+    title: '菜单A组02',
+    icon: 'link',
+    routeName: 'menu2',
+    id: 304,
+    parentID: 302
+  },
+  {
+    title: '菜单B组',
+    icon: 'bars',
+    id: 306,
+    parentID: 301
   },
 
   {
-    title: '组件A2',
-    icon: 'el-icon-location',
-    routeName: 'test2',
-    id: 6,
-    parentID: 4
-  },
-  {
-    title: '组件A3',
-    icon: 'el-icon-location',
-    routeName: 'test3',
-    id: 7,
-    parentID: 4
-  },
-
-  {
-    title: '组件B',
-    icon: 'el-icon-location',
+    title: '无限级',
+    icon: '',
     routeName: '',
-    id: 8,
-    parentID: 0
+    id: 307,
+    parentID: 306
   },
 
   {
-    title: '组件B1',
-    icon: 'el-icon-location',
-    routeName: 'test4',
-    id: 9,
-    parentID: 8
+    title: '无限级A',
+    icon: '',
+    id: 308,
+    parentID: 307
   },
   {
-    title: '组件B2',
-    icon: 'el-icon-location',
-    routeName: 'test5',
-    id: 10,
-    parentID: 8
-  },
-  {
-    title: '组件B3',
-    icon: 'el-icon-location',
-    routeName: 'test6',
-    id: 11,
-    parentID: 8
-  },
-  {
-    title: '组件C',
-    icon: 'el-icon-location',
-    routeName: '',
-    id: 12,
-    parentID: 0
+    title: '无限级B',
+    icon: '',
+    routeName: 'menu3',
+    id: 309,
+    parentID: 308
   },
 
   {
-    title: '组件C1',
-    icon: 'el-icon-location',
-    routeName: 'test7',
-    id: 13,
-    parentID: 12
+    title: '百度外链',
+    icon: 'link',
+    link: 'https://baidu.com',
+    id: 305,
+    parentID: 301
   },
+
 ];
 
 /**

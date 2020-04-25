@@ -1,5 +1,5 @@
-export function transferElTag(htmlString) {
+export function test() {
 
-  return htmlString;
+  return 'test';
 
 }

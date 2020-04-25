@@ -20,7 +20,7 @@
 
         <el-dropdown @command="userActionHandleCommand">
         <span class="el-dropdown-link">
-          <img class="avatar" src="../../../assets/images/avatar.jpeg" alt="">
+          <img class="avatar" src="@/assets/images/avatar.jpeg" alt="">
           龙锦文<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
           <el-dropdown-menu slot="dropdown">

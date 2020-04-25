@@ -9,7 +9,7 @@
           用户数量
         </div>
         <div class="container-body">
-          <line01-component :id="'a1'"/>
+<!--          <line01-component/>-->
         </div>
       </div>
     </el-row>
@@ -21,7 +21,7 @@
             站点数据
           </div>
           <div class="container-body">
-            <funnel01-component/>
+<!--            <funnel-component/>-->
           </div>
         </div>
       </el-col>
@@ -31,7 +31,7 @@
             用户数量
           </div>
           <div class="container-body">
-            <line01-component :id="'a3'"/>
+<!--            <line01-component/>-->
           </div>
         </div>
       </el-col>
@@ -41,18 +41,17 @@
 </template>
 
 <script>
-
-  const DashboardCardComponent = () => import('@/components/general-component/dashboard-card/dashboard-card.component');
-  // g2
-  const Line01Component = () => import('@/components/general-component/g2-line/line-basic.component');
-  const Funnel01Component = () => import('@/components/general-component/g2-funnel/funnel-basic.componeent');
+  const DashboardCardComponent = () => import('@/views/general/dashboard-card/dashboard-card.component');
+  // anvt-g2
+  // const Line01Component = () => import('@/views/general/antv-g2/g2-line/line-basic.component');
+  // const FunnelComponent = () => import('@/views/general/antv-g2/g2-funnel/funnel-basic.componeent');
 
   export default {
 
     components: {
       DashboardCardComponent,
-      Line01Component,
-      Funnel01Component
+      // Line01Component,
+      // FunnelComponent
     }
 
   };

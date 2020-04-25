@@ -1,12 +1,12 @@
 <template>
-  <div>
-    {{__currentRoute}}
-  </div>
+    <div>
+        folder
+    </div>
 </template>
 
 <script>
   export default {
-    name: 'test',
+    name: 'folder',
     data() {
       return {};
     },

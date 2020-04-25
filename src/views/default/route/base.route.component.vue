@@ -46,13 +46,12 @@
 </template>
 
 <script>
-  import {sleep} from '../../../core/utils/utils';
+  import {sleep} from '@/core/utils/utils';
   import vueScroll from 'vuescroll';
 
   const MenuComponent = () => import('../layout/menu.component');
   const HeaderComponent = () => import('../layout/header.component');
   const PageTagsComponent = () => import('../layout/page-tags.component');
-
 
   export default {
     components: {
@@ -125,7 +124,7 @@
 
         if (item.hasOwnProperty('routeName')) {
           return this.$router.push2({
-            path: item.routeName
+            name: item.routeName
           }, () => {
           });
         }
