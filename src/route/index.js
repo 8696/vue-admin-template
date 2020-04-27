@@ -16,23 +16,23 @@ export default {
           name: 'home',
           component: () => import('@/views/pages/home/home.page')
         },
-
         {
-          path: '/base-layout',
+          path: '/doc/card-layout',
+          name: 'card-layout',
+          component: () => import('@/views/pages/doc/card-layout.page')
+        },
+        {
+          path: '/doc/base-layout',
           name: 'base-layout',
-          component: () => import('@/views/pages/base-layout/base-layout.page')
+          component: () => import('@/views/pages/doc/base-layout.page')
         },
 
-        {
-          path: '/doc',
-          name: 'doc',
-          component: () => import('@/views/pages/doc/doc.page')
-        },
         {
           path: '/antv/g2/line',
           name: 'antv-g2-line',
           component: () => import('@/views/pages/antv/antv-g2/antv-g2-line.page')
         },
+
         {
           path: '/menu',
           name: 'menu',

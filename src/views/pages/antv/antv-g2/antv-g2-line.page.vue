@@ -1,11 +1,11 @@
 <template>
   <div>
     <el-row>
-      <div class="container">
-        <div class="container-title">
+      <div class="card">
+        <div class="card-title">
           基础折线图
         </div>
-        <div class="container-body">
+        <div class="card-body">
           <g2-line-basic-component
             :axis-suffix="axisSuffix"
             :data="data"
@@ -17,11 +17,11 @@
       </div>
     </el-row>
     <el-row>
-      <div class="container">
-        <div class="container-title">
+      <div class="card">
+        <div class="card-title">
           基础折线图
         </div>
-        <div class="container-body">
+        <div class="card-body">
           <div class="el-button" @click="reload">刷新</div>
         </div>
       </div>
@@ -34,7 +34,6 @@
   import {makeRandomNumber} from '../../../../utils/utils';
 
   const G2LineBasicComponent = () => import('@/views/general/antv-g2/g2-line/line-basic.component');
-
   export default {
     components: {
       G2LineBasicComponent

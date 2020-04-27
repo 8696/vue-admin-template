@@ -44,6 +44,22 @@ export const menuList = [
     parentID: 2
   },
   {
+    title: '基本布局',
+    icon: '',
+    routeName: 'base-layout',
+    id: 103,
+    parentID: 2
+  },
+
+  {
+    title: '卡片布局',
+    icon: '',
+    routeName: 'card-layout',
+    id: 104,
+    parentID: 2
+  },
+
+  {
     title: 'antv可视化',
     icon: 'chart-area',
     routeName: '',
@@ -62,13 +78,6 @@ export const menuList = [
     routeName: 'antv-g2-line',
     id: 503,
     parentID: 502
-  },
-  {
-    title: '基础布局',
-    icon: '',
-    routeName: 'base-layout',
-    id: 103,
-    parentID: 2
   },
 
   {
@@ -94,14 +103,12 @@ export const menuList = [
   },
   {
     title: '菜单A组01',
-    icon: 'link',
     routeName: 'menu',
     id: 303,
     parentID: 302
   },
   {
     title: '菜单A组02',
-    icon: 'link',
     routeName: 'menu2',
     id: 304,
     parentID: 302

@@ -158,6 +158,7 @@
   .layout-body {
     height: 100%;
     //padding: 15px;
+    position: relative;
   }
 
   $tags-height: 26px;
@@ -350,6 +351,17 @@
 
   .is-active {
     background-color: #203042 !important;
+  }
+
+  .route-item {
+    overflow: auto;
+    max-height: 100%;
+    height: 100%;
+
+
+    > * {
+      height: 100%;
+    }
   }
 }
 

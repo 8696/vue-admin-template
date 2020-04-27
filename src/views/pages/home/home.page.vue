@@ -4,11 +4,11 @@
     <dashboard-card-component/>
 
     <el-row>
-      <div class="container">
-        <div class="container-title">
+      <div class="card">
+        <div class="card-title">
           用户数量
         </div>
-        <div class="container-body">
+        <div class="card-body">
 <!--          <line01-component/>-->
         </div>
       </div>
@@ -16,21 +16,21 @@
 
     <el-row>
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <div class="container">
-          <div class="container-title">
+        <div class="card">
+          <div class="card-title">
             站点数据
           </div>
-          <div class="container-body">
+          <div class="card-body">
 <!--            <funnel-component/>-->
           </div>
         </div>
       </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <div class="container">
-          <div class="container-title">
+        <div class="card">
+          <div class="card-title">
             用户数量
           </div>
-          <div class="container-body">
+          <div class="card-body">
 <!--            <line01-component/>-->
           </div>
         </div>

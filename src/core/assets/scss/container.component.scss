@@ -1,0 +1,24 @@
+@charset "utf-8";
+/**
+* Created by WebStorm
+* Description: next..
+* User: JinwenLong
+* Author: longjinwen
+* Email: 204084802@qq.com
+* Date: 2020/4/26
+* Time: 9:20 下午
+*/
+
+.base-container {
+  height: 100%;
+
+  .container-slot {
+    max-height: 100%;
+    overflow: auto;
+  }
+}
+
+.base-sub-container {
+  width: 100%;
+  z-index: 1;
+}
