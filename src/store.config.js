@@ -79,6 +79,7 @@ export const menuList = [
     id: 503,
     parentID: 502
   },
+  //
   {
     title: 'ag-grid表格',
     icon: 'table',
@@ -91,6 +92,21 @@ export const menuList = [
     id: 602,
     routeName: 'ag-grid-example-1',
     parentID: 601
+  },
+  //
+
+  {
+    title: '数据表格',
+    icon: 'table',
+    id: 701,
+    parentID: 0
+  },
+  {
+    title: '数据表格',
+    icon: '',
+    routeName: 'table-example-1',
+    id: 702,
+    parentID: 701
   },
 
   {

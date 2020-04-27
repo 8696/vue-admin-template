@@ -9,8 +9,8 @@ import {
   Submenu,
   MenuItem,
   MenuItemGroup,
-  // Input,
-  // InputNumber,
+  Input,
+  InputNumber,
   // Radio,
   // RadioGroup,
   // RadioButton,
@@ -23,8 +23,8 @@ import {
   // OptionGroup,
   Button,
   // ButtonGroup,
-  // Table,
-  // TableColumn,
+  Table,
+  TableColumn,
   // DatePicker,
   // TimeSelect,
   // TimePicker,
@@ -89,8 +89,8 @@ export default function install(Vue) {
   Vue.use(Submenu);
   Vue.use(MenuItem);
   Vue.use(MenuItemGroup);
-  // Vue.use(Input);
-  // Vue.use(InputNumber);
+  Vue.use(Input);
+  Vue.use(InputNumber);
   // Vue.use(Radio);
   // Vue.use(RadioGroup);
   // Vue.use(RadioButton);
@@ -103,8 +103,8 @@ export default function install(Vue) {
   // Vue.use(OptionGroup);
   Vue.use(Button);
   // Vue.use(ButtonGroup);
-  // Vue.use(Table);
-  // Vue.use(TableColumn);
+  Vue.use(Table);
+  Vue.use(TableColumn);
   // Vue.use(DatePicker);
   // Vue.use(TimeSelect);
   // Vue.use(TimePicker);

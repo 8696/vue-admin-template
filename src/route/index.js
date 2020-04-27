@@ -38,6 +38,12 @@ export default {
           name: 'ag-grid-example-1',
           component: () => import('@/views/pages/ag-grid/ag-grid-example-1.page')
         },
+        // table
+        {
+          path: '/table/example-1',
+          name: 'table-example-1',
+          component: () => import('@/views/pages/table/table-example-1.page')
+        },
         {
           path: '/menu',
           name: 'menu',
