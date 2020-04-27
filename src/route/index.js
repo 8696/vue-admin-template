@@ -26,13 +26,18 @@ export default {
           name: 'base-layout',
           component: () => import('@/views/pages/doc/base-layout.page')
         },
-
+        // antv
         {
           path: '/antv/g2/line',
           name: 'antv-g2-line',
           component: () => import('@/views/pages/antv/antv-g2/antv-g2-line.page')
         },
-
+        // ag-grid
+        {
+          path: '/ag-grid/example-1',
+          name: 'ag-grid-example-1',
+          component: () => import('@/views/pages/ag-grid/ag-grid-example-1.page')
+        },
         {
           path: '/menu',
           name: 'menu',

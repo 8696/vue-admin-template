@@ -79,6 +79,19 @@ export const menuList = [
     id: 503,
     parentID: 502
   },
+  {
+    title: 'ag-grid表格',
+    icon: 'table',
+    id: 601,
+    parentID: 0
+  },
+
+  {
+    title: '实例',
+    id: 602,
+    routeName: 'ag-grid-example-1',
+    parentID: 601
+  },
 
   {
     title: '百度外链',
