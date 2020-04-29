@@ -5,8 +5,6 @@ export default {
   state: {
     logo: null,
   },
-  getters: {},
-  actions: {},
   mutations: {
     setLogo(state, logo) {
       if (!logo) return state.logo = null;

@@ -47,7 +47,6 @@
     computed: {},
     methods: {
       userActionHandleCommand(command) {
-        console.log('ss');
         this.$router.replace({name: 'login'});
       }
     }

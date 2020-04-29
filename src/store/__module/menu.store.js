@@ -1,4 +1,4 @@
-import {parseJsonTree} from '../../utils/utils';
+import {parseJsonTree} from '@/utils/utils';
 
 export default {
   namespaced: true,
@@ -20,8 +20,6 @@ export default {
      * */
     formatList: []
   },
-  getters: {},
-  actions: {},
   mutations: {
     /**
      * @description

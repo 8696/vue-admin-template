@@ -6,7 +6,7 @@
           <div draggable="true" data-type="to"
                :data-name="item.routeName"
                :data-id="item.id"
-               v-for="item in __tagsList" :class="{active: item.__active}"
+               v-for="item in __tagsList" :class="{active: item.active}"
                class="item">
             <span data-type="to"
                   :data-name="item.routeName"
@@ -59,7 +59,7 @@
 
 <script>
   import vueScroll from 'vuescroll';
-  import {deepCopy} from '@/core/utils/utils';
+  import {deepCopy} from '@/utils/utils';
 
   export default {
     components: {vueScroll},

@@ -1,6 +1,7 @@
 import {mapState, mapMutations} from 'vuex';
 import {deepCopy, getParentJson} from '../utils/utils';
-import * as storeConfig from '../../store.config';
+import * as storeConfig from '../store.config';
+import vm from '@/vm.vue';
 
 export default {
 
@@ -96,7 +97,24 @@ export default {
     ...mapMutations('__base', {
       __setBaseLogo: 'setLogo',
     }),
-
+    __appMounted() {
+      return new Promise(resolve => {
+        if (vm.__appMountedStatus) return resolve();
+        vm.$once('__app-mounted', () => {
+          vm.__appMountedStatus = true;
+          resolve();
+        });
+      });
+    },
+    /**
+     * @description 监听路由更新
+     * */
+    __onRouteUpdate() {
+      // -------
+      this.__initMenuCurrentPaths();
+      // ------- 追加 tags 的一项
+      this.__pushTagsList(this.__currentRoute);
+    },
     /**
      * @description 设置当前菜单的路由父子集合
      * */

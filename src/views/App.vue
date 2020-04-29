@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import vm from './vm';
+  import vm from '@/vm.vue';
 
   export default {
     mounted() {
@@ -13,4 +13,5 @@
     }
   };
 </script>
+
 

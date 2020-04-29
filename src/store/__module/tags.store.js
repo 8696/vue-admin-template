@@ -1,4 +1,4 @@
-import {deepCopy, parseJsonTree} from '../../utils/utils';
+import {deepCopy, parseJsonTree} from '@/utils/utils';
 
 export default {
   namespaced: true,
@@ -9,8 +9,6 @@ export default {
     list: [], // [ {title: '', active:true, routeName: ''} ,..]
 
   },
-  getters: {},
-  actions: {},
   mutations: {
 
     /**
@@ -28,7 +26,7 @@ export default {
         state.list.push(route);
       }
       state.list = state.list.map(item => {
-        item.__active = item.routeName === route.routeName;
+        item.active = item.routeName === route.routeName;
         return item;
       });
     },
