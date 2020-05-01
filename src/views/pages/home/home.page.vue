@@ -5,7 +5,7 @@
 
     <el-row>
       <div class="card">
-        <div class="card-title">
+        <div class="card-header">
           用户数量
         </div>
         <div class="card-body">
@@ -17,7 +17,7 @@
     <el-row>
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <div class="card">
-          <div class="card-title">
+          <div class="card-header">
             站点数据
           </div>
           <div class="card-body">
@@ -27,7 +27,7 @@
       </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <div class="card">
-          <div class="card-title">
+          <div class="card-header">
             用户数量
           </div>
           <div class="card-body">

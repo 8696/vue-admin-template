@@ -2,7 +2,7 @@
   <div>
     <el-row>
       <div class="card">
-        <div class="card-title">
+        <div class="card-header">
           基础折线图
         </div>
         <div class="card-body">
@@ -18,7 +18,7 @@
     </el-row>
     <el-row>
       <div class="card">
-        <div class="card-title">
+        <div class="card-header">
           基础折线图
         </div>
         <div class="card-body">
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import {makeRandomNumber} from '../../../../utils/utils';
+  import {makeRandomNumber} from '@/utils/utils';
 
   const G2LineBasicComponent = () => import('@/views/general/antv-g2/g2-line/line-basic.component');
   export default {

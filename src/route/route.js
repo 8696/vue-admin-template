@@ -21,15 +21,58 @@ const router = new Router(merge({
             name: 'home',
             component: () => import('@/views/pages/home/home.page')
           },
+
           {
             path: '/doc/card-layout',
             name: 'card-layout',
             component: () => import('@/views/pages/doc/card-layout.page')
           },
           {
+            path: '/doc/folder',
+            name: 'folder',
+            component: () => import('@/views/pages/doc/folder.page')
+          },
+          {
+            path: '/doc/build',
+            name: 'build',
+            component: () => import('@/views/pages/doc/build.page')
+          },
+          {
+            path: '/doc/global-component',
+            name: 'global-component',
+            component: () => import('@/views/pages/doc/global-component.page')
+          },
+          {
+            path: '/doc/general-component',
+            name: 'general-component',
+            component: () => import('@/views/pages/doc/general-component.page')
+          },
+          {
+            path: '/doc/store-data',
+            name: 'store-data',
+            component: () => import('@/views/pages/doc/store-data.page')
+          },
+          {
             path: '/doc/base-layout',
             name: 'base-layout',
             component: () => import('@/views/pages/doc/base-layout.page')
+          },
+          {
+            path: '/doc/font-awesome',
+            name: 'doc-font-awesome',
+            component: () => import('@/views/pages/doc/font-awesome.page')
+          },
+          // 图标
+          {
+            path: '/font-awesome',
+            name: 'font-awesome',
+            component: () => import('@/views/pages/font-awesome/font-awesome.page')
+          },
+          // 复制
+          {
+            path: '/copy-text',
+            name: 'copy-text',
+            component: () => import('@/views/pages/copy-text/copy-text.page')
           },
           // antv
           {
@@ -48,6 +91,12 @@ const router = new Router(merge({
             path: '/table/example-1',
             name: 'table-example-1',
             component: () => import('@/views/pages/table/table-example-1.page')
+          },
+          // 解析md
+          {
+            path: '/markdown',
+            name: 'markdown',
+            component: () => import('@/views/pages/markdown/markdown.page')
           },
           {
             path: '/menu',

@@ -46,8 +46,21 @@ const elementUI = () => import('./element-ui/element-ui');
  * */
 const fontAwesome = () => import('./font-awesome/font-awesome');
 
+/**
+ * @description 全局组件
+ * */
+const globalComponents = () => import('./views/global/register-global-component');
 
 const App = () => import('./views/App');
+
+
+/**
+ * @description 复制插件
+ * @doc https://github.com/Inndy/vue-clipboard2#readme
+ * */
+import VueClipboard from 'vue-clipboard2';
+
+Vue.use(VueClipboard);
 
 Vue.config.productionTip = false;
 
@@ -57,11 +70,12 @@ Vue.config.productionTip = false;
   let {default: mixins} = await __mixins();
   let {default: elementUIInstall} = await elementUI();
   let {default: fontAwesomeInstall} = await fontAwesome();
+  let {default: globalComponentsRegister} = await globalComponents();
 
   Vue.mixin(mixins);
   elementUIInstall(Vue);
   fontAwesomeInstall(Vue);
-
+  globalComponentsRegister(Vue);
   new Vue({
     el: '#app',
     router,

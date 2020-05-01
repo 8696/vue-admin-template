@@ -43,6 +43,7 @@ export const menuList = [
     id: 102,
     parentID: 2
   },
+
   {
     title: '基本布局',
     icon: '',
@@ -60,7 +61,59 @@ export const menuList = [
   },
 
   {
-    title: 'antv可视化',
+    title: 'FontAwesome图标',
+    icon: '',
+    routeName: 'doc-font-awesome',
+    id: 111,
+    parentID: 2
+  },
+  {
+    title: '基本组件',
+    icon: '',
+    routeName: 'general-component',
+    id: 106,
+    parentID: 2
+  },
+
+  {
+    title: '全局组件',
+    icon: '',
+    routeName: 'global-component',
+    id: 108,
+    parentID: 2
+  },
+
+  {
+    title: '响应式配置',
+    icon: '',
+    routeName: 'store-data',
+    id: 105,
+    parentID: 2
+  },
+
+  {
+    title: '打包配置',
+    icon: '',
+    routeName: 'build',
+    id: 107,
+    parentID: 2
+  },
+  {
+    title: 'FontAwesome图标',
+    icon: 'font',
+    routeName: 'font-awesome',
+    id: 1101,
+    parentID: 0
+  },
+  {
+    title: '复制文本',
+    icon: 'copy',
+    routeName: 'copy-text',
+    id: 1001,
+    parentID: 0
+  },
+  {
+    title: '数据可视化',
     icon: 'chart-area',
     routeName: '',
     id: 501,
@@ -79,6 +132,15 @@ export const menuList = [
     id: 503,
     parentID: 502
   },
+  //
+  {
+    title: '解析markdown',
+    icon: 'marker',
+    routeName: 'markdown',
+    id: 901,
+    parentID: 0
+  },
+
   //
   {
     title: 'ag-grid表格',
@@ -177,6 +239,13 @@ export const menuList = [
     link: 'https://baidu.com',
     id: 305,
     parentID: 301
+  },
+  {
+    title: '↑组件 & 实例↓',
+    icon: 'sticky-note',
+    link: 'https://baidu.com',
+    id: 801,
+    parentID: 0
   },
 
 ];

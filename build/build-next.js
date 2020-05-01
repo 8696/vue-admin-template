@@ -2,7 +2,7 @@ const fsExtra = require('fs-extra');
 const fs = require('fs');
 const path = require('path');
 //
-let buildRootAssetsPath = require('../config/prod.env').buildRootAssetsPath;
+let buildRootAssetsPath = require('../config/build.config').buildRootAssetsPath;
 buildRootAssetsPath = (function () {
   if (buildRootAssetsPath === '/') return '';
   return buildRootAssetsPath.replace(/^\/|\/$/g, '') + '/';
@@ -56,9 +56,9 @@ exports.buildNext = function () {
     try {
       let distPath = path.resolve(__dirname, '../dist');
 
-      let buildHistoryPath = path.resolve(distPath, 'build-history/' + assetsPublicPath.replace(buildRootAssetsPath, ''));
+      let buildHistoryPath = path.resolve(distPath, 'history-static/' + assetsPublicPath.replace(buildRootAssetsPath, ''));
 
-      let productionServerPath = path.resolve(__dirname, '../dist/production-server');
+      let productionServerPath = path.resolve(__dirname, '../dist/production-static');
       let productionServerStaticPath = path.resolve(productionServerPath, assetsPublicPath + '/static');
       let indexHtmlPath = path.resolve(distPath, 'index.html');
 
