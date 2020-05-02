@@ -17,33 +17,26 @@
       };
     },
     props: {
-      axisSuffix: {
-        type: String,
-        default: ''
-      },
-      transverse: {
-        type: Array,
-        default() {
-          return [];
-        }
-      },
       data: {
-        type: Array,
+        type: Object,
         default() {
-          return [];
+          return {
+            axisSuffix: '',
+            transverse: [],
+            item: []
+          };
         }
       }
     },
-
     async mounted() {
     },
     methods: {
       async render() {
         this.chartData = [];
-        this.data.forEach(item => {
+        this.data.item.forEach(item => {
           item.list.forEach((listItem, index) => {
             this.chartData.push({
-              transverse: this.transverse[index],
+              transverse: this.data.transverse[index],
               label: item.title,
               value: listItem
             });
@@ -68,7 +61,9 @@
             range: [0, 1],
           },
           value: {
-            nice: true,
+            nice: true, formatter: (val) => {
+              return val + this.data.axisSuffix || '';
+            },
           },
         });
 
@@ -76,15 +71,6 @@
           showCrosshairs: true,
           shared: true,
         });
-
-        this.charInstance.axis('value', {
-          label: {
-            formatter: (val) => {
-              return val + this.axisSuffix;
-            },
-          },
-        });
-
         this.charInstance
           .line()
           .position('transverse*value')

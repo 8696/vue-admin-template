@@ -3,7 +3,7 @@
     <template v-if="__menuCurrentPaths.length > 0">
       <vue-scroll :ops="scrollOptions">
         <div @click="navAction" @contextmenu.prevent="navActionRight" class="tags-list">
-          <div draggable="true" data-type="to"
+          <div data-type="to"
                :data-name="item.routeName"
                :data-id="item.id"
                v-for="item in __tagsList" :class="{active: item.active}"
@@ -12,7 +12,7 @@
                   :data-name="item.routeName"
                   :data-id="item.id">{{item.title}}
             </span>
-            <i data-type="delete"
+            <i v-if="__tagsList.length > 1" data-type="delete"
                :data-name="item.routeName"
                :data-id="item.id" class="el-icon-close"></i>
           </div>
@@ -29,7 +29,7 @@
             <span><i class="el-icon-refresh-right"></i></span>
             <span>刷新</span>
           </div>
-          <div @click="navActionRightHandle('关闭')" class="item">
+          <div :class="{disable: __tagsList.length === 1}" @click.stop="navActionRightHandle('关闭')" class="item">
             <span><i class="el-icon-close"></i></span>
             <span>关闭</span>
           </div>
@@ -221,6 +221,10 @@
             });
             break;
           case '关闭':
+            if (this.__tagsList.length > 1) {
+              this.showTagsRightAction = false;
+            }
+            if (this.__tagsList.length === 1) return;
             this.navAction(null, this.tagsRightActionID);
             break;
           case '关闭其他标签':

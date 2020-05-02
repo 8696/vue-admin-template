@@ -1,6 +1,6 @@
 import {mapState, mapMutations} from 'vuex';
-import {deepCopy, getParentJson} from '../utils/utils';
-import * as storeConfig from '../store.config';
+import {deepCopy, getParentJson} from '@/utils/utils';
+import * as storeConfig from '@/store.config';
 import vm from '@/vm.vue';
 
 export default {

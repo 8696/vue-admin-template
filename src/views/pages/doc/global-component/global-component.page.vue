@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import md from './markdown/global-component.md';
+  import md from '../markdown/global-component/global-component.md';
   import MarkdownComponent from '@/views/general/markdown/markdown.component';
 
   export default {

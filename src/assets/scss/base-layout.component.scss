@@ -87,8 +87,22 @@
       }
     }
 
-    .user {
+    .item {
       padding: 0 10px;
+
+      i {
+        cursor: pointer;
+      }
+
+      .el-icon-full-screen {
+        font-weight: bold;
+      }
+    }
+
+    .item:hover {
+      > i {
+        color: #409EFF;
+      }
     }
 
     .action-more {
@@ -167,7 +181,7 @@
   .layout-page-tags {
     height: $tags-height;
     box-shadow: 5px 4px 6px 0 rgba(58, 58, 58, 0.1);
-    z-index: 1;
+    //z-index: 1;
 
     > div {
       height: 100%;
@@ -249,7 +263,7 @@
     background-color: #fff;
     align-items: center;
     position: relative;
-    z-index: 12;
+    //z-index: 12;
 
     .item {
       height: 100%;

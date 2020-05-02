@@ -32,16 +32,17 @@
          |-- store.js                         Vuex 入口配置文件
          |-- __module                         项目内置 Vuex 配置
             |-- ...
-    |-- utils                                 工具方法
-         |-- utils.js                         工具方法文件
-    |-- views                                 组件目录
-       |-- default                            项目内置组件、布局组价、内置页面、路由插槽等
-          |-- layout                          项目内置组件
+      |-- use-component                       注册全局组件
+         |-- use-component.js                 注册全局组件配置文件
+      |-- utils                               工具方法
+           |-- utils.js                       工具方法文件
+      |-- views                               组件目录
+         |-- default                          项目内置组件、布局组价、内置页面、路由插槽等
+            |-- layout                        项目内置组件
                |-- ...
-       |-- general                            基本组件、手动引入导入
+         |-- general                          基本组件、手动引入导入
             |-- ...
-       |-- global                             全局组件
-          |-- register-global-component.js    注册全局组件配置文件
+         |-- global                           全局组件
             |-- ...
          |-- pages                            Vue Router 配置组件、一般作为 Router 加载的组件建议放在此目录
             |-- ...

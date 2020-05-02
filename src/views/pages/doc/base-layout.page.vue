@@ -8,7 +8,11 @@
         </div>
       </template>
       <template v-slot:body>
-        <div v-for="item in 100">{{item}}</div>
+        <div class="flex-direction-column">
+          <el-button type="primary" @click="$router.push2({name:'va-container-global'})">查看文档</el-button>
+          <div class="flex-center" v-for="item in 100">{{item}}</div>
+        </div>
+
       </template>
       <template v-slot:footer>
         <div class="flex-center"

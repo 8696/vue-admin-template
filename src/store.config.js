@@ -45,28 +45,13 @@ export const menuList = [
   },
 
   {
-    title: '基本布局',
-    icon: '',
-    routeName: 'base-layout',
-    id: 103,
-    parentID: 2
-  },
-
-  {
-    title: '卡片布局',
-    icon: '',
-    routeName: 'card-layout',
-    id: 104,
-    parentID: 2
-  },
-
-  {
     title: 'FontAwesome图标',
     icon: '',
     routeName: 'doc-font-awesome',
     id: 111,
     parentID: 2
   },
+
   {
     title: '基本组件',
     icon: '',
@@ -74,15 +59,28 @@ export const menuList = [
     id: 106,
     parentID: 2
   },
-
+  //
   {
     title: '全局组件',
     icon: '',
-    routeName: 'global-component',
     id: 108,
     parentID: 2
   },
-
+  {
+    title: '说明',
+    icon: '',
+    routeName: 'global-component-doc',
+    id: 109,
+    parentID: 108
+  },
+  {
+    title: 'va-container',
+    icon: '',
+    routeName: 'va-container-global',
+    id: 110,
+    parentID: 108
+  },
+  //
   {
     title: '响应式配置',
     icon: '',
@@ -97,6 +95,21 @@ export const menuList = [
     routeName: 'build',
     id: 107,
     parentID: 2
+  },
+  {
+    title: '基本布局',
+    icon: 'laptop-code',
+    routeName: 'base-layout',
+    id: 1201,
+    parentID: 0
+  },
+
+  {
+    title: '卡片布局',
+    icon: 'sticky-note',
+    routeName: 'card-layout',
+    id: 1301,
+    parentID: 0
   },
   {
     title: 'FontAwesome图标',
@@ -126,12 +139,34 @@ export const menuList = [
     parentID: 501
   },
   {
-    title: '折线图',
+    title: '曲线折线图',
     icon: '',
-    routeName: 'antv-g2-line',
+    routeName: 'antv-g2-line-curved',
     id: 503,
     parentID: 502
   },
+  {
+    title: '双Y轴折线图',
+    icon: '',
+    routeName: 'antv-g2-line-double-y-axes',
+    id: 504,
+    parentID: 502
+  },
+  {
+    title: '阶梯折线图',
+    icon: '',
+    routeName: 'antv-g2-line-step-series',
+    id: 505,
+    parentID: 502
+  },
+  {
+    title: '堆叠面积图',
+    icon: '',
+    routeName: 'antv-g2-area-stacked',
+    id: 506,
+    parentID: 502
+  },
+
   //
   {
     title: '解析markdown',

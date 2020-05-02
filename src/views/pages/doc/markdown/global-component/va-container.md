@@ -1,8 +1,4 @@
-# 全局组件
-
-全局组件无需`import`，因为它已经注册在全局中。目前全局组件仅有一个，也是认为在现在框架基础上没有满足个人需求所添加的
-
-### 一、va-container
+# va-container
 
 该组件采用的在一定高度容器下固定顶部、底部，而内容区采用自适应且高度超过最高之后自动出现滚动条。可以适用于一些`列表`。在数据内容比较多、顶部和底部都有操作区域时采用。[查看实例](#/doc/base-layout)
 
@@ -30,7 +26,6 @@
 </template>
 <script>
   export default {
-    components: {},
     data() {
       return {
         height: {
@@ -43,3 +38,12 @@
   };
 </script>
 ```
+va-container 组件通过 `slot` 为 `header`、`body`、`footer`区分容器位置
+
+接收一个 prop
+
+- height: Object
+    + containerHeight: String 容器高度
+    + headerHeight: String    顶部高度
+    + footerHeight: String    底部高度（在不需要底部时设置为0即可）
+

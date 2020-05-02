@@ -6,7 +6,6 @@
 
 <script>
   import vm from '@/vm.vue';
-
   export default {
     mounted() {
       vm.$emit('__app-mounted');

@@ -49,7 +49,7 @@ const fontAwesome = () => import('./font-awesome/font-awesome');
 /**
  * @description 全局组件
  * */
-const globalComponents = () => import('./views/global/register-global-component');
+const useGlobalComponents = () => import('./use-component/use-component');
 
 const App = () => import('./views/App');
 
@@ -67,15 +67,15 @@ Vue.config.productionTip = false;
 
 (async () => {
 
-  let {default: mixins} = await __mixins();
+  let {default: __mixinsInstall} = await __mixins();
   let {default: elementUIInstall} = await elementUI();
   let {default: fontAwesomeInstall} = await fontAwesome();
-  let {default: globalComponentsRegister} = await globalComponents();
+  let {default: useGlobalComponentsInstall} = await useGlobalComponents();
 
-  Vue.mixin(mixins);
+  Vue.mixin(__mixinsInstall);
   elementUIInstall(Vue);
   fontAwesomeInstall(Vue);
-  globalComponentsRegister(Vue);
+  useGlobalComponentsInstall(Vue);
   new Vue({
     el: '#app',
     router,

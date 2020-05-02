@@ -16,7 +16,10 @@
       </div>
     </div>
     <div class="l-right">
-      <div class="user">
+      <div class="item">
+        <i @click="toggleScreenFull" class="el-icon-full-screen"></i>
+      </div>
+      <div class="item">
 
         <el-dropdown @command="userActionHandleCommand">
         <span class="el-dropdown-link">
@@ -30,7 +33,7 @@
           </el-dropdown-menu>
         </el-dropdown>
       </div>
-      <div class="action-more">
+      <div class="item action-more">
         <i class="el-icon-more"></i>
       </div>
     </div>
@@ -38,6 +41,9 @@
 </template>
 
 <script>
+
+  const screenFullLoad = () => import('screenfull');
+
   export default {
     data() {
       return {};
@@ -48,6 +54,13 @@
     methods: {
       userActionHandleCommand(command) {
         this.$router.replace({name: 'login'});
+      },
+      /**
+       * @description 切换全屏
+       * */
+      async toggleScreenFull() {
+        const screenFullIns = await screenFullLoad();
+        screenFullIns.toggle();
       }
     }
   };

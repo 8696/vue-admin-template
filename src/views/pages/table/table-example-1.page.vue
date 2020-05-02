@@ -1,14 +1,18 @@
 <template>
   <div class="page">
     <div class="card">
-      <el-table
-        :data="tableData"
-        style="width: 100%">
-        <el-table-column
-          sortable
-          header-align="left"
-          align="left">
-          <template slot="header" slot-scope="scope">
+      <div class="card-header">
+        <h2>基础表格</h2>
+      </div>
+      <div class="card-body">
+        <el-table
+          :data="tableData"
+          style="width: 100%">
+          <el-table-column
+            sortable
+            header-align="left"
+            align="left">
+            <template slot="header" slot-scope="scope">
             <span class="title">
               <el-popover
                 placement="bottom"
@@ -18,16 +22,16 @@
               <span slot="reference">姓名</span>
             </el-popover>
             </span>
-          </template>
-          <template slot-scope="scope">
-            <span>{{scope.row.name}}</span>
-          </template>
-        </el-table-column>
-        <el-table-column
-          sortable
-          header-align="right"
-          align="right">
-          <template slot="header" slot-scope="scope">
+            </template>
+            <template slot-scope="scope">
+              <span>{{scope.row.name}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            sortable
+            header-align="right"
+            align="right">
+            <template slot="header" slot-scope="scope">
             <span class="title">
               <el-popover
                 placement="bottom"
@@ -37,12 +41,13 @@
               <span slot="reference">地址</span>
             </el-popover>
             </span>
-          </template>
-          <template slot-scope="scope">
-            <span>{{scope.row.address}}</span>
-          </template>
-        </el-table-column>
-      </el-table>
+            </template>
+            <template slot-scope="scope">
+              <span>{{scope.row.address}}</span>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
     </div>
   </div>
 

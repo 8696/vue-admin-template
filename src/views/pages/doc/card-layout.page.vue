@@ -44,7 +44,7 @@
       <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8">
         <div class="card">
           <div class="card-header">
-            <h2>这里标题</h2>
+            <h2>这里标题A</h2>
           </div>
           <div class="card-body">
             这里是内容区
@@ -55,7 +55,7 @@
       <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8">
         <div class="card">
           <div class="card-header">
-            <h2>这里标题</h2>
+            <h2>这里标题B</h2>
           </div>
           <div class="card-body">
             这里是内容区
@@ -65,7 +65,7 @@
       <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8">
         <div class="card">
           <div class="card-header">
-            <h2>这里标题</h2>
+            <h2>这里标题C</h2>
           </div>
           <div class="card-body">
             这里是内容区
