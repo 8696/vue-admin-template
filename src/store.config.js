@@ -282,7 +282,13 @@ export const menuList = [
     id: 801,
     parentID: 0
   },
-
+  {
+    title: '商家管理',
+    icon: 'store',
+    routeName: 'store',
+    id: 1401,
+    parentID: 0
+  },
 ];
 
 /**

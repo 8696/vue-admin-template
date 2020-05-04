@@ -5,60 +5,66 @@
         <div class="card-body">
           <markdown-component :text="md"/>
             <pre>
-  |-- build                                   CLI内置配置
-      |-- build-next.js                       扩展配置
-      |-- ...                                 CLI内置配置
-  |-- config                                  CLI内置配置
-      |-- prod.env.js                         扩展配置
-      |-- ...                                 CLI内置配置
-  |-- dist                                    打包完成后的资源目录
-      |-- production-static                   实时版本
-      |-- history-static                      历史版本
-  |-- src                                     开发源代码
-      |-- assets                              可被 loader 解析的资源目录
+  |-- build                                       CLI内置配置
+      |-- build-next.js                           扩展配置
+      |-- ...                                     CLI内置配置
+  |-- config                                      CLI内置配置
+      |-- prod.env.js                             扩展配置
+      |-- ...                                     CLI内置配置
+  |-- dist                                        打包完成后的资源目录
+      |-- production-static                       实时版本
+      |-- history-static                          历史版本
+  |-- src                                         开发源代码
+      |-- assets                                  可被 loader 解析的资源目录
          |-- ...
-      |-- element-ui                          element UI 配置
-         |-- element-ui.js                    element UI 配置文件
-      |-- filter                              全局 filter 配置
-         |-- filter.js                        全局 filter 配置文件
-      |-- font-awesome                        Font Awesome 字体配置
-         |-- font-awesome.js                  Font Awesome 字体配置文件
-      |-- http                                提供的参考 Http 模块目录
-      |-- mixins                              全局混入配置
-         |-- __mixins.js                      项目内置全局混入配置文件
-      |-- route                               Vue Router 配置
-         |-- route.js                         Vue Router 入口配置文件
-      |-- store                               Vuex 配置
-         |-- store.js                         Vuex 入口配置文件
-         |-- __module                         项目内置 Vuex 配置
+      |-- element-ui                              element UI 配置
+         |-- element-ui.js                        element UI 配置文件
+      |-- filter                                  全局 filter 配置
+         |-- filter.js                            全局 filter 配置文件
+      |-- font-awesome                            Font Awesome 字体配置
+         |-- font-awesome.js                      Font Awesome 字体配置文件
+      |-- http                                    提供的参考 Http 模块目录
+      |-- mixins                                  全局混入配置
+         |-- __mixins.js                          项目内置全局混入配置文件
+      |-- route                                   Vue Router 配置
+         |-- route.js                             Vue Router 入口配置文件
+      |-- store                                   Vuex 配置
+         |-- store.js                             Vuex 入口配置文件
+         |-- __module                             项目内置 Vuex 配置
             |-- ...
-      |-- use-component                       注册全局组件
-         |-- use-component.js                 注册全局组件配置文件
-      |-- utils                               工具方法
-           |-- utils.js                       工具方法文件
-      |-- views                               组件目录
-         |-- default                          项目内置组件、布局组价、内置页面、路由插槽等
-            |-- layout                        项目内置组件
+      |-- use-component                           注册全局组件
+         |-- use-component.js                     注册全局组件配置文件
+      |-- utils                                   工具方法
+         |-- utils.js                             工具方法文件
+      |-- views                                   组件目录
+         |-- default                              项目内置组件、布局组价、内置页面、路由插槽等
+            |-- layout                            项目内置布局组件
                |-- ...
-         |-- general                          基本组件、手动引入导入
+            |-- page                              内置页面
+               |-- 404.page.vue                   404页面
+               |-- ...
+            |-- route                             路由主载组件
+               |-- base.route.component.vue       基础路由、包含头部菜单等组件
+               |-- default.route.component.vue    默认组件、不包含头部菜单等组件
+         |-- general                              基本组件、手动导入
             |-- ...
-         |-- global                           全局组件
+         |-- global                               全局组件
             |-- ...
-         |-- pages                            Vue Router 配置组件、一般作为 Router 加载的组件建议放在此目录
+         |-- pages                                Vue Router 配置组件、一般作为 Router 加载的组件建议放在此目录
             |-- ...
-         |-- App.vue                          项目根组件
-      |-- main.js                             项目主入口文件、配置全局功能、全局第三个组件等
-      |-- store.config.js                     项目全局配置
-      |-- vm.vue.js                           项目自定义的 vm 实例
-  |-- static                                  内置静态资源目录
-  |-- .babelrc                                项目 babel 配置
-  |-- .editorconfig                           编辑器配置
-  |-- .gitignore                              git 忽略配置
-  |-- .postcssrc                              PostCSS 配置
-  |-- index.html                              项目入口
-  |-- package.json                            项目信息、依赖等
-  |-- README.md                               文档入口、说明入口等
-  |-- server.js                               预览生成环境
+         |-- App.vue                              项目根组件
+      |-- main.js                                 项目主入口文件、配置全局功能、全局第三个组件等
+      |-- store.config.js                         项目全局配置
+      |-- vm.vue.js                               项目自定义的 vm 实例
+  |-- static                                      内置静态资源目录
+  |-- .babelrc                                    项目 babel 配置
+  |-- .editorconfig                               编辑器配置
+  |-- .gitignore                                  git 忽略配置
+  |-- .postcssrc                                  PostCSS 配置
+  |-- index.html                                  项目入口
+  |-- package.json                                项目信息、依赖等
+  |-- README.md                                   文档入口、说明入口等
+  |-- server.js                                   预览生产环境
 
             </pre>
         </div>

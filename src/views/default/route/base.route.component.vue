@@ -1,7 +1,5 @@
 <template>
   <div class="base-layout">
-
-
     <div class="layout-menu-p"
          element-loading-background="rgba(255, 255, 255, 0.8)"
          v-loading="__menuList.length === 0">
@@ -13,7 +11,6 @@
             'exist-logo': __logo,
             'fixed-logo': __logo && __logo.fixed
          }">
-
           <div v-if="__logo" class="logo" :style="{backgroundColor: __logo.backgroundColor}">
             <img :src="__menuCollapseStatus ? __logo.miniPath : __logo.path"/>
           </div>

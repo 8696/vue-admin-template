@@ -1,5 +1,5 @@
 import {
-  // Pagination,
+  Pagination,
   // Dialog,
   // Autocomplete,
   Dropdown,
@@ -18,8 +18,8 @@ import {
   // CheckboxButton,
   // CheckboxGroup,
   // Switch,
-  // Select,
-  // Option,
+  Select,
+  Option,
   // OptionGroup,
   Button,
   // ButtonGroup,
@@ -32,8 +32,8 @@ import {
   Tooltip,
   Breadcrumb,
   BreadcrumbItem,
-  // Form,
-  // FormItem,
+  Form,
+  FormItem,
   // Tabs,
   // TabPane,
   // Tag,
@@ -79,7 +79,7 @@ import {
 } from 'element-ui';
 
 export default function install(Vue) {
-  // Vue.use(Pagination);
+  Vue.use(Pagination);
   // Vue.use(Dialog);
   // Vue.use(Autocomplete);
   Vue.use(Dropdown);
@@ -98,8 +98,8 @@ export default function install(Vue) {
   // Vue.use(CheckboxButton);
   // Vue.use(CheckboxGroup);
   // Vue.use(Switch);
-  // Vue.use(Select);
-  // Vue.use(Option);
+  Vue.use(Select);
+  Vue.use(Option);
   // Vue.use(OptionGroup);
   Vue.use(Button);
   // Vue.use(ButtonGroup);
@@ -112,8 +112,8 @@ export default function install(Vue) {
   Vue.use(Tooltip);
   Vue.use(Breadcrumb);
   Vue.use(BreadcrumbItem);
-  // Vue.use(Form);
-  // Vue.use(FormItem);
+  Vue.use(Form);
+  Vue.use(FormItem);
   // Vue.use(Tabs);
   // Vue.use(TabPane);
   // Vue.use(Tag);

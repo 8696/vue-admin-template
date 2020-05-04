@@ -25,7 +25,7 @@ const router = new Router(merge({
           {
             path: '/doc/card-layout',
             name: 'card-layout',
-            component: () => import('@/views/pages/doc/card-layout.page')
+            component: () => import('@/views/pages/card-layout/card-layout.page')
           },
           {
             path: '/doc/folder',
@@ -62,7 +62,7 @@ const router = new Router(merge({
           {
             path: '/doc/base-layout',
             name: 'base-layout',
-            component: () => import('@/views/pages/doc/base-layout.page')
+            component: () => import('@/views/pages/base-layout/base-layout.page')
           },
           {
             path: '/doc/font-awesome',
@@ -141,6 +141,12 @@ const router = new Router(merge({
             path: '/menu3',
             name: 'menu3',
             component: () => import('@/views/pages/menu/menu.page')
+          },
+          // 商家管理
+          {
+            path: '/store',
+            name: 'store',
+            component: () => import('@/views/pages/store/store.page')
           },
 
         ]

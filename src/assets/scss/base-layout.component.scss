@@ -181,8 +181,7 @@
   .layout-page-tags {
     height: $tags-height;
     box-shadow: 5px 4px 6px 0 rgba(58, 58, 58, 0.1);
-    //z-index: 1;
-
+    z-index: 1;
     > div {
       height: 100%;
     }
@@ -365,7 +364,10 @@
   }
 
   .is-active {
-    background-color: #203042 !important;
+  }
+
+  .el-menu-item.is-active {
+    background-color: rgba(32, 48, 66, 0.88) !important;
   }
 
   .route-item {

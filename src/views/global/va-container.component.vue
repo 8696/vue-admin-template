@@ -1,5 +1,5 @@
 <template>
-  <div class="base-container" :style="{height: height.containerHeight}">
+  <div class="base-container" :style="{height: containerHeight}">
     <div class="container-slot">
       <div class="container-slot-header" :style="{height: height.headerHeight}">
         <slot name="header"></slot>
@@ -22,15 +22,31 @@
 <script>
   export default {
     props: {
-      height: {
-        type: Object,
-        default() {
-          return {
-            containerHeight: '100%',
-            headerHeight: '40px',
-            footerHeight: '50px'
-          };
+      containerHeight: {
+        type: String,
+        default: '100%'
+      }
+    },
+    data() {
+      return {
+        height: {
+          headerHeight: 'auto',
+          footerHeight: 'auto'
         }
+      };
+    },
+    mounted() {
+      this.computedHeight();
+    },
+    methods: {
+      async computedHeight() {
+        await this.$nextTick();
+        this.height.headerHeight = window
+          .getComputedStyle(this.$el
+            .querySelector('.container-slot-header')).height;
+        this.height.footerHeight = window
+          .getComputedStyle(this.$el
+            .querySelector('.container-slot-footer')).height;
       }
     }
   };
