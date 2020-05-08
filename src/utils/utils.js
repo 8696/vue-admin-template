@@ -1,3 +1,8 @@
+/**
+ * @description 模拟睡眠
+ * @param time {Number} 睡眠时间(ms) | default : 1000
+ * @return {Promise}
+ * */
 export function sleep(time = 1000) {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -5,11 +10,19 @@ export function sleep(time = 1000) {
     }, time);
   });
 }
-
-export function makeRandomNumber(minNum = 0, maxNum = 1000) {
+/**
+ * @description 生成随机数
+ * @param minNum {Number} 最小范围 | default : 1
+ * @param maxNum {Number} 最大范围 | default : 99999
+ * */
+export function makeRandomNumber(minNum = 1, maxNum = 99999) {
   return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
 }
-
+/**
+ * @description 生成随机字符串
+ * @param length {Number} 字符串长度 | default : 32
+ * @return {String}
+ * */
 export function makeRandomString(length = 32) {
 
   let chars = 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890';
@@ -20,7 +33,11 @@ export function makeRandomString(length = 32) {
   }
   return string;
 }
-
+/**
+ * @description 获取可视化时间
+ * @param options {Object}
+ * @return {String}
+ * */
 export function parseDateTime(options = {format: null, timestamp: null}) {
   !options.format && (options.format = 'y-m-d h:i:s');
   !options.timestamp && (options.timestamp = null);
@@ -34,7 +51,11 @@ export function parseDateTime(options = {format: null, timestamp: null}) {
     .replace(/i/g, i < 10 ? '0' + i : i).replace(/s/g, s < 10 ? '0' + s : s);
 }
 
-
+/**
+ * @description 简单深拷贝 | 只支持数据类型为对象和数组，key 为字符串且 value 为 JSON 支持的数据类型(Object/Array/String/Number/Boolean/Null)
+ * @param data {*}
+ * @return {*}
+ * */
 export function deepCopy(data) {
 
   if (!['[object Array]', '[object Object]']
@@ -44,14 +65,19 @@ export function deepCopy(data) {
 
   return JSON.parse(JSON.stringify(data));
 }
-
-export function parseJsonTree(data, parentID = 0) {
+/**
+ * @description 将集合通过子父 ID 关联成树
+ * @param list {Array}
+ * @param parentID {Number} |  default : 0
+ * @return {Array}
+ * */
+export function parseJsonTree(list, parentID = 0) {
   let tree = [];
   let temp;
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].parentID === parentID) {
-      let obj = data[i];
-      temp = parseJsonTree(data, data[i].id);
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].parentID === parentID) {
+      let obj = list[i];
+      temp = parseJsonTree(list, list[i].id);
       if (temp.length > 0) {
         obj.children = temp;
       }
@@ -60,7 +86,13 @@ export function parseJsonTree(data, parentID = 0) {
   }
   return tree;
 }
-
+/**
+ * @description 获取一项指定 ID 的向上所有集合
+ * @param list {Array}
+ * @param id {Number}
+ * @param parents {Array}
+ * @return {Array}
+ * */
 export function getParentJson(list, id, parents = []) {
   for (let i = 0; i < list.length; i++) {
     if (list[i].id === id) {
