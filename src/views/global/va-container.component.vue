@@ -6,9 +6,9 @@
       </div>
       <div class="container-slot-body"
            :style="{
-              marginTop:height.headerHeight,
-              marginBottom:height.footerHeight,
-              height:`calc(100% - ${parseInt(height.headerHeight) + parseInt(height.footerHeight)}px)`
+              marginTop: height.headerHeight,
+              marginBottom: height.footerHeight,
+              height: `calc(100% - ${parseInt(height.headerHeight) + parseInt(height.footerHeight)}px)`
            }">
         <slot name="body"></slot>
       </div>

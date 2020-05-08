@@ -21,9 +21,9 @@ export function get(param = {}) {
 export function post(param = {}) {
   return new Http().request({
     url: '/post',
-    // data: httpUtils.makeFormData(param),     // multipart/form-data
+    // data: httpUtils.makeFormData(param),        // multipart/form-data
     // data: httpUtils.makeQueryString(param),     // application/x-www-form-urlencoded
-    data: param,                             //application/json
+    data: param,                                   // application/json
     method: 'post'
   });
 }

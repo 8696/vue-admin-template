@@ -23,7 +23,7 @@
          |-- filter.js                            全局 filter 配置文件
       |-- font-awesome                            Font Awesome 字体配置
          |-- font-awesome.js                      Font Awesome 字体配置文件
-      |-- http                                    提供的参考 Http 模块目录
+      |-- api                                     提供的参考 Http 模块目录
       |-- mixins                                  全局混入配置
          |-- __mixins.js                          项目内置全局混入配置文件
       |-- route                                   Vue Router 配置
@@ -32,8 +32,8 @@
          |-- store.js                             Vuex 入口配置文件
          |-- __module                             项目内置 Vuex 配置
             |-- ...
-      |-- use-component                           注册全局组件
-         |-- use-component.js                     注册全局组件配置文件
+      |-- component                               注册全局组件
+         |-- component.js                         注册全局组件配置文件
       |-- utils                                   工具方法
          |-- utils.js                             工具方法文件
       |-- views                                   组件目录
@@ -63,6 +63,7 @@
   |-- .postcssrc                                  PostCSS 配置
   |-- index.html                                  项目入口
   |-- package.json                                项目信息、依赖等
+  |-- yarn.lock                                   yarn 项目依赖
   |-- README.md                                   文档入口、说明入口等
   |-- server.js                                   预览生产环境
 

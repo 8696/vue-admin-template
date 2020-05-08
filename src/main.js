@@ -18,12 +18,11 @@ import './assets/scss/app.scss';
 import vm from './vm.vue';
 
 Vue.prototype.vm = vm;
-Vue.vm = vm;
+Vue.vm = Vue.prototype.vm;
 
 /**
  * @description 全局 mixin
  * */
-
 const __mixins = () => import('./mixins/__mixins');
 
 /**
@@ -49,7 +48,7 @@ const fontAwesome = () => import('./font-awesome/font-awesome');
 /**
  * @description 全局组件
  * */
-const useGlobalComponents = () => import('./use-component/use-component');
+const globalComponents = () => import('./components/components');
 
 const App = () => import('./views/App');
 
@@ -62,6 +61,9 @@ import VueClipboard from 'vue-clipboard2';
 
 Vue.use(VueClipboard);
 
+/**
+ * @description 生产提示
+ * */
 Vue.config.productionTip = false;
 
 
@@ -70,12 +72,14 @@ Vue.config.productionTip = false;
   let {default: __mixinsInstall} = await __mixins();
   let {default: elementUIInstall} = await elementUI();
   let {default: fontAwesomeInstall} = await fontAwesome();
-  let {default: useGlobalComponentsInstall} = await useGlobalComponents();
+  let {default: globalComponentsInstall} = await globalComponents();
 
   Vue.mixin(__mixinsInstall);
   elementUIInstall(Vue);
   fontAwesomeInstall(Vue);
-  useGlobalComponentsInstall(Vue);
+  globalComponentsInstall(Vue);
+
+
   new Vue({
     el: '#app',
     router,

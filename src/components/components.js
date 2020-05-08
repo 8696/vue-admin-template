@@ -8,11 +8,8 @@
  * Time: 1:41 下午
  */
 
-import connector from '../views/global/va-container.component';
 
 export default function install (Vue) {
-  Vue.component('va-container', connector);
+  Vue.component('va-container', () => import('@/views/global/va-container.component'));
 }
-
-
 

@@ -1,11 +1,6 @@
 import axios from 'axios';
 
-import * as httpUtils from './utils';
-
 class Http  {
-
-  constructor() {
-  }
 
   request(config) {
     return new Promise((resolve, reject) => {

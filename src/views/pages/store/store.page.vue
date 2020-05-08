@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <va-container :height="height">
+    <va-container>
       <template v-slot:header>
         <div class="container-header">
 
@@ -100,11 +100,6 @@
     },
     data() {
       return {
-        height: {
-          containerHeight: '100%',
-          headerHeight: '240px',
-          footerHeight: '50px'
-        },
         tableData: [
           {
             date: '2016-05-03',

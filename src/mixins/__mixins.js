@@ -224,14 +224,7 @@ export default {
                   path: value.path,
                 });
               }
-              /*
-              let logo = value.path.split('/');
-              logo.splice(0, 1);
-              let logoPath = require('../../' + logo.join('/'));
-              this.__setBaseLogo({
-                path: logoPath,
-              });
-              */
+
             }
           }
           if (value.hasOwnProperty('miniPath')) {
@@ -252,14 +245,6 @@ export default {
                 });
               }
 
-              /*
-              let miniLogo = value.miniPath.split('/');
-              miniLogo.splice(0, 1);
-              let miniLogoPath = require('../../' + miniLogo.join('/'));
-              this.__setBaseLogo({
-                miniPath: miniLogoPath,
-              });
-              */
             }
 
           }
