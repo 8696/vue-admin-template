@@ -1,12 +1,3 @@
-/**
- * Created by PhpStorm
- * Description: next..
- * User: JinwenLong
- * Author: longjinwen
- * Email: 204084802@qq.com
- * Date: 2020/4/21
- * Time: 9:08 下午
- */
 
 /**
  * @description 菜单数据
