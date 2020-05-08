@@ -9,4 +9,3 @@ app.use(require('koa-static')(path.resolve(__dirname, './dist/production-static'
 app.listen(port);
 
 console.log(`http://${address.ip()}:${port}`);
-

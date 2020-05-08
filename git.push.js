@@ -1,4 +1,3 @@
-console.log(process.argv);
 
 const {execSync} = require('child_process');
 
