@@ -32,28 +32,23 @@
               </el-table-column>
               <el-table-column
                 prop="name"
-                label="姓名"
-                width="120">
+                label="姓名">
               </el-table-column>
               <el-table-column
                 prop="province"
-                label="省份"
-                width="120">
+                label="省份">
               </el-table-column>
               <el-table-column
                 prop="city"
-                label="市区"
-                width="120">
+                label="市区">
               </el-table-column>
               <el-table-column
                 prop="address"
-                label="地址"
-                width="300">
+                label="地址">
               </el-table-column>
               <el-table-column
                 prop="zip"
-                label="邮编"
-                width="120">
+                label="邮编">
               </el-table-column>
               <el-table-column
                 fixed="right"

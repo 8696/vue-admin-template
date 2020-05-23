@@ -169,7 +169,7 @@
         }
         // 删除后所有 active 为 false ，则挑选最后一项为 active
         let active = this.__tagsList.some(item => {
-          return item.__active;
+          return item.active;
         });
         if (!active) {
           this.__setTagsOneItemActive(this.__tagsList[this.__tagsList.length - 1].id);
