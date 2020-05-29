@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-class Http  {
+class Http {
 
   request(config) {
     return new Promise((resolve, reject) => {
