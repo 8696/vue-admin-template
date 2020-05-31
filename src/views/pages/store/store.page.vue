@@ -3,18 +3,30 @@
     <va-container>
       <template v-slot:header>
         <div class="container-header">
+          <div class="action">
+            <el-button size="small" type="primary" icon="el-icon-plus" circle></el-button>
+            <el-button size="small" type="danger" icon="el-icon-delete" circle></el-button>
+          </div>
 
-          <el-form label-position="left"
-                   label-width="100px" :inline="true" :model="formInline">
+          <div class="filter">
+            <div class="filter-item">
+              <div style="width: 80px" class="filter-title">
+                <span>姓名</span>
+              </div>
+              <el-input size="small" v-model="formInline.user" placeholder="姓名"></el-input>
+            </div>
+            <div class="filter-item">
+              <div style="width: 80px" class="filter-title">
+                <span>地址</span>
+              </div>
+              <el-input size="small" v-model="formInline.user" placeholder="地址"></el-input>
+            </div>
+            <div class="filter-item">
+              <el-button size="small" type="primary" @click="onSubmit">查询</el-button>
+            </div>
 
-            <el-form-item label="审批人">
-              <el-input v-model="formInline.user" placeholder="审批人"></el-input>
-            </el-form-item>
+          </div>
 
-            <el-form-item>
-              <el-button type="primary" @click="onSubmit">查询</el-button>
-            </el-form-item>
-          </el-form>
         </div>
 
       </template>
@@ -24,6 +36,10 @@
             <el-table
               :data="tableData"
               style="width: 100%">
+              <el-table-column
+                type="selection"
+                width="55">
+              </el-table-column>
               <el-table-column
                 fixed
                 prop="date"
@@ -302,3 +318,38 @@
 
   };
 </script>
+<style scoped lang="scss">
+  .container-header {
+    padding: 20px 30px;
+    /*box-shadow: 5px 4px 6px 0 rgba(58,58,58,0.1);*/
+    border-bottom: 1px solid #eaeaea;
+    background: #fff;
+    z-index: 9;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .container-footer {
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: -3px -2px 6px 0 rgba(58, 58, 58, 0.1);
+    z-index: 9;
+    position: relative;
+
+  }
+
+  .filter {
+    display: flex;
+
+    .filter-item {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+    }
+    .filter-title{
+      display: flex;
+      justify-content: center;
+    }
+  }
+</style>

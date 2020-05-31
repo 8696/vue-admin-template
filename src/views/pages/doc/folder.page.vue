@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body">
           <markdown-component :text="md"/>
-            <pre>
+            <pre style="opacity: .7">
   |-- build                                       CLI内置配置
       |-- build-next.js                           扩展配置
       |-- ...                                     CLI内置配置
@@ -64,7 +64,7 @@
   |-- index.html                                  项目入口
   |-- package.json                                项目信息、依赖等
   |-- yarn.lock                                   yarn 项目依赖
-  |-- README.md                                   文档入口、说明入口等
+  |-- README.md                                   README
   |-- server.js                                   预览生产环境
 
             </pre>

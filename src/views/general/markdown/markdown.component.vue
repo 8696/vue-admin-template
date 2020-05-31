@@ -28,25 +28,28 @@
     },
     methods: {
       parse() {
-        this.html = marked(this.text);
-        this.$nextTick()
-          .then(() => {
-            Array.from(this.$el.getElementsByTagName('pre'))
-              .forEach(el => {
-                // 添加行号
-                el.innerHTML =
-                  '<div><span class="code-line">' + el.innerHTML
-                    .replace(/\n/g, '\n</span><span class="code-line">')
-                  + '\n</span></div>';
-                highlight.highlightBlock(el);
-                let lines = Array.from(el.querySelectorAll('.code-line'));
-                lines.forEach((item, index) => {
-                  item.innerHTML =
-                    `<span class="code-line-number">${this.padTo(index, lines.length)}</span>`
-                    + '  ' + item.innerHTML;
+        setTimeout(()=>{
+          this.html = marked(this.text);
+          this.$nextTick()
+            .then(() => {
+              Array.from(this.$el.getElementsByTagName('pre'))
+                .forEach(el => {
+                  // 添加行号
+                  el.innerHTML =
+                    '<div><span class="code-line">' + el.innerHTML
+                      .replace(/\n/g, '\n</span><span class="code-line">')
+                    + '\n</span></div>';
+                  highlight.highlightBlock(el);
+                  let lines = Array.from(el.querySelectorAll('.code-line'));
+                  lines.forEach((item, index) => {
+                    item.innerHTML =
+                      `<span class="code-line-number">${this.padTo(index, lines.length)}</span>`
+                      + '  ' + item.innerHTML;
+                  });
                 });
-              });
-          });
+            });
+        },0)
+
       },
       padTo(number, length) {
         number = String(number);

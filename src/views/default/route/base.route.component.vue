@@ -62,7 +62,6 @@
         scrollOptions: {
           vuescroll: {
             detectResize: true
-
           },
           rail: {
             opacity: 0,
@@ -132,7 +131,7 @@
       routeTo404() {
         return this.$router.push2({path: '/404'}, () => {
         });
-      },
+      }
 
     }
 

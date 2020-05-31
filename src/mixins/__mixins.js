@@ -273,8 +273,10 @@ export default {
       switch (key) {
         case 'menuList':
           return deepCopy(this.__menuList);
+        case 'menuFormatList':
+          return deepCopy(this.__menuFormatList);
         case 'menuCollapseStatus':
-          return this.__setMenuCollapseStatus;
+          return this.__menuCollapseStatus;
         case 'logo':
           return deepCopy(this.__logo);
       }

@@ -107,12 +107,13 @@ const router = new Router(merge({
             component: () => import('@/views/pages/antv/antv-g2/area-stacked.page')
           },
 
-          // ag-grid
+          // 基础漏斗图
           {
-            path: '/ag-grid/example-1',
-            name: 'ag-grid-example-1',
-            component: () => import('@/views/pages/ag-grid/ag-grid-example-1.page')
+            path: '/antv/g2/funnel-basic',
+            name: 'antv-g2-funnel-basic',
+            component: () => import('@/views/pages/antv/antv-g2/funnel-basic.page')
           },
+
           // table
           {
             path: '/table/example-1',
@@ -146,9 +147,38 @@ const router = new Router(merge({
           {
             path: '/store',
             name: 'store',
+            meta: {
+              title: '商家管理'
+            },
             component: () => import('@/views/pages/store/store.page')
           },
+          // 响应式配置 logo
+          {
+            path: '/store-data-logo',
+            name: 'store-data-logo',
+            component: () => import('@/views/pages/store-data/logo.page')
+          },
+          {
+            path: '/store-data-menu-collapse',
+            name: 'store-data-menu-collapse',
+            component: () => import('@/views/pages/store-data/menu-collapse.page')
+          },
 
+          {
+            path: '/store-data-menu-list',
+            name: 'store-data-menu-list',
+            component: () => import('@/views/pages/store-data/menu-list.page')
+          },
+
+          // 个人中心
+          {
+            path: '/personal',
+            name: 'personal',
+            meta: {
+              title: '个人中心'
+            },
+            component: () => import('@/views/pages/personal/personal.page')
+          },
         ]
       },
       {
@@ -159,12 +189,7 @@ const router = new Router(merge({
             path: '/login',
             name: 'login',
             component: () => import('@/views/pages/login/login.page')
-          },
-          {
-            path: '/login2',
-            name: 'login2',
-            component: () => import('@/views/pages/login2/login.page')
-          },
+          }
         ]
       },
     ]

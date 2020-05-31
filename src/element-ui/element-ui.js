@@ -1,6 +1,6 @@
 import {
   Pagination,
-  // Dialog,
+  Dialog,
   // Autocomplete,
   Dropdown,
   DropdownMenu,
@@ -11,10 +11,10 @@ import {
   MenuItemGroup,
   Input,
   InputNumber,
-  // Radio,
+  Radio,
   // RadioGroup,
   // RadioButton,
-  // Checkbox,
+  Checkbox,
   // CheckboxButton,
   // CheckboxGroup,
   // Switch,
@@ -37,7 +37,7 @@ import {
   // Tabs,
   // TabPane,
   // Tag,
-  // Tree,
+  Tree,
   Alert,
   // Slider,
   // Icon,
@@ -80,7 +80,7 @@ import {
 
 export default function install(Vue) {
   Vue.use(Pagination);
-  // Vue.use(Dialog);
+  Vue.use(Dialog);
   // Vue.use(Autocomplete);
   Vue.use(Dropdown);
   Vue.use(DropdownMenu);
@@ -91,10 +91,10 @@ export default function install(Vue) {
   Vue.use(MenuItemGroup);
   Vue.use(Input);
   Vue.use(InputNumber);
-  // Vue.use(Radio);
+  Vue.use(Radio);
   // Vue.use(RadioGroup);
   // Vue.use(RadioButton);
-  // Vue.use(Checkbox);
+  Vue.use(Checkbox);
   // Vue.use(CheckboxButton);
   // Vue.use(CheckboxGroup);
   // Vue.use(Switch);
@@ -117,7 +117,7 @@ export default function install(Vue) {
   // Vue.use(Tabs);
   // Vue.use(TabPane);
   // Vue.use(Tag);
-  // Vue.use(Tree);
+  Vue.use(Tree);
   Vue.use(Alert);
   // Vue.use(Slider);
   // Vue.use(Icon);

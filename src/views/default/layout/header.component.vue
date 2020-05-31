@@ -7,9 +7,7 @@
       </div>
       <div class="route-breadcrumb">
         <el-breadcrumb separator="/" v-if="__menuCurrentPaths.length > 0">
-          <el-breadcrumb-item :to="{name: item.routeName ||
-      (item.children.length > 0 ?item.children[0].routeName:'')
-      }" :key="index" v-for="(item,index) in __menuCurrentPaths">
+          <el-breadcrumb-item :key="index" v-for="(item,index) in __menuCurrentPaths">
             {{item.title}}
           </el-breadcrumb-item>
         </el-breadcrumb>
@@ -27,7 +25,6 @@
           龙锦文<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="修改密码">修改密码</el-dropdown-item>
             <el-dropdown-item command="个人中心">个人中心</el-dropdown-item>
             <el-dropdown-item command="退出登录">退出登录</el-dropdown-item>
           </el-dropdown-menu>
@@ -53,7 +50,17 @@
     computed: {},
     methods: {
       userActionHandleCommand(command) {
-        this.$router.replace({name: 'login'});
+        switch (command) {
+          case '个人中心':
+            this.$router.push({name: 'personal'});
+            break;
+          case '退出登录':
+            // window.localStorage.clear();
+            // window.sessionStorage.clear();
+            // window.location.reload();
+            this.$router.replace({name: 'login'});
+            break;
+        }
       },
       /**
        * @description 切换全屏

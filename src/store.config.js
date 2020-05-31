@@ -12,7 +12,13 @@ export const menuList = [
     id: 1,
     parentID: 0
   },
-
+  {
+    title: '源代码',
+    icon: 'code',
+    link: 'https://github.com/8696/vue-admin-template',
+    id: 1601,
+    parentID: 0
+  },
   {
     title: '文档',
     icon: 'file-alt',
@@ -20,13 +26,7 @@ export const menuList = [
     id: 2,
     parentID: 0
   },
-  {
-    title: '源代码',
-    icon: '',
-    link: 'https://github.com/8696/vue-admin-template',
-    id: 101,
-    parentID: 2
-  },
+
   {
     title: '目录介绍',
     icon: '',
@@ -87,6 +87,36 @@ export const menuList = [
     id: 107,
     parentID: 2
   },
+  //
+  {
+    title: '响应式配置',
+    icon: 'thumbtack',
+    routeName: '',
+    id: 1501,
+    parentID: 0
+  },
+  {
+    title: 'Logo配置',
+    icon: '',
+    routeName: 'store-data-logo',
+    id: 1502,
+    parentID: 1501
+  },
+  {
+    title: '菜单折叠状态',
+    icon: '',
+    routeName: 'store-data-menu-collapse',
+    id: 1503,
+    parentID: 1501
+  },
+  {
+    title: '菜单列表',
+    icon: '',
+    routeName: 'store-data-menu-list',
+    id: 1504,
+    parentID: 1501
+  },
+  //
   {
     title: '基本布局',
     icon: 'laptop-code',
@@ -94,7 +124,7 @@ export const menuList = [
     id: 1201,
     parentID: 0
   },
-
+  //
   {
     title: '卡片布局',
     icon: 'sticky-note',
@@ -158,6 +188,14 @@ export const menuList = [
     parentID: 502
   },
 
+  {
+    title: '基础漏斗图',
+    icon: '',
+    routeName: 'antv-g2-funnel-basic',
+    id: 507,
+    parentID: 502
+  },
+
   //
   {
     title: '解析markdown',
@@ -167,20 +205,6 @@ export const menuList = [
     parentID: 0
   },
 
-  //
-  {
-    title: 'ag-grid表格',
-    icon: 'table',
-    id: 601,
-    parentID: 0
-  },
-
-  {
-    title: '实例',
-    id: 602,
-    routeName: 'ag-grid-example-1',
-    parentID: 601
-  },
   //
 
   {
@@ -294,9 +318,9 @@ export const menuCollapseStatus = false;
  * */
 
 export const logo = {
-  path: '/static/logo/logo.png',
-  miniPath: '/static/logo/mini-logo.png',
-  backgroundColor: '#192632',
+  path: '/static/logo/element-ui.svg',
+  miniPath: '/static/logo/eleme.png',
+  backgroundColor: '#1e3040',
   fixed: true
 };
 // export const logo = null;

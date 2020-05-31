@@ -15,14 +15,16 @@
   import MarkdownComponent from '@/views/general/markdown/markdown.component';
 
   export default {
-    components:{
+    components: {
       MarkdownComponent
     },
+
     computed: {
       md() {
         return md;
       }
     },
+
   };
 </script>
 
