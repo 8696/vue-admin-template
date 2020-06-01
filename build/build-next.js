@@ -14,6 +14,8 @@ let buildTime = getDateTime('y-m-d h:i:s', buildStartTime);
 let v = getDateTime('ymdhis', buildStartTime);
 const chalk = require('chalk');
 
+
+
 let consumingTime;
 try {
   consumingTime = Number(fs.readFileSync(path.resolve(__dirname, '../node_modules/.__build.time')).toString());
