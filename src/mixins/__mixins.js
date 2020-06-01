@@ -214,17 +214,9 @@ export default {
                 path: value.path,
               });
             } else {
-              if (process.env.NODE_ENV === 'production') {
-                // 生产模式
-                this.__setBaseLogo({
-                  path: window.__static + value.path,
-                });
-              } else {
-                this.__setBaseLogo({
-                  path: value.path,
-                });
-              }
-
+              this.__setBaseLogo({
+                path: this.__makeStaticPath(value.path),
+              });
             }
           }
           if (value.hasOwnProperty('miniPath')) {
@@ -234,16 +226,10 @@ export default {
               });
 
             } else {
-              if (process.env.NODE_ENV === 'production') {
-                // 生产模式
-                this.__setBaseLogo({
-                  miniPath: window.__static + value.miniPath,
-                });
-              } else {
-                this.__setBaseLogo({
-                  miniPath: value.miniPath,
-                });
-              }
+
+              this.__setBaseLogo({
+                miniPath: this.__makeStaticPath(value.miniPath),
+              });
 
             }
 
@@ -259,9 +245,7 @@ export default {
               backgroundColor: value.backgroundColor,
             });
           }
-
           break;
-
       }
     },
     /**
@@ -281,7 +265,16 @@ export default {
           return deepCopy(this.__logo);
       }
     },
-
+    /**
+     * @description 生成 static 静态资源文件
+     * */
+    __makeStaticPath(path) {
+      if (process.env.NODE_ENV === 'production') {
+        // 生产模式
+        return window.__static + path;
+      }
+      return path;
+    }
   }
 };
 

@@ -36,7 +36,8 @@ import {
   faLaptopCode,
   faStore,
   faThumbtack,
-  faCode
+  faCode,
+  faEdit
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faTachometerAlt);
@@ -58,6 +59,7 @@ library.add(faLaptopCode);
 library.add(faStore);
 library.add(faThumbtack);
 library.add(faCode);
+library.add(faEdit);
 
 export default function install(Vue) {
   Vue.component('font-awesome-icon', FontAwesomeIcon);

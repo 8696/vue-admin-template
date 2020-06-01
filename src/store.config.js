@@ -204,9 +204,21 @@ export const menuList = [
     id: 901,
     parentID: 0
   },
-
   //
-
+  {
+    title: '富文本编辑器',
+    icon: 'edit',
+    id: 1701,
+    parentID: 0
+  },
+  {
+    title: 'wangEditor',
+    icon: '',
+    routeName: 'editor-wangEditor',
+    id: 1702,
+    parentID: 1701
+  },
+  //
   {
     title: '数据表格',
     icon: 'table',
@@ -220,7 +232,7 @@ export const menuList = [
     id: 702,
     parentID: 701
   },
-
+  //
   {
     title: '百度外链',
     icon: 'link',

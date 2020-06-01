@@ -120,6 +120,12 @@ const router = new Router(merge({
             name: 'table-example-1',
             component: () => import('@/views/pages/table/table-example-1.page')
           },
+          // 富文本
+          {
+            path: '/editor/wangEditor',
+            name: 'editor-wangEditor',
+            component: () => import('@/views/pages/editor/wangEditor.page')
+          },
           // 解析md
           {
             path: '/markdown',
