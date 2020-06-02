@@ -26,10 +26,10 @@
 
 当现有服务器的站点包含多个站点或者多个静态资源，这里为区分当前项目提供了扩展配置
 
-默认情况下静态根文件夹采用`打包时间`。可以通过更改`/config/build.config.js`中`buildRootAssetsPath`来进行区分，例如:
+默认情况下静态根文件夹采用`打包时间`。可以通过更改`/config/build.config.js`中`buildRootStaticPath`来进行区分，例如:
 ```javascript
 module.exports = {
-  buildRootAssetsPath: '/vue-admin-template'
+  buildRootStaticPath: '/vue-admin-template'
 };
 ```
 通过上面配置之后打包完成后`dist`文件夹结构如下：
@@ -44,10 +44,10 @@ module.exports = {
 ```
 在部署时直接将`20200501172626`放置站点`vue-admin-template`下即可
 
-`buildRootAssetsPath`配置支持多层级目录结构
+`buildRootStaticPath`配置支持多层级目录结构
 ```javascript
 module.exports = {
-  buildRootAssetsPath: '/vue-admin-template/a/b/c'
+  buildRootStaticPath: '/vue-admin-template/a/b/c'
 };
 ```
 

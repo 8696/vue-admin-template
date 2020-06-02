@@ -2,14 +2,14 @@ const fsExtra = require('fs-extra');
 const fs = require('fs');
 const path = require('path');
 //
-let buildRootAssetsPath = require('../config/build.config').buildRootAssetsPath;
-buildRootAssetsPath = (function () {
-  if (buildRootAssetsPath === '/') return '';
-  return buildRootAssetsPath.replace(/^\/|\/$/g, '') + '/';
+let buildRootStaticPath = require('../config/build.config').buildRootStaticPath;
+buildRootStaticPath = (function () {
+  if (buildRootStaticPath === '/') return '';
+  return buildRootStaticPath.replace(/^\/|\/$/g, '') + '/';
 }());
 
 let buildStartTime = new Date().getTime();
-let assetsPublicPath = buildRootAssetsPath + getDateTime('ymdhis', buildStartTime);
+let assetsPublicPath = buildRootStaticPath + getDateTime('ymdhis', buildStartTime);
 let buildTime = getDateTime('y-m-d h:i:s', buildStartTime);
 let v = getDateTime('ymdhis', buildStartTime);
 const chalk = require('chalk');
@@ -58,7 +58,7 @@ exports.buildNext = function () {
     try {
       let distPath = path.resolve(__dirname, '../dist');
 
-      let buildHistoryPath = path.resolve(distPath, 'history-static/' + assetsPublicPath.replace(buildRootAssetsPath, ''));
+      let buildHistoryPath = path.resolve(distPath, 'history-static/' + assetsPublicPath.replace(buildRootStaticPath, ''));
 
       let productionServerPath = path.resolve(__dirname, '../dist/production-static');
       let productionServerStaticPath = path.resolve(productionServerPath, assetsPublicPath + '/static');
