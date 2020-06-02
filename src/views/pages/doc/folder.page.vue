@@ -63,7 +63,6 @@
   |-- .postcssrc                                  PostCSS 配置
   |-- index.html                                  项目入口
   |-- package.json                                项目信息、依赖等
-  |-- yarn.lock                                   yarn 项目依赖
   |-- README.md                                   README
   |-- server.js                                   预览生产环境
 

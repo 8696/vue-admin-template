@@ -1,24 +1,25 @@
 <template>
   <div class="">
-    <template v-if="__menuCurrentPaths.length > 0">
-      <vue-scroll :ops="scrollOptions">
-        <div @click="navAction" @contextmenu.prevent="navActionRight" class="tags-list">
-          <div data-type="to"
-               :data-name="item.routeName"
-               :data-id="item.id"
-               v-for="item in __tagsList" :class="{active: item.active}"
-               class="item">
+
+    <vue-scroll :ops="scrollOptions">
+      <div @click="navAction" @contextmenu.prevent="navActionRight" class="tags-list">
+        <div data-type="to"
+             :data-name="item.routeName"
+             :data-id="item.id"
+             v-for="item in __tagsList" :class="{active: item.active}"
+             class="item">
             <span data-type="to"
                   :data-name="item.routeName"
                   :data-id="item.id">{{item.title}}
             </span>
-            <i v-if="__tagsList.length > 1" data-type="delete"
-               :data-name="item.routeName"
-               :data-id="item.id" class="el-icon-close"></i>
-          </div>
+          <i v-if="__tagsList.length > 1" data-type="delete"
+             :data-name="item.routeName"
+             :data-id="item.id" class="el-icon-close"></i>
         </div>
-      </vue-scroll>
-    </template>
+      </div>
+    </vue-scroll>
+
+
     <div
       @click="showTagsRightAction = false"
       v-if="showTagsRightAction"

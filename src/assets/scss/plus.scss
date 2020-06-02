@@ -5,8 +5,31 @@
 * User: JinwenLong
 * Author: longjinwen
 * Email: 204084802@qq.com
-* Date: 2020/5/30
-* Time: 6:40 下午
+* Date: 2020/2/30
+* Time: 7:40 下午
 */
 
 
+.init-enter-active,
+.init-leave-active {
+  transition: all .3s cubic-bezier(0, 0.1, 0.25, .8), opacity 1s ease-out;
+  transform: translate(0, 0);
+}
+
+.init-enter,
+.init-leave-to {
+  opacity: 0;
+  transform: translate(30%, 0);
+}
+//
+.router-transition-enter-active,
+.router-transition-leave-active {
+  transition: all .3s cubic-bezier(0, 0.1, 0.25, .8), opacity 1s ease-out;
+  transform: translate(0, 0);
+}
+
+.router-transition-enter,
+.router-transition-leave-to {
+  opacity: 0;
+  transform: translate(30%, 0);
+}

@@ -42,6 +42,8 @@
 </template>
 
 <script>
+  import {sleep} from '../../../utils/utils';
+
   export default {
     data() {
       return {
@@ -68,9 +70,10 @@
     },
     methods: {
       submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
+        this.$refs[formName].validate(async (valid) => {
           if (valid) {
             this.$router.push('/');
+
           } else {
             return false;
           }

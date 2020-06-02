@@ -1,8 +1,8 @@
 <template>
-  <div class="base-layout">
+  <div class="base-layout" v-loading="__tagsList.length === 0">
     <div class="layout-menu-p"
          element-loading-background="rgba(255, 255, 255, 0.8)"
-         v-loading="__menuList.length === 0">
+    >
       <vue-scroll :ops="scrollOptions">
 
         <div class="layout-menu"
@@ -27,16 +27,23 @@
       <div class="layout-header">
         <header-component/>
       </div>
-      <div class="layout-page-tags">
-        <page-tags-component/>
-      </div>
+      <transition name="init">
+        <div class="layout-page-tags" v-if="__tagsList.length > 0">
+          <page-tags-component/>
+        </div>
+      </transition>
       <div class="layout-body" :class="[$route.name + '-page-body']">
         <section class="route-item" v-show="$route.name === item.routeName"
                  v-for="item in __tagsList" :key="item.id">
           <keep-alive>
-            <router-view v-if="$route.name === item.routeName"/>
+            <transition name="router-transition">
+              <router-view v-if="$route.name === item.routeName"/>
+            </transition>
           </keep-alive>
         </section>
+        <div class="tags-list-empty" v-if="__tagsList.length === 0">
+          <!--loading...-->
+        </div>
       </div>
     </div>
   </div>
@@ -80,7 +87,7 @@
     },
 
     async created() {
-      this.__initStoreConfig(['', 'menuCollapseStatus', 'logo']);
+      this.__initStoreConfig(['menuCollapseStatus', 'logo']);
 
       await sleep();
       this.__initStoreConfig(['menuList']);
@@ -139,5 +146,6 @@
 </script>
 
 <style scoped lang="scss">
+
 
 </style>

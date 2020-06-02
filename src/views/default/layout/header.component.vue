@@ -1,18 +1,24 @@
 <template>
   <div class="header-component">
     <div class="l-left">
-      <div class="change-menu-collapse">
-        <i :class="{'el-icon-s-fold':!__menuCollapseStatus,'el-icon-s-unfold':__menuCollapseStatus}"
-           @click="__setMenuCollapseStatus(!__menuCollapseStatus)"/>
-      </div>
+      <transition name="init">
+        <div v-if="__menuCurrentPaths.length > 0" class="change-menu-collapse">
+          <i :class="{'el-icon-s-fold':!__menuCollapseStatus,'el-icon-s-unfold':__menuCollapseStatus}"
+             @click="__setMenuCollapseStatus(!__menuCollapseStatus)"/>
+        </div>
+      </transition>
+
       <div class="route-breadcrumb">
-        <el-breadcrumb separator="/" v-if="__menuCurrentPaths.length > 0">
-          <el-breadcrumb-item :key="index" v-for="(item,index) in __menuCurrentPaths">
-            {{item.title}}
-          </el-breadcrumb-item>
-        </el-breadcrumb>
+        <transition name="init">
+          <el-breadcrumb separator="/" v-if="__menuCurrentPaths.length > 0">
+            <el-breadcrumb-item :key="index" v-for="(item,index) in __menuCurrentPaths">
+              {{item.title}}
+            </el-breadcrumb-item>
+          </el-breadcrumb>
+        </transition>
       </div>
     </div>
+
     <div class="l-right">
       <div class="item">
         <i @click="toggleScreenFull" class="el-icon-full-screen"></i>
@@ -47,6 +53,7 @@
     },
     mounted() {
     },
+
     computed: {},
     methods: {
       userActionHandleCommand(command) {
@@ -73,6 +80,17 @@
   };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .router-transition-enter-active,
+  .router-transition-leave-active {
+    transition: all .3s cubic-bezier(0, 0.1, 0.25, .8), opacity 1s ease-out;
+    transform: translate(0, 0);
+  }
+
+  .router-transition-enter,
+  .router-transition-leave-to {
+    opacity: 0;
+    transform: translate(30%, 0);
+  }
 
 </style>
