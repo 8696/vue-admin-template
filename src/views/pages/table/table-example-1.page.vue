@@ -13,15 +13,7 @@
             header-align="left"
             align="left">
             <template slot="header" slot-scope="scope">
-            <span class="title">
-              <el-popover
-                placement="bottom"
-                width="400"
-                trigger="hover">
-              <span>奥术大师</span>
-              <span slot="reference">姓名</span>
-            </el-popover>
-            </span>
+              <span>姓名</span>
             </template>
             <template slot-scope="scope">
               <span>{{scope.row.name}}</span>
@@ -32,15 +24,7 @@
             header-align="right"
             align="right">
             <template slot="header" slot-scope="scope">
-            <span class="title">
-              <el-popover
-                placement="bottom"
-                width="400"
-                trigger="hover">
-              <span>奥术大师</span>
-              <span slot="reference">地址</span>
-            </el-popover>
-            </span>
+              <span>地址</span>
             </template>
             <template slot-scope="scope">
               <span>{{scope.row.address}}</span>
@@ -57,23 +41,6 @@
   export default {
     data() {
       return {
-        gridData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }],
         tableData: [{
           date: '2016-05-02',
           name: '王小虎',
@@ -81,42 +48,18 @@
         }, {
           date: '2016-05-04',
           name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
+          address: '上海市普陀区金沙江路 1518 弄'
         }, {
           date: '2016-05-01',
           name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
+          address: '上海市普陀区金沙江路 1518 弄'
         }, {
           date: '2016-05-03',
           name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }],
-        search: ''
+          address: '上海市普陀区金沙江路 1518 弄'
+        }]
       };
     },
-    methods: {
-      handleEdit(index, row) {
-        console.log(index, row);
-      },
-      handleDelete(index, row) {
-        console.log(index, row);
-      },
-      headerClick() {
-        console.log('s');
-      }
-    },
+    methods: {}
   };
 </script>
-
-<style scoped lang="scss">
-  .title {
-    .el-icon-menu {
-      display: none;
-    }
-  }
-  .title:hover{
-    .el-icon-menu {
-      display: inline-block;
-    }
-  }
-</style>

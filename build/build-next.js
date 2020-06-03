@@ -13,14 +13,12 @@ let assetsPublicPath = buildRootStaticPath + getDateTime('ymdhis', buildStartTim
 let buildTime = getDateTime('y-m-d h:i:s', buildStartTime);
 let v = getDateTime('ymdhis', buildStartTime);
 const chalk = require('chalk');
-
-
-
+const os = require('os');
 let consumingTime;
 try {
-  consumingTime = Number(fs.readFileSync(path.resolve(__dirname, '../node_modules/.__build.time')).toString());
+  consumingTime = Number(fs.readFileSync(path.resolve(os.homedir(), './.vue-8696-build.time')).toString());
 } catch (e) {
-  consumingTime = null;
+  consumingTime = 100000;
 }
 // consumingTime = null;
 exports.assetsPublicPath = `/${assetsPublicPath}/`;
@@ -93,7 +91,10 @@ exports.buildNext = function () {
       // 删除cli打包的文件
       await fsExtra.remove(path.resolve(distPath, 'index.html'));
       await fsExtra.remove(path.resolve(distPath, 'static'));
-      fs.writeFileSync(path.resolve(__dirname, '../node_modules/.__build.time'), String(new Date().getTime() - buildStartTime));
+      try {
+        fs.writeFileSync(path.resolve(os.homedir(), './.vue-8696-build.time'), String(new Date().getTime() - buildStartTime));
+      }catch (e) {
+      }
 
       console.log(chalk.cyan('build complete: '));
       console.log(chalk.cyan(`    v:            ${v}`));

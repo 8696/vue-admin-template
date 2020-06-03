@@ -21,6 +21,7 @@
   opacity: 0;
   transform: translate(30%, 0);
 }
+
 //
 .router-transition-enter-active,
 .router-transition-leave-active {
@@ -32,4 +33,22 @@
 .router-transition-leave-to {
   opacity: 0;
   transform: translate(30%, 0);
+}
+
+// 滚动条
+$scrollbar-color: #f1f1f1;
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: $scrollbar-color;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: $scrollbar-color;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background-color: #dbdbdb;
 }
