@@ -185,6 +185,14 @@ const router = new Router(merge({
             },
             component: () => import('@/views/pages/personal/personal.page')
           },
+          {
+            path: '/test',
+            name: 'test',
+            meta: {
+              title: '个人中心'
+            },
+            component: () => import('@/views/pages/test/test.page')
+          },
         ]
       },
       {

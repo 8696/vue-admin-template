@@ -33,7 +33,8 @@
          |-- __module                             项目内置 Vuex 配置
             |-- ...
       |-- component                               注册全局组件
-         |-- component.js                         注册全局组件配置文件
+         |-- global.components.js                 注册全局组件配置文件
+         |-- service.components.js                注册全局服务组件配置文件
       |-- utils                                   工具方法
          |-- utils.js                             工具方法文件
       |-- views                                   组件目录
@@ -48,9 +49,11 @@
                |-- default.route.component.vue    默认组件、不包含头部菜单等组件
          |-- general                              基本组件、手动导入
             |-- ...
-         |-- global                               全局组件
+         |-- global                               全局组件、这些组件会被 /src/component/global.components.js 注册
             |-- ...
          |-- pages                                Vue Router 配置组件、一般作为 Router 加载的组件建议放在此目录
+            |-- ...
+         |-- service                              服务组件、这些组件会被 /src/component/service.components.js 注册
             |-- ...
          |-- App.vue                              项目根组件
       |-- main.js                                 项目主入口文件、配置全局功能、全局第三个组件等

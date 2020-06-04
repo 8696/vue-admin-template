@@ -18,8 +18,6 @@
         </div>
       </div>
     </vue-scroll>
-
-
     <div
       @click="showTagsRightAction = false"
       v-if="showTagsRightAction"
@@ -183,8 +181,10 @@
        * @description tags 一项触发右键
        * */
       navActionRight($event) {
+        let dataID = $event.target.getAttribute('data-id');
+        if (dataID === null) return;
+        this.tagsRightActionID = Number(dataID);
         this.showTagsRightAction = true;
-        this.tagsRightActionID = Number($event.target.getAttribute('data-id'));
         this.tagsRightActionName = $event.target.getAttribute('data-name');
         if ($event.pageX + 170 >= window.innerWidth) {
           this.tagsRightActionMenuPosition.left = 'auto';
@@ -285,7 +285,6 @@
             break;
         }
       }
-
     }
   };
 </script>

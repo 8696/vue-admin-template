@@ -316,13 +316,20 @@ export const menuList = [
     id: 1401,
     parentID: 0
   },
+  {
+    title: '测试页面',
+    icon: 'braille',
+    routeName: 'test',
+    id: 1801,
+    parentID: 0
+  },
 ];
 
 /**
  * @description 菜单折合状态
  * @type {Boolean}
  * */
-export const menuCollapseStatus = false;
+export const menuCollapseStatus = true;
 
 /**
  * @description logo

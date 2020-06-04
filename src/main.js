@@ -48,10 +48,13 @@ const fontAwesome = () => import('./font-awesome/font-awesome');
 /**
  * @description 全局组件
  * */
-const globalComponents = () => import('./components/components');
+const globalComponents = () => import('./components/global.components');
+/**
+ * @description 服务组件
+ * */
+const serviceComponents = () => import('./components/service.components');
 
 const App = () => import('./views/App');
-
 
 /**
  * @description 复制插件
@@ -67,18 +70,20 @@ Vue.use(VueClipboard);
 Vue.config.productionTip = false;
 
 
-(async () => {
+;(async () => {
 
   let {default: __mixinsInstall} = await __mixins();
   let {default: elementUIInstall} = await elementUI();
   let {default: fontAwesomeInstall} = await fontAwesome();
   let {default: globalComponentsInstall} = await globalComponents();
+  let {default: serviceComponentsInstall} = await serviceComponents();
+
 
   Vue.mixin(__mixinsInstall);
   elementUIInstall(Vue);
   fontAwesomeInstall(Vue);
   globalComponentsInstall(Vue);
-
+  serviceComponentsInstall(Vue);
 
   new Vue({
     el: '#app',

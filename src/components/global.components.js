@@ -1,5 +1,5 @@
 /**
- * Created by WebStorm
+ * Created by VsCode
  * Description: 注册全局组件
  * User: JinwenLong
  * Author: longjinwen
