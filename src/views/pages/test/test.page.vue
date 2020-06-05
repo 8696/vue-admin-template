@@ -17,14 +17,14 @@
     methods: {
       open2() {
         this.$vaListFilter({
-          data: [
+          fields: [
             {
-              title: 'AA',
+              name: 'AA',
               field: 'aa'
             }
           ]
         }).then(res => {
-          console.log(res);
+          this.$message(JSON.stringify(res))
         });
 
       }

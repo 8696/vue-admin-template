@@ -16,11 +16,11 @@ export default function install(Vue) {
    * */
   let ListFilterComponentConstructor = Vue.extend(ListFilterComponent);
 
-  Vue.prototype.$vaListFilter = function (data = []) {
+  Vue.prototype.$vaListFilter = function (fields = []) {
     return new Promise((resolve, reject) => {
       let instance = new ListFilterComponentConstructor({
         el: document.createElement('div'),
-        data,
+        data: fields,
         methods: {
           get() {
             resolve(this.data);
