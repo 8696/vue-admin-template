@@ -24,12 +24,11 @@
     mixins: [Table],
     methods: {
       /**
-       * @default 展示表格查询组件
+       * @description 初始化展示表格查询组件
        * */
       vaTableFilter() {
 
         if (this.vaListFilterInstance === null) {
-          // 单例
           this.vaListFilterInstance = this.$vaTableFilter({
             tableVm: this,
             visible: false
@@ -45,7 +44,6 @@
       }
     },
     destroyed() {
-      // 销毁组件
       try {
         this.vaListFilterInstance.destroy();
       }catch (e) {
