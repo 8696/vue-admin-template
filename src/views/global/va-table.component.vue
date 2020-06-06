@@ -46,7 +46,10 @@
     },
     destroyed() {
       // 销毁组件
-      this.vaListFilterInstance.destroy();
+      try {
+        this.vaListFilterInstance.destroy();
+      }catch (e) {
+      }
     }
   };
 </script>
