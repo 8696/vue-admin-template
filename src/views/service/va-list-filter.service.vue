@@ -2,25 +2,28 @@
   <div>
     <el-dialog
       custom-class="va-list-filter-dialog"
-      :visible.sync="dialogVisible"
+      :visible.sync="visible"
       width="600px"
+      :show-close="false"
       title="组合查询"
-      :before-close="handleClose">
+      :before-close="_cancel">
       <div>
         <el-table
           :data="data"
           style="width: 100%">
           <el-table-column
-            prop="date"
-            label="方式"
             width="60">
+            <template slot="header" slot-scope="scope">
+              <span class="title">方式</span>
+            </template>
             <template slot-scope="scope">
               <span>并且</span>
             </template>
           </el-table-column>
-          <el-table-column
-            prop="name"
-            label="字段">
+          <el-table-column>
+            <template slot="header" slot-scope="scope">
+              <span class="title">字段</span>
+            </template>
             <template slot-scope="scope">
               <el-select size="small" v-model="scope.row.fieldValue" placeholder="请选择">
                 <el-option
@@ -32,14 +35,16 @@
               </el-select>
             </template>
           </el-table-column>
-          <el-table-column
-            label="条件">
+          <el-table-column>
+            <template slot="header" slot-scope="scope">
+              <span class="title">条件</span>
+            </template>
             <template slot-scope="scope">
               <el-select size="small" v-model="scope.row.filterValue" placeholder="请选择">
                 <el-option
                   v-for="item in scope.row.filterType"
                   :key="item.value"
-                  :label="item.label"
+                  :label="item.name"
                   :value="item.value">
                 </el-option>
               </el-select>
@@ -47,8 +52,10 @@
           </el-table-column>
           <el-table-column
             prop="address"
-            width="160"
-            label="值">
+            width="160">
+            <template slot="header" slot-scope="scope">
+              <span class="title">值</span>
+            </template>
             <template slot-scope="scope">
               <el-input size="small" v-model="scope.row.inputValue"/>
             </template>
@@ -57,20 +64,21 @@
             prop="address"
             header-align="right"
             align="right"
-            width="60"
-            label="操作">
+            width="60">
+            <template slot="header" slot-scope="scope">
+              <span class="title">操作</span>
+            </template>
             <template slot-scope="scope">
-              <el-button @click="addFilterField" v-if="scope.$index === 0" type="text">添加</el-button>
-              <el-button @click="removeFilterField(scope.$index)" v-else type="text" style="color: #e57470">删除
+              <el-button @click="_addFilterField" v-if="scope.$index === 0" type="text">添加</el-button>
+              <el-button @click="_removeFilterField(scope.$index)" v-else type="text" style="color: #e57470">删除
               </el-button>
             </template>
           </el-table-column>
         </el-table>
-
       </div>
       <div slot="footer">
-        <el-button type="info" size="small" @click="handleClose">关闭</el-button>
-        <el-button type="primary" size="small" @click="get">确定</el-button>
+        <el-button type="info" size="small" @click="_cancel">取消</el-button>
+        <el-button type="primary" size="small" @click="_confirm">确定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -78,11 +86,12 @@
 
 <script>
   import {deepCopy} from '@/utils/utils';
+  import Vue from 'vue';
 
   export default {
     data() {
       return {
-        dialogVisible: false,
+        visible: false,
         data: [],
         initListItem: {
           fields: [],
@@ -91,17 +100,21 @@
           filterValue: '',
           inputValue: ''
         },
-        fields: [],
         filterType: [
-          {
-            label: '等于',
-            value: '等于'
-          }
-        ]
+          {name: '等于', value: '='},
+          {name: '包含', value: 'like'},
+          {name: '大于', value: '>'},
+          {name: '小于', value: '<'},
+          {name: '大于等于', value: '>='},
+          {name: '小于等于', value: '<='},
+        ],
+        fieldsList: [],
+        onHandleFunctions: {}
       };
     },
     mounted() {
-      this.addFilterField();
+      this._confirmFilterField();
+      this._addFilterField();
     },
     computed: {},
 
@@ -109,18 +122,104 @@
       /**
        * @description 设置表格的字段筛选
        * */
-      addFilterField() {
+      _addFilterField() {
         let index = this.data.length;
         if (!this.data[index]) {
           this.data.push(deepCopy(this.initListItem));
         }
-        this.data[index].fields = this.fields;
+        this.data[index].fields = this.fieldsList;
+        // 初始值
+        this.data[index].fieldValue = this.data[index].fields[0].field;
         this.data[index].filterType = this.filterType;
+        // 初始值
+        this.data[index].filterValue = this.data[index].filterType[0].value;
       },
-      removeFilterField(index) {
+      _removeFilterField(index) {
         this.data.splice(index, 1);
+      },
+      /**
+       * @description 获取当前调用者的字段参数
+       * */
+      _confirmFilterField() {
+        //
+        if (Array.isArray(this.fields)) {
+          return this.fieldsList = this.fields;
+        }
+        // 表格组件
+        if (this.tableVm instanceof Vue && this.tableVm.columns) {
+          let columns = this.tableVm.columns;
+          return this.fieldsList = columns.map((item) => {
+
+            if (item.hasOwnProperty('property')
+              && item.hasOwnProperty('label')) {
+              return {
+                name: item.label,
+                field: item.property,
+              };
+            }
+            return null;
+          }).filter(item => item);
+        }
+      },
+      _confirm() {
+        if (typeof this.onHandleFunctions.confirm === 'function') {
+          let data = this.data.map(item => {
+            return {
+              join: 'and',
+              field: item.fieldValue,
+              op: item.filterValue,
+              value: item.inputValue
+            };
+          });
+          let result = this.onHandleFunctions.confirm(data);
+          // Promise 实例
+          if (result instanceof Promise) {
+            return result
+              .then(() => {
+                this.visible = false;
+              })
+              .catch(() => {
+              });
+          }
+          return this.visible = ![undefined, true].includes(result);
+        }
+        this.visible = false;
+      },
+      _cancel() {
+        if (typeof this.onHandleFunctions.cancel === 'function') {
+          let result = this.onHandleFunctions.cancel();
+          // Promise 实例
+          if (result instanceof Promise) {
+            return result
+              .then(() => {
+                this.visible = false;
+              })
+              .catch(() => {
+              });
+          }
+          return this.visible = ![undefined, true].includes(result);
+        }
+        this.visible = false;
+      },
+      show() {
+        this.visible = true;
+      },
+      destroy() {
+        this.$destroy();
+        return null;
+      },
+      /**
+       * @description 添加监听函数
+       * @param type {String} confirm | cancel
+       * @param handle {Function} 监听函数
+       * */
+      on(type, handle) {
+        this.onHandleFunctions[type] = handle;
       }
     },
+    destroyed() {
+      this.$el.remove();
+    }
 
   };
 </script>
@@ -133,6 +232,10 @@
 
     .el-dialog__footer {
       margin-top: 10px;
+    }
+
+    .title {
+      font-size: 16px;
     }
   }
 </style>

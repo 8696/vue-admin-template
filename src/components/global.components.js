@@ -11,5 +11,6 @@
 
 export default function install (Vue) {
   Vue.component('va-container', () => import('@/views/global/va-container.component'));
+  Vue.component('va-table', () => import('@/views/global/va-table.component'));
 }
 

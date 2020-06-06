@@ -14,40 +14,20 @@ export default function install(Vue) {
   /**
    * $vaListFilter
    * */
-  let ListFilterComponentConstructor = Vue.extend(ListFilterComponent);
+  let VaListFilterComponentConstructor = Vue.extend(ListFilterComponent);
 
-  Vue.prototype.$vaListFilter = function (fields = []) {
-    return new Promise((resolve, reject) => {
-      let instance = new ListFilterComponentConstructor({
-        el: document.createElement('div'),
-        data: fields,
-        methods: {
-          get() {
-            resolve(this.data);
-            this.handleClose();
-          },
-          handleOpen() {
-            this.dialogVisible = true;
-          },
-          handleClose() {
-            reject();
-            this.dialogVisible = false;
-            // 保证动画的过渡 | nextTick 过渡不明显
-            setTimeout(() => {
-              this.$destroy();
-            }, 100);
-          }
-        },
-        destroyed() {
-          this.$el.remove();
-        }
-      });
-      instance.$el.setAttribute('class', 'va-list-filter');
-      document.body.appendChild(instance.$el);
-      Vue.nextTick(() => {
-        instance.handleOpen();
-      });
+  Vue.prototype.$vaTableFilter = function (data) {
+    let visible = data.visible;
+    data.visible = false;
+    let instance = new VaListFilterComponentConstructor({
+      el: document.createElement('div'),
+      data
     });
+    document.body.appendChild(instance.$el);
+    Vue.nextTick(() => {
+      [undefined, true].includes(visible) && instance.show();
+    });
+    return instance;
   };
 
 }
