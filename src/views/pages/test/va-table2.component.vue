@@ -2,7 +2,6 @@
   <el-table
     ref="table"
     @sort-change="sortChange"
-    :data="data"
     v-bind="$attrs"
     v-on="$listeners">
     <slot/>
@@ -24,13 +23,7 @@
           return Promise.resolve();
         }
       },
-      // 需要重写一遍，才能访问 this.data
-      data: {
-        type: Array,
-        default() {
-          return [];
-        }
-      },
+
       apiDemoGet: {
         type: Function,
         default() {
