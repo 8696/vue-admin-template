@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="[customClass]">
     <el-dialog
       custom-class="va-list-filter-dialog"
       :visible.sync="visible"
@@ -113,6 +113,7 @@
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         showCancelButton: true,
+        customClass: ''
       };
     },
     mounted() {
@@ -164,14 +165,7 @@
       },
       _confirm() {
         if (typeof this.onHandleFunctions.confirm === 'function') {
-          let data = this.data.map(item => {
-            return {
-              join: 'and',
-              field: item.fieldValue,
-              op: item.filterValue,
-              value: item.inputValue
-            };
-          });
+          let data = this.getFilterData();
           let result = this.onHandleFunctions.confirm(data);
           // Promise 实例
           if (result instanceof Promise) {
@@ -216,6 +210,20 @@
        * */
       on(type, handle) {
         this.onHandleFunctions[type] = handle;
+      },
+      /**
+       * @description 获取重组数据
+       * @return {Array}
+       * */
+      getFilterData() {
+        return this.data.map(item => {
+          return {
+            join: 'and',
+            field: item.fieldValue,
+            op: item.filterValue,
+            value: item.inputValue
+          };
+        });
       }
     },
     destroyed() {

@@ -163,7 +163,7 @@ const router = new Router(merge({
             },
             component: () => import('@/views/pages/store/store.page')
           },
-          // 响应式配置 logo
+          // 响应式配置
           {
             path: '/store-data-logo',
             name: 'store-data-logo',
@@ -180,7 +180,12 @@ const router = new Router(merge({
             name: 'store-data-menu-list',
             component: () => import('@/views/pages/store-data/menu-list.page')
           },
-
+          // 小组件
+          {
+            path: '/component-va-table-filter',
+            name: 'component-va-table-filter',
+            component: () => import('@/views/pages/component/component-va-table-filter.page')
+          },
           // 个人中心
           {
             path: '/personal',

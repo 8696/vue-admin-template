@@ -28,8 +28,9 @@ let instance = this.$vaTableFilter({
           + fields: Array 可选 | 筛选字段、和 tableVm 二选一 fields 存在时优先级为 fields
           + tableVm: Object 可选 | el-table 组件实例
           + visible: Boolean 可选 | 默认:true | 初始化是否显示组件
+          + customClass: String 可选 | 默认:'' | 自定义 dom class
     + return
-        + instance: Object 组件 vm 实例。为实现下次重新打开组件实现之前输入的数据还存在，需要保存该实例。该组件向外提供了三个方法`show`、`on`、`destroy`
+        + instance: Object 组件 vm 实例。为实现下次重新打开组件实现之前输入的数据还存在，需要保存该实例。该组件向外提供了四个方法`show`、`on`、`destroy`、`getFilterData`
 
 ---
 
@@ -83,6 +84,16 @@ instance.destroy();
 ```
 当销毁完组件相应的`dom`会在页面中移除
 
+---
+- #### `getFilterData` 获取筛选条件。和 on 方法监听类型为 confirm 数据一致
+    + param
+        - 无
+    + return
+        - filterData: Array
+
+```javascript
+instance.getFilterData();
+```
 
 ### 参数 tableVm
 

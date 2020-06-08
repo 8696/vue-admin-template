@@ -92,7 +92,21 @@ export const menuList = [
     id: 105,
     parentID: 2
   },
-
+  //
+  {
+    title: '小组件',
+    icon: 'columns',
+    routeName: '',
+    id: 2001,
+    parentID: 0
+  },
+  {
+    title: '表格组合查询',
+    icon: '',
+    routeName: 'component-va-table-filter',
+    id: 2002,
+    parentID: 2001
+  },
   {
     title: '打包配置',
     icon: '',
