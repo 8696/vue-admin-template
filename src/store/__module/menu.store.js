@@ -1,4 +1,4 @@
-import {parseJsonTree,deepCopy} from '@/utils/utils';
+import {parseJsonTree,cloneDeep} from '@/utils/utils';
 
 export default {
   namespaced: true,
@@ -43,7 +43,7 @@ export default {
      * @param list {Array}
      * */
     setList(state, list) {
-      state.list = deepCopy(list);
+      state.list = cloneDeep(list);
       state.formatList = parseJsonTree(list);
     },
 

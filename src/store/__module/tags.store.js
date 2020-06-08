@@ -1,4 +1,4 @@
-import {deepCopy, parseJsonTree} from '@/utils/utils';
+import {cloneDeep, parseJsonTree} from '@/utils/utils';
 
 export default {
   namespaced: true,
@@ -18,7 +18,7 @@ export default {
      * */
     pushList(state, route) {
       if (!route) return;
-      route = deepCopy(route);
+      route = cloneDeep(route);
       let findStatus = state.list.some(item => {
         return item.routeName === route.routeName;
       });
@@ -51,7 +51,7 @@ export default {
      * @description 根据ID将移动到指定位置
      * */
     setIdToIndex(state, {id = '', index = ''}) {
-      let list = deepCopy(state.list);
+      let list = cloneDeep(state.list);
       let tag = list.splice(list.findIndex(item => {
         return item.id === Number(id);
       }), 1);

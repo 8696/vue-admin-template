@@ -1,5 +1,5 @@
 import {mapState, mapMutations} from 'vuex';
-import {deepCopy, getParentJson} from '@/utils/utils';
+import {cloneDeep, getParentJson} from '@/utils/utils';
 import * as storeConfig from '@/store.config';
 import vm from '@/vm.vue';
 
@@ -139,7 +139,7 @@ export default {
       if (activeMenuItem) {
         // 合并其他
         paths = paths.concat(getParentJson(this.__menuList, activeMenuItem.id).map(item => {
-          item = deepCopy(item);
+          item = cloneDeep(item);
           return item;
         }).reverse());
 
@@ -157,7 +157,7 @@ export default {
           id: new Date().getTime(),
           children: []
         }]);
-        this.__setMenuCurrentPaths(deepCopy(paths));
+        this.__setMenuCurrentPaths(cloneDeep(paths));
 
       } else {
         paths = paths.concat([{routerName: '404', title: '404', children: []}]);
@@ -170,7 +170,7 @@ export default {
      * @description 设置文档标题
      * */
     __setDocumentTitle() {
-      let __menuCurrentPaths = deepCopy(this.__menuCurrentPaths);
+      let __menuCurrentPaths = cloneDeep(this.__menuCurrentPaths);
       if (__menuCurrentPaths.length >= 2) {
         __menuCurrentPaths.splice(0, 1);
       }
@@ -197,7 +197,7 @@ export default {
       //
       switch (key) {
         case 'menuList':
-          this.__setMenuList(deepCopy(value));
+          this.__setMenuList(cloneDeep(value));
           this.__onRouteUpdate();
           break;
         case 'menuCollapseStatus':
@@ -256,13 +256,13 @@ export default {
 
       switch (key) {
         case 'menuList':
-          return deepCopy(this.__menuList);
+          return cloneDeep(this.__menuList);
         case 'menuFormatList':
-          return deepCopy(this.__menuFormatList);
+          return cloneDeep(this.__menuFormatList);
         case 'menuCollapseStatus':
           return this.__menuCollapseStatus;
         case 'logo':
-          return deepCopy(this.__logo);
+          return cloneDeep(this.__logo);
       }
     },
     /**

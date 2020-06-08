@@ -28,7 +28,7 @@
     },
     methods: {
       parse() {
-        setTimeout(()=>{
+        setTimeout(() => {
           this.html = marked(this.text);
           this.$nextTick()
             .then(() => {
@@ -48,7 +48,7 @@
                   });
                 });
             });
-        },0)
+        }, 0);
 
       },
       padTo(number, length) {

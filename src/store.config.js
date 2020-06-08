@@ -1,4 +1,3 @@
-
 /**
  * @description 菜单数据
  * @type {Array}
@@ -65,11 +64,25 @@ export const menuList = [
     parentID: 108
   },
   {
-    title: 'va-container',
+    title: 'va-container 容器',
     icon: '',
     routeName: 'va-container-global',
     id: 110,
     parentID: 108
+  },
+  //
+  {
+    title: '服务组件',
+    icon: '',
+    id: 1901,
+    parentID: 2
+  },
+  {
+    title: '表格组合查询',
+    icon: '',
+    routeName: 'va-table-filter-service',
+    id: 1902,
+    parentID: 1901
   },
   //
   {
@@ -329,7 +342,7 @@ export const menuList = [
  * @description 菜单折合状态
  * @type {Boolean}
  * */
-export const menuCollapseStatus = true;
+export const menuCollapseStatus = false;
 
 /**
  * @description logo

@@ -1,5 +1,2 @@
-export function test() {
 
-  return 'test';
-
-}
+export {parseDateTime} from '../utils/utils';

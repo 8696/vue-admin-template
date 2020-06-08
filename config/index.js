@@ -12,10 +12,10 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: address.ip(),
-    // host: '0.0.0.0',
+    // host: address.ip(),
+    host: '0.0.0.0',
     port: 8910, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: true,
+    autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-

@@ -53,7 +53,12 @@ const router = new Router(merge({
             name: 'va-container-global',
             component: () => import('@/views/pages/doc/global-component/va-container.page')
           },
-
+          //
+          {
+            path: '/doc/va-table-filter-service',
+            name: 'va-table-filter-service',
+            component: () => import('@/views/pages/doc/service-component/va-table-filter-service.page')
+          },
           {
             path: '/doc/store-data',
             name: 'store-data',

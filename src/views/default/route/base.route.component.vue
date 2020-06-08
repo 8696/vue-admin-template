@@ -139,13 +139,6 @@
         return this.$router.push2({path: '/404'}, () => {
         });
       }
-
     }
-
   };
 </script>
-
-<style scoped lang="scss">
-
-
-</style>

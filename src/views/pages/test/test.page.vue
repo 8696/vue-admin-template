@@ -2,8 +2,10 @@
   <div style="">
 
     <va-table ref="table-shop"
+              border
               :va-table-filter-cancel="vaTableFilterCancel"
               :va-table-filter-confirm="vaTableFilterConfirm"
+              @sort-change="sortChange"
               :data="tableData">
       <el-table-column
         type="selection"
@@ -12,6 +14,7 @@
       <el-table-column
         fixed
         prop="date"
+        sortable
         label="日期"
         width="150">
       </el-table-column>
@@ -34,14 +37,19 @@
       <el-table-column
         prop="zip"
         label="邮编">
+        <template slot-scope="scope">
+          {{scope.row.zip}}
+        </template>
       </el-table-column>
     </va-table>
     <el-button @click="open2">Open2</el-button>
     <el-button @click="open3">Open3</el-button>
+    <div>{{msg | parseDateTime}}</div>
   </div>
 </template>
 
 <script>
+
   export default {
     data() {
       return {
@@ -54,7 +62,8 @@
             address: '上海市普陀区金沙江路 1518 弄',
             zip: 200333
           }
-        ]
+        ],
+        msg: new Date().getTime()
       };
     },
     mounted() {
@@ -63,13 +72,17 @@
     methods: {
       open2() {
         let instance = this.$vaTableFilter({
-          /*     fields: [
-                 {
-                   name: 'AA',
-                   field: 'aa'
-                 }
-               ],*/
-          tableVm: this.$refs['table-shop'],
+          fields: [
+            {
+              name: '姓名',
+              field: 'username'
+            },
+            {
+              name: '地址',
+              field: 'address'
+            },
+          ],
+          // tableVm: this.$refs['table-shop'],
           visible: true
         });
         instance.on('cancel', () => {
@@ -93,7 +106,11 @@
         console.log(data);
         console.log(this);
         return Promise.resolve();
+      },
+      sortChange() {
+        console.log('2');
       }
+
     }
   };
 </script>

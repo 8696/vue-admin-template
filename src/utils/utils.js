@@ -1,3 +1,5 @@
+import _cloneDeep from 'lodash/cloneDeep';
+
 /**
  * @description 模拟睡眠
  * @param time {Number} 睡眠时间(ms) | default : 1000
@@ -10,6 +12,7 @@ export function sleep(time = 1000) {
     }, time);
   });
 }
+
 /**
  * @description 生成随机数
  * @param minNum {Number} 最小范围 | default : 1
@@ -18,6 +21,7 @@ export function sleep(time = 1000) {
 export function makeRandomNumber(minNum = 1, maxNum = 99999) {
   return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
 }
+
 /**
  * @description 生成随机字符串
  * @param length {Number} 字符串长度 | default : 32
@@ -33,38 +37,36 @@ export function makeRandomString(length = 32) {
   }
   return string;
 }
+
 /**
  * @description 获取可视化时间
- * @param options {Object}
  * @return {String}
  * */
-export function parseDateTime(options = {format: null, timestamp: null}) {
-  !options.format && (options.format = 'y-m-d h:i:s');
-  !options.timestamp && (options.timestamp = null);
-  const date = options.timestamp === null ? new Date() : new Date(Number(options.timestamp)),
+export function parseDateTime(timestamp = null, format = null) {
+  !format && (format = 'y-m-d h:i:s');
+  !timestamp && (timestamp = null);
+  const date = timestamp === null ? new Date() : new Date(Number(timestamp)),
     y = date.getFullYear(), m = date.getMonth() + 1,
     d = date.getDate(), h = date.getHours(),
     i = date.getMinutes(), s = date.getSeconds();
-  return options.format
+  return format
     .replace(/y/g, y).replace(/m/g, m < 10 ? '0' + m : m)
     .replace(/d/g, d < 10 ? '0' + d : d).replace(/h/g, h < 10 ? '0' + h : h)
     .replace(/i/g, i < 10 ? '0' + i : i).replace(/s/g, s < 10 ? '0' + s : s);
 }
 
 /**
- * @description 简单深拷贝 | 只支持数据类型为对象和数组，key 为字符串且 value 为 JSON 支持的数据类型(Object/Array/String/Number/Boolean/Null)
- * @param data {*}
+ * @description 深拷贝
+ * @param value {*}
  * @return {*}
  * */
-export function deepCopy(data) {
-
-  if (!['[object Array]', '[object Object]']
-    .includes(({}).toString.call(data))) {
-    return data;
+export function cloneDeep(value) {
+  if (!['array', 'object'].includes(getType(value))) {
+    return value;
   }
-
-  return JSON.parse(JSON.stringify(data));
+  return _cloneDeep(value);
 }
+
 /**
  * @description 将集合通过子父 ID 关联成树
  * @param list {Array}
@@ -86,6 +88,7 @@ export function parseJsonTree(list, parentID = 0) {
   }
   return tree;
 }
+
 /**
  * @description 获取一项指定 ID 的向上所有集合
  * @param list {Array}
@@ -101,4 +104,13 @@ export function getParentJson(list, id, parents = []) {
     }
   }
   return parents;
+}
+
+/**
+ * @description 获取数据类型
+ * @param value {*}
+ * @return {String}
+ * */
+export function getType(value) {
+  return /\[object ([\w\W]+)\]/.exec(({}).toString.call(value))[1].toLowerCase();
 }

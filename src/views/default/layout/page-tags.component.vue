@@ -58,7 +58,7 @@
 
 <script>
   import vueScroll from 'vuescroll';
-  import {deepCopy} from '@/utils/utils';
+  import {cloneDeep} from '@/utils/utils';
 
   export default {
     components: {vueScroll},
@@ -101,7 +101,7 @@
         let index = this.__tagsList.findIndex(item => {
           return this.tagsRightActionID === item.id;
         });
-        let __tagsList = deepCopy(this.__tagsList);
+        let __tagsList = cloneDeep(this.__tagsList);
         let t = [];
         for (let i = 0; i < __tagsList.length; i++) {
           if (i === index) {
@@ -118,7 +118,7 @@
         let index2 = this.__tagsList.findIndex(item => {
           return this.tagsRightActionID === item.id;
         });
-        let __tagsList2 = deepCopy(this.__tagsList);
+        let __tagsList2 = cloneDeep(this.__tagsList);
         let t2 = [];
         for (let i = 0; i < __tagsList2.length; i++) {
           if (i <= index2) {
@@ -247,7 +247,7 @@
             let index = this.__tagsList.findIndex(item => {
               return this.tagsRightActionID === item.id;
             });
-            let __tagsList = deepCopy(this.__tagsList);
+            let __tagsList = cloneDeep(this.__tagsList);
             let t = [];
             for (let i = 0; i < __tagsList.length; i++) {
               if (i === index) {
@@ -267,7 +267,7 @@
             let index2 = this.__tagsList.findIndex(item => {
               return this.tagsRightActionID === item.id;
             });
-            let __tagsList2 = deepCopy(this.__tagsList);
+            let __tagsList2 = cloneDeep(this.__tagsList);
             let t2 = [];
             for (let i = 0; i < __tagsList2.length; i++) {
               if (i <= index2) {

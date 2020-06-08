@@ -77,15 +77,15 @@
         </el-table>
       </div>
       <div slot="footer">
-        <el-button type="info" size="small" @click="_cancel">取消</el-button>
-        <el-button type="primary" size="small" @click="_confirm">确定</el-button>
+        <el-button v-if="showCancelButton" size="small" @click="_cancel">{{cancelButtonText}}</el-button>
+        <el-button type="primary" size="small" @click="_confirm">{{confirmButtonText}}</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-  import {deepCopy} from '@/utils/utils';
+  import {cloneDeep} from '@/utils/utils';
   import Vue from 'vue';
 
   export default {
@@ -109,7 +109,10 @@
           {name: '小于等于', value: '<='},
         ],
         fieldsList: [],
-        onHandleFunctions: {}
+        onHandleFunctions: {},
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        showCancelButton: true,
       };
     },
     mounted() {
@@ -125,7 +128,7 @@
       _addFilterField() {
         let index = this.data.length;
         if (!this.data[index]) {
-          this.data.push(deepCopy(this.initListItem));
+          this.data.push(cloneDeep(this.initListItem));
         }
         this.data[index].fields = this.fieldsList;
         // 初始值
@@ -146,10 +149,8 @@
           return this.fieldsList = this.fields;
         }
         // 表格组件
-        if (this.tableVm instanceof Vue && this.tableVm.columns) {
-          let columns = this.tableVm.columns;
-          return this.fieldsList = columns.map((item) => {
-
+        if (this.tableVm instanceof Vue && Array.isArray(this.tableVm.columns)) {
+          return this.fieldsList = this.tableVm.columns.map((item) => {
             if (item.hasOwnProperty('property')
               && item.hasOwnProperty('label')) {
               return {
