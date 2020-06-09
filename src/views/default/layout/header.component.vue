@@ -59,13 +59,23 @@
       userActionHandleCommand(command) {
         switch (command) {
           case '个人中心':
-            this.$router.push({name: 'personal'});
+            this.$router.push2({name: 'personal'});
             break;
           case '退出登录':
-            // window.localStorage.clear();
-            // window.sessionStorage.clear();
-            // window.location.reload();
-            this.$router.replace({name: 'login'});
+            this.$confirm('确认退出登录, 是否继续?', '提示', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }).then(() => {
+              // 清除缓存
+              window.localStorage.clear();
+              window.sessionStorage.clear();
+              this.__clearTagsList();
+              this.__clearMenuList();
+              this.$router.replace({name: 'login'});
+            }).catch(() => {
+
+            });
             break;
         }
       },

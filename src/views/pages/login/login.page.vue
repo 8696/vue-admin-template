@@ -9,7 +9,6 @@
         <div class="support">
           <a href="javascript:;" style="color: #ccc">技术支持</a>
         </div>
-
       </div>
       <div class="form">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
@@ -42,8 +41,6 @@
 </template>
 
 <script>
-  import {sleep} from '../../../utils/utils';
-
   export default {
     data() {
       return {
@@ -51,7 +48,6 @@
           username: 'admin',
           password: '123456',
           code: '8800',
-
         },
         rules: {
           username: [
@@ -62,7 +58,7 @@
           ],
           code: [
             {required: true, message: '请输入验证码', trigger: 'blur'}
-          ],
+          ]
 
         },
         checked: true
@@ -72,8 +68,7 @@
       submitForm(formName) {
         this.$refs[formName].validate(async (valid) => {
           if (valid) {
-            this.$router.push('/');
-
+            this.$router.push2('/');
           } else {
             return false;
           }
@@ -177,6 +172,4 @@
       }
     }
   }
-
-
 </style>

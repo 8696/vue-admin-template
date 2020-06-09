@@ -4,6 +4,7 @@
   display: flex;
   height: 100%;
   overflow-x: hidden;
+
   .__vuescroll, .__panel, .__view {
     position: static !important;
   }
@@ -31,6 +32,10 @@
       margin-right: 4px;
       width: 24px;
       text-align: center;
+    }
+
+    i {
+      color: #ffffff;
     }
   }
 
@@ -136,7 +141,6 @@
     .el-submenu__title {
       .children-title {
         display: none;
-
         + i {
           display: none;
         }
@@ -182,6 +186,7 @@
     height: $tags-height;
     box-shadow: 5px 4px 6px 0 rgba(58, 58, 58, 0.1);
     z-index: 10;
+
     > div {
       height: 100%;
     }
@@ -316,7 +321,6 @@
       }
     }
 
-
   }
 
   .layout-body {
@@ -325,7 +329,6 @@
 
   .home-page-body {
     height: calc(100vh - (58px + 0px));
-
   }
 
   .logo {
@@ -363,9 +366,6 @@
     }
   }
 
-  .is-active {
-  }
-
   .el-menu-item.is-active {
     background-color: rgba(32, 48, 66, 0.88) !important;
   }
@@ -381,10 +381,9 @@
     }
   }
 }
-.tags-list-empty{
+
+.tags-list-empty {
   height: 100%;
   padding: 30px;
 }
-
-
 

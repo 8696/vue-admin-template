@@ -1,9 +1,9 @@
 <template>
-  <div class="base-layout" v-loading="__tagsList.length === 0">
+  <div class="base-layout" v-loading="__menuList.length === 0">
     <div class="layout-menu-p"
          element-loading-background="rgba(255, 255, 255, 0.8)"
     >
-      <vue-scroll :ops="scrollOptions">
+      <vue-scroll ref="refScroller" :ops="scrollOptions">
 
         <div class="layout-menu"
              :class="{
@@ -86,16 +86,12 @@
       };
     },
 
-    async created() {
-      this.__initStoreConfig(['menuCollapseStatus', 'logo']);
-
-      await sleep();
-      this.__initStoreConfig(['menuList']);
-
-    },
     watch: {
-      $route() {
-        this.__onRouteUpdate();
+      $route(to, from) {
+        this.__onRouteUpdate(to, from);
+      },
+      __menuList() {
+        this.$emit('menu-list-init');
       }
     },
     methods: {
@@ -138,7 +134,30 @@
       routeTo404() {
         return this.$router.push2({path: '/404'}, () => {
         });
+      },
+      /**
+       * @description 初始化菜单滚动条位置
+       * */
+      initMenuScroll() {
+        this.$once('menu-list-init', async () => {
+          this.$off('menu-list-init');
+          await this.$nextTick();
+          setTimeout(() => {
+            let activeMenu = document.querySelectorAll('.layout-menu-ls .is-active')[0];
+            if (activeMenu.offsetTop <= window.innerHeight) return;
+            this.$refs.refScroller.scrollTo({
+              y: activeMenu.offsetTop - 60
+            });
+          });
+        });
       }
+    },
+    async mounted() {
+      this.initMenuScroll();
+      this.__initStoreConfig(['menuCollapseStatus', 'logo']);
+      await sleep();
+      this.__initStoreConfig(['menuList']);
     }
+
   };
 </script>

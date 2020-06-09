@@ -58,5 +58,12 @@ export default {
       list.splice(index, 0, tag[0]);
       state.list = list;
     },
+    /**
+     * @description 清除 tags 列表
+     * */
+    clearList(state) {
+      state.list = [];
+    }
+
   }
 };

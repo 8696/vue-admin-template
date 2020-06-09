@@ -8,10 +8,12 @@
           :key="index"
           :index="item.routeName || item.title">
           <template slot="title">
-            <font-awesome-icon v-if="item.icon"
-                               size="1x" :icon="item.icon"/>
 
+            <font-awesome-icon v-if="item.icon && !/^el-icon/.test(item.icon)"
+                               size="1x" :icon="item.icon"/>
+            <i :class="[item.icon]" v-if="item.icon && /^el-icon/.test(item.icon)" style="color: #ffffff"></i>
             <span class="children-title" slot="title">{{item.title}}</span>
+
           </template>
           <menu-component :loop="true" :menu-list="item.children"/>
         </el-submenu>
@@ -23,18 +25,19 @@
         :disabled="item.disabled === true"
         :data-item="item"
         :index="item.routeName || String(Math.random())">
-        <font-awesome-icon v-if="item.icon"
+
+        <font-awesome-icon v-if="item.icon && !/^el-icon/.test(item.icon)"
                            size="1x" :icon="item.icon"/>
+        <i :class="[item.icon]" v-if="item.icon && /^el-icon/.test(item.icon)" style="color: #ffffff"></i>
 
         <span slot="title">{{item.title}}</span>
+
       </el-menu-item>
     </template>
   </section>
 </template>
 
 <script>
-
-
   export default {
     name: 'menuComponent',
     props: {
@@ -43,9 +46,8 @@
         default() {
           return [];
         }
-      },
-    },
-
+      }
+    }
   };
 </script>
 

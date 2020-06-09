@@ -30,7 +30,6 @@ export default {
 
     }),
     ...mapState({
-
       /**
        * @description tags 对象集合
        * @type {Array}
@@ -43,7 +42,6 @@ export default {
        * @type {Null | Object}
        * */
       __logo: state => state.__base.logo,
-
     }),
     /**
      * @description 当前路由菜单项
@@ -52,7 +50,6 @@ export default {
     __currentRoute() {
       return this.__menuCurrentPaths[this.__menuCurrentPaths.length - 1];
     }
-
   },
   methods: {
     ...mapMutations('__menu', {
@@ -84,17 +81,24 @@ export default {
        * */
       __sliceTagsOneItem: 'sliceOneItem',
       /**
-       * 根据 ID 设置一项为 active
+       * @description 根据 ID 设置一项为 active
        * @param id {Number}
        * */
       __setTagsOneItemActive: 'setOneItemActive',
       /**
-       * 根据 ID 根据ID将移动到指定位置 active
+       * @description 根据 ID 根据ID将移动到指定位置 active
        * @param data {Object}
        * */
-      __setTagsIdToIndex: 'setIdToIndex'
+      __setTagsIdToIndex: 'setIdToIndex',
+      /**
+       * @description 清除 tags 列表
+       * */
+      __clearTagsList: 'clearList'
     }),
     ...mapMutations('__base', {
+      /**
+       * @description 设置 logo 状态
+       * */
       __setBaseLogo: 'setLogo',
     }),
     __appMounted() {
@@ -108,8 +112,10 @@ export default {
     },
     /**
      * @description 监听路由更新
+     * @param to {Object} 去哪
+     * @param from {Object} 来自哪
      * */
-    __onRouteUpdate() {
+    __onRouteUpdate(to, from) {
       // -------
       this.__initMenuCurrentPaths();
       // ------- 追加 tags 的一项
@@ -145,11 +151,12 @@ export default {
 
         // 去重,两个都是首页的情况
         if (paths[0].routeName === paths[1].routeName) {
-          paths.length = 1;
+          paths.splice(0, 1);
         }
         this.__setMenuCurrentPaths(paths);
 
       } else if (currentRoute.resolved.matched.length > 0) {
+
         // 存在路由表中
         paths = paths.concat([{
           routeName: currentRoute.resolved.name,
@@ -160,6 +167,7 @@ export default {
         this.__setMenuCurrentPaths(cloneDeep(paths));
 
       } else {
+
         paths = paths.concat([{routerName: '404', title: '404', children: []}]);
         // 404
         this.__setMenuCurrentPaths(paths);
@@ -198,7 +206,7 @@ export default {
       switch (key) {
         case 'menuList':
           this.__setMenuList(cloneDeep(value));
-          this.__onRouteUpdate();
+          this.__onRouteUpdate(null, null);
           break;
         case 'menuCollapseStatus':
           this.__setMenuCollapseStatus(value);
@@ -274,6 +282,13 @@ export default {
         return window.__static + path;
       }
       return path;
+    },
+    /**
+     * @description 清除菜单列表
+     * */
+    __clearMenuList() {
+      this.__setMenuList([]);
+      this.__setMenuCurrentPaths([]);
     }
   }
 };

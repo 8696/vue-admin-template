@@ -345,7 +345,7 @@ export const menuList = [
   },
   {
     title: '测试页面',
-    icon: 'braille',
+    icon: 'el-icon-football',
     routeName: 'test',
     id: 1801,
     parentID: 0

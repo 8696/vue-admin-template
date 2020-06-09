@@ -1,7 +1,7 @@
 <template>
   <div class="">
 
-    <vue-scroll :ops="scrollOptions">
+    <vue-scroll ref="refScroller" :ops="scrollOptions">
       <div @click="navAction" @contextmenu.prevent="navActionRight" class="tags-list">
         <div data-type="to"
              :data-name="item.routeName"
@@ -10,7 +10,8 @@
              class="item">
             <span data-type="to"
                   :data-name="item.routeName"
-                  :data-id="item.id">{{item.title}}
+                  :data-id="item.id">
+              {{item.title}}
             </span>
           <i v-if="__tagsList.length > 1" data-type="delete"
              :data-name="item.routeName"
@@ -90,8 +91,11 @@
         showTagsRightAction: false,
         tagsRightActionID: null,
         tagsRightActionName: null,
-
+        tagsActionTo: false
       };
+    },
+    mounted() {
+
     },
     computed: {
       /**
@@ -156,6 +160,7 @@
         }
 
         if (type === 'to') {
+          this.tagsActionTo = true;
           return this.$router.push2({name}, () => {
           });
         }
@@ -175,7 +180,6 @@
           this.$router.push2({name: this.__tagsList[this.__tagsList.length - 1].routeName}, () => {
           });
         }
-
       },
       /**
        * @description tags 一项触发右键
@@ -284,6 +288,16 @@
 
             break;
         }
+      }
+    },
+    watch: {
+      $route() {
+        setTimeout(() => {
+          if (this.tagsActionTo) return this.tagsActionTo = false;
+          this.$refs.refScroller.scrollTo({
+            x: document.querySelector('.tags-list .active').offsetLeft
+          });
+        });
       }
     }
   };
