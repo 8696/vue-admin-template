@@ -195,8 +195,9 @@
       height: 100%;
       position: relative !important;
 
-      .__bar-is-horizontal {
-        bottom: -3px !important;
+      .__rail-is-horizontal {
+        bottom: -1px !important;
+        height: 5px !important;
       }
     }
   }

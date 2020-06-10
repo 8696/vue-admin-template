@@ -291,9 +291,9 @@
       }
     },
     watch: {
-      $route() {
+      $route(to, from) {
         setTimeout(() => {
-          if (this.tagsActionTo) return this.tagsActionTo = false;
+          if (to.name === 'reload' || from.name === 'reload' || this.tagsActionTo) return this.tagsActionTo = false;
           this.$refs.refScroller.scrollTo({
             x: document.querySelector('.tags-list .active').offsetLeft
           });
