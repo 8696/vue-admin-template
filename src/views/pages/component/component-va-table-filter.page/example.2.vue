@@ -73,7 +73,10 @@
           // 保存实例
           this.instance = this.$vaTableFilter({
             tableVm: this.$refs['table'],
-            visible: false
+            visible: false,
+            excludeField: [
+              '日期'
+            ]
           });
           // 监听
           this.onInstanceAction();

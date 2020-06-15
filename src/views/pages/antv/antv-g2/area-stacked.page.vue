@@ -8,6 +8,7 @@
         <div class="card-body">
           <g2-area-stacked-component
             :data="data"
+            :height="400"
             ref="g2-area"
             @hook:mounted="doSomething"
           />

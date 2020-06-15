@@ -4,17 +4,17 @@
     <vue-scroll ref="refScroller" :ops="scrollOptions">
       <div @click="navAction" @contextmenu.prevent="navActionRight" class="tags-list">
         <div data-type="to"
-             :data-name="item.routeName"
+             :data-name="item.route"
              :data-id="item.id"
              v-for="item in __tagsList" :class="{active: item.active}"
              class="item">
             <span data-type="to"
-                  :data-name="item.routeName"
+                  :data-name="item.route"
                   :data-id="item.id">
-              {{item.title}}
+              {{item.name}}
             </span>
           <i v-if="__tagsList.length > 1" data-type="delete"
-             :data-name="item.routeName"
+             :data-name="item.route"
              :data-id="item.id" class="el-icon-close"></i>
         </div>
       </div>
@@ -177,7 +177,7 @@
         });
         if (!active) {
           this.__setTagsOneItemActive(this.__tagsList[this.__tagsList.length - 1].id);
-          this.$router.push2({name: this.__tagsList[this.__tagsList.length - 1].routeName}, () => {
+          this.$router.push2({name: this.__tagsList[this.__tagsList.length - 1].route}, () => {
           });
         }
       },

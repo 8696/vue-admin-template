@@ -23,7 +23,7 @@
             </div>
             <div class="filter-item">
               <el-button size="small" type="primary">查询</el-button>
-              <el-button size="small" type="primary">高级查询</el-button>
+              <el-button size="small" @click="openFilter" type="primary">高级查询</el-button>
             </div>
           </div>
         </div>
@@ -32,7 +32,10 @@
       <template v-slot:body>
         <div class="card">
           <div class="card-body">
-            <el-table
+            <va-table
+              :va-table-filter-cancel="vaTableFilterCancel"
+              :va-table-filter-confirm="vaTableFilterConfirm"
+              ref="table"
               :data="tableData"
               style="width: 100%">
               <el-table-column
@@ -61,7 +64,8 @@
                 <template slot-scope="scope">
                   <div style="overflow: hidden;
                               text-overflow:ellipsis;
-                              white-space: nowrap;">{{scope.row.address}}</div>
+                              white-space: nowrap;">{{scope.row.address}}
+                  </div>
                 </template>
               </el-table-column>
               <el-table-column
@@ -81,7 +85,7 @@
                   </el-button>
                 </template>
               </el-table-column>
-            </el-table>
+            </va-table>
           </div>
         </div>
 
@@ -128,6 +132,21 @@
     methods: {
       deleteRow(index, rows) {
         rows.splice(index, 1);
+      },
+      openFilter() {
+        this.$refs.table.vaTableFilter({
+          excludeField: [
+            '操作'
+          ]
+        });
+      },
+      vaTableFilterCancel() {
+        this.$message.warning('取消查询');
+        return Promise.resolve();
+      },
+      vaTableFilterConfirm(data) {
+        this.$message.info(JSON.stringify(data));
+        return Promise.resolve();
       }
     }
   };
@@ -150,7 +169,6 @@
     box-shadow: -3px -2px 6px 0 rgba(58, 58, 58, 0.1);
     z-index: 9;
     position: relative;
-
   }
 
   .filter {

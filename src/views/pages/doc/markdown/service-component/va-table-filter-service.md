@@ -1,6 +1,6 @@
 # 表格组合查询
 
-在`Vue.prototype`中注册了一个专为表格`el-table`扩展的弹出框组件
+在`Vue.prototype`中注册了一个专为表格`el-table`扩展的弹出框组件 `vaTableFilter` [查看实例](#/component-va-table-filter)
 
 ### 使用
 
@@ -22,6 +22,19 @@ let instance = this.$vaTableFilter({
 });
 ```
 
+or
+
+```javascript
+let instance = this.$vaTableFilter({
+   tableVm: this.$refs.table,
+   visible: true,
+   excludeField: [
+    '操作','Logo'
+   ]
+});
+```
+
+
 - $vaTableFilter(options: Object)
     + param
         + options：Object
@@ -29,6 +42,7 @@ let instance = this.$vaTableFilter({
           + tableVm: Object 可选 | el-table 组件实例
           + visible: Boolean 可选 | 默认:true | 初始化是否显示组件
           + customClass: String 可选 | 默认:'' | 自定义 dom class
+          + excludeField: Array 可选 | 默认:[] | 需要排除的字段，可设置为`名称`、`字段`。一般配合 `tableVm` 使用
     + return
         + instance: Object 组件 vm 实例。为实现下次重新打开组件实现之前输入的数据还存在，需要保存该实例。该组件向外提供了四个方法`show`、`on`、`destroy`、`getFilterData`
 
@@ -56,8 +70,8 @@ instance.show();
 instance.on('cancel', () => {
   return Promise.resolve();
 });
-instance.on('confirm', (data) => {
-  console.log(data); // [{join: "and", field: "date", op: "=", value: "value"}]
+instance.on('confirm', (filterData) => {
+  console.log(filterData); // [{join: "and", field: "date", op: "=", value: "value"}]
   return Promise.reject();
 });
 ```

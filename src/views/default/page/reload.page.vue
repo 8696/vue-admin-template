@@ -7,7 +7,7 @@
   export default {
     async mounted() {
       let reloadRoute = this.__tagsList.find(item => {
-        return item.routeName === 'reload';
+        return item.route === 'reload';
       });
       this.__sliceTagsOneItem(reloadRoute.id);
       let id = this.$route.query.id;

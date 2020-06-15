@@ -8,6 +8,7 @@
         <div class="card-body">
           <g2-line-step-series-component
             :data="data"
+            :height="400"
             ref="g2-line"
             @hook:mounted="doSomething"
           />

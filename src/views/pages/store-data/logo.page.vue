@@ -3,7 +3,7 @@
     <el-row>
       <div class="card">
         <div class="card-header">
-          <h2>Logo配置</h2>
+          <h1 style="font-size: 28px;padding-top: 12px">Logo配置</h1>
         </div>
         <div class="card-body">
           <h3>配置信息</h3>

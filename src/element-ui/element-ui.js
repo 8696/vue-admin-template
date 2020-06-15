@@ -12,11 +12,11 @@ import {
   Input,
   InputNumber,
   Radio,
-  // RadioGroup,
+  RadioGroup,
   // RadioButton,
   Checkbox,
   // CheckboxButton,
-  // CheckboxGroup,
+  CheckboxGroup,
   // Switch,
   Select,
   Option,
@@ -36,14 +36,14 @@ import {
   FormItem,
   // Tabs,
   // TabPane,
-  // Tag,
+  Tag,
   Tree,
   Alert,
   // Slider,
   // Icon,
   Row,
   Col,
-  // Upload,
+  Upload,
   // Progress,
   // Spinner,
   // Badge,
@@ -55,7 +55,7 @@ import {
   // CarouselItem,
   // Collapse,
   // CollapseItem,
-  // Cascader,
+  Cascader,
   // ColorPicker,
   // Transfer,
   Container,
@@ -92,11 +92,11 @@ export default function install(Vue) {
   Vue.use(Input);
   Vue.use(InputNumber);
   Vue.use(Radio);
-  // Vue.use(RadioGroup);
+  Vue.use(RadioGroup);
   // Vue.use(RadioButton);
   Vue.use(Checkbox);
   // Vue.use(CheckboxButton);
-  // Vue.use(CheckboxGroup);
+  Vue.use(CheckboxGroup);
   // Vue.use(Switch);
   Vue.use(Select);
   Vue.use(Option);
@@ -116,14 +116,14 @@ export default function install(Vue) {
   Vue.use(FormItem);
   // Vue.use(Tabs);
   // Vue.use(TabPane);
-  // Vue.use(Tag);
+  Vue.use(Tag);
   Vue.use(Tree);
   Vue.use(Alert);
   // Vue.use(Slider);
   // Vue.use(Icon);
   Vue.use(Row);
   Vue.use(Col);
-  // Vue.use(Upload);
+  Vue.use(Upload);
   // Vue.use(Progress);
   // Vue.use(Spinner);
   // Vue.use(Badge);
@@ -135,7 +135,7 @@ export default function install(Vue) {
   // Vue.use(CarouselItem);
   // Vue.use(Collapse);
   // Vue.use(CollapseItem);
-  // Vue.use(Cascader);
+  Vue.use(Cascader);
   // Vue.use(ColorPicker);
   // Vue.use(Transfer);
   Vue.use(Container);

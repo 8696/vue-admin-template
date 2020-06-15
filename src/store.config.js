@@ -5,350 +5,425 @@
 
 export const menuList = [
   {
-    title: '首页',
+    name: '首页',
     icon: 'tachometer-alt',
-    routeName: 'home',
+    route: 'home',
     id: 1,
-    parentID: 0
+    parentId: 0
   },
   {
-    title: '源代码',
+    name: '源代码',
     icon: 'code',
     link: 'https://github.com/8696/vue-admin-template',
     id: 1601,
-    parentID: 0
+    parentId: 0
   },
   {
-    title: '文档',
+    name: '文档',
     icon: 'file-alt',
-    routeName: 'doc',
+    route: 'doc',
     id: 2,
-    parentID: 0
+    parentId: 0
   },
 
   {
-    title: '目录介绍',
+    name: '目录介绍',
     icon: '',
-    routeName: 'folder',
+    route: 'folder',
     id: 102,
-    parentID: 2
+    parentId: 2
   },
 
   {
-    title: 'FontAwesome图标',
+    name: 'FontAwesome图标',
     icon: '',
-    routeName: 'doc-font-awesome',
+    route: 'doc-font-awesome',
     id: 111,
-    parentID: 2
+    parentId: 2
   },
 
   {
-    title: '基本组件',
+    name: '基本组件',
     icon: '',
-    routeName: 'general-component',
+    route: 'general-component',
     id: 106,
-    parentID: 2
+    parentId: 2
   },
   //
   {
-    title: '全局组件',
+    name: '全局组件',
     icon: '',
     id: 108,
-    parentID: 2
+    parentId: 2
   },
   {
-    title: '说明',
+    name: '说明',
     icon: '',
-    routeName: 'global-component-doc',
+    route: 'global-component-doc',
     id: 109,
-    parentID: 108
+    parentId: 108
   },
   {
-    title: 'va-container 容器',
+    name: 'va-container 容器',
     icon: '',
-    routeName: 'va-container-global',
+    route: 'va-container-global',
     id: 110,
-    parentID: 108
+    parentId: 108
+  },
+  {
+    name: 'va-table 表格',
+    icon: '',
+    route: 'va-table-global',
+    id: 112,
+    parentId: 108
   },
   //
   {
-    title: '服务组件',
+    name: '服务组件',
     icon: '',
     id: 1901,
-    parentID: 2
+    parentId: 2
   },
   {
-    title: '表格组合查询',
+    name: '表格组合查询',
     icon: '',
-    routeName: 'va-table-filter-service',
+    route: 'va-table-filter-service',
     id: 1902,
-    parentID: 1901
+    parentId: 1901
   },
   //
   {
-    title: '响应式配置',
+    name: '响应式配置',
     icon: '',
-    routeName: 'store-data',
+    route: 'store-data',
     id: 105,
-    parentID: 2
+    parentId: 2
   },
   //
   {
-    title: '小组件',
+    name: '小组件',
     icon: 'columns',
-    routeName: '',
+    route: '',
     id: 2001,
-    parentID: 0
+    parentId: 0
   },
   {
-    title: '表格组合查询',
+    name: '表格组合查询',
     icon: '',
-    routeName: 'component-va-table-filter',
+    route: 'component-va-table-filter',
     id: 2002,
-    parentID: 2001
+    parentId: 2001
   },
   {
-    title: '打包配置',
+    name: '打包配置',
     icon: '',
-    routeName: 'build',
+    route: 'build',
     id: 107,
-    parentID: 2
+    parentId: 2
   },
   //
   {
-    title: '响应式配置',
+    name: '响应式配置',
     icon: 'thumbtack',
-    routeName: '',
+    route: '',
     id: 1501,
-    parentID: 0
+    parentId: 0
   },
   {
-    title: 'Logo配置',
+    name: 'Logo配置',
     icon: '',
-    routeName: 'store-data-logo',
+    route: 'store-data-logo',
     id: 1502,
-    parentID: 1501
+    parentId: 1501
   },
   {
-    title: '菜单折叠状态',
+    name: '菜单折叠状态',
     icon: '',
-    routeName: 'store-data-menu-collapse',
+    route: 'store-data-menu-collapse',
     id: 1503,
-    parentID: 1501
+    parentId: 1501
   },
   {
-    title: '菜单列表',
+    name: '菜单列表',
     icon: '',
-    routeName: 'store-data-menu-list',
+    route: 'store-data-menu-list',
     id: 1504,
-    parentID: 1501
+    parentId: 1501
   },
   //
   {
-    title: '基本布局',
+    name: '基本布局',
     icon: 'laptop-code',
-    routeName: 'base-layout',
+    route: 'base-layout',
     id: 1201,
-    parentID: 0
+    parentId: 0
   },
   //
   {
-    title: '卡片布局',
+    name: '卡片布局',
     icon: 'sticky-note',
-    routeName: 'card-layout',
+    route: 'card-layout',
     id: 1301,
-    parentID: 0
+    parentId: 0
   },
   {
-    title: 'FontAwesome图标',
+    name: 'FontAwesome图标',
     icon: 'font',
-    routeName: 'font-awesome',
+    route: 'font-awesome',
     id: 1101,
-    parentID: 0
+    parentId: 0
   },
   {
-    title: '复制文本',
+    name: '复制文本',
     icon: 'copy',
-    routeName: 'copy-text',
+    route: 'copy-text',
     id: 1001,
-    parentID: 0
+    parentId: 0
   },
   {
-    title: '数据可视化',
+    name: '数值计算',
+    icon: 'divide',
+    route: 'js-big-decimal',
+    id: 2301,
+    parentId: 0
+  },
+  {
+    name: '数据可视化',
     icon: 'chart-area',
-    routeName: '',
+    route: '',
     id: 501,
-    parentID: 0
+    parentId: 0
   },
   {
-    title: 'G2',
+    name: 'G2',
     icon: '',
     id: 502,
-    parentID: 501
+    parentId: 501
   },
   {
-    title: '曲线折线图',
+    name: '曲线折线图',
     icon: '',
-    routeName: 'antv-g2-line-curved',
+    route: 'antv-g2-line-curved',
     id: 503,
-    parentID: 502
+    parentId: 502
   },
   {
-    title: '双Y轴折线图',
+    name: '双Y轴折线图',
     icon: '',
-    routeName: 'antv-g2-line-double-y-axes',
+    route: 'antv-g2-line-double-y-axes',
     id: 504,
-    parentID: 502
+    parentId: 502
   },
   {
-    title: '阶梯折线图',
+    name: '阶梯折线图',
     icon: '',
-    routeName: 'antv-g2-line-step-series',
+    route: 'antv-g2-line-step-series',
     id: 505,
-    parentID: 502
+    parentId: 502
   },
   {
-    title: '堆叠面积图',
+    name: '堆叠面积图',
     icon: '',
-    routeName: 'antv-g2-area-stacked',
+    route: 'antv-g2-area-stacked',
     id: 506,
-    parentID: 502
+    parentId: 502
   },
 
   {
-    title: '基础漏斗图',
+    name: '基础漏斗图',
     icon: '',
-    routeName: 'antv-g2-funnel-basic',
+    route: 'antv-g2-funnel-basic',
     id: 507,
-    parentID: 502
+    parentId: 502
+  },
+  {
+    name: '基础饼图',
+    icon: '',
+    route: 'antv-g2-basic-pie',
+    id: 508,
+    parentId: 502
+  },
+  {
+    name: '基础饼图(内部文字)',
+    icon: '',
+    route: 'antv-g2-basic-pie2',
+    id: 509,
+    parentId: 502
   },
 
   //
   {
-    title: '解析markdown',
+    name: '解析markdown',
     icon: 'marker',
-    routeName: 'markdown',
+    route: 'markdown',
     id: 901,
-    parentID: 0
+    parentId: 0
   },
   //
   {
-    title: '富文本编辑器',
+    name: '富文本编辑器',
     icon: 'edit',
     id: 1701,
-    parentID: 0
+    parentId: 0
   },
   {
-    title: 'wangEditor',
+    name: 'wangEditor',
     icon: '',
-    routeName: 'editor-wangEditor',
+    route: 'editor-wangEditor',
     id: 1702,
-    parentID: 1701
+    parentId: 1701
   },
   //
   {
-    title: '数据表格',
+    name: '数据表格',
     icon: 'table',
     id: 701,
-    parentID: 0
+    parentId: 0
   },
   {
-    title: '数据表格',
+    name: '数据表格',
     icon: '',
-    routeName: 'table-example-1',
+    route: 'table-example-1',
     id: 702,
-    parentID: 701
+    parentId: 701
   },
-  //
-  {
-    title: '百度外链',
-    icon: 'link',
-    link: 'https://baidu.com',
-    id: 3,
-    parentID: 0
-  },
+
   // 菜单
   {
-    title: '无限级菜单',
+    name: '无限级菜单',
     icon: 'bars',
-    routeName: '',
+    route: '',
     id: 301,
-    parentID: 0
+    parentId: 0
   },
   {
-    title: '菜单A组',
+    name: '菜单A组',
     icon: 'bars',
     id: 302,
-    parentID: 301
+    parentId: 301
   },
   {
-    title: '菜单A组01',
-    routeName: 'menu',
+    name: '菜单A组01',
+    route: 'menu',
     id: 303,
-    parentID: 302
+    parentId: 302
   },
   {
-    title: '菜单A组02',
-    routeName: 'menu2',
+    name: '菜单A组02',
+    route: 'menu2',
     id: 304,
-    parentID: 302
+    parentId: 302
   },
   {
-    title: '菜单B组',
+    name: '菜单B组',
     icon: 'bars',
     id: 306,
-    parentID: 301
+    parentId: 301
   },
 
   {
-    title: '无限级',
+    name: '无限级',
     icon: '',
-    routeName: '',
+    route: '',
     id: 307,
-    parentID: 306
+    parentId: 306
   },
 
   {
-    title: '无限级A',
+    name: '无限级A',
     icon: '',
     id: 308,
-    parentID: 307
+    parentId: 307
   },
   {
-    title: '无限级B',
+    name: '无限级B',
     icon: '',
-    routeName: 'menu3',
+    route: 'menu3',
     id: 309,
-    parentID: 308
+    parentId: 308
   },
 
   {
-    title: '百度外链',
+    name: '百度外链',
     icon: 'link',
     link: 'https://baidu.com',
     id: 305,
-    parentID: 301
+    parentId: 301
   },
+  //
   {
-    title: '↑组件 & 实例↓',
-    icon: 'sticky-note',
+    name: '百度外链',
+    icon: 'link',
     link: 'https://baidu.com',
-    id: 801,
-    parentID: 0
+    id: 3,
+    parentId: 0
   },
+  //
   {
-    title: '商家管理',
+    name: '商家管理',
     icon: 'store',
-    routeName: 'store',
+    route: 'store',
     id: 1401,
-    parentID: 0
+    parentId: 0
+  },
+  //
+  {
+    name: '系统管理',
+    icon: 'cogs',
+    route: '',
+    id: 2201,
+    parentId: 0
   },
   {
-    title: '测试页面',
+    name: '管理员',
+    icon: '',
+    route: 'system-user',
+    id: 2202,
+    parentId: 2201
+  },
+  {
+    name: '角色管理',
+    icon: '',
+    route: 'system-role',
+    id: 2203,
+    parentId: 2201
+  },
+  {
+    name: '菜单管理',
+    icon: '',
+    route: 'system-menu',
+    id: 2204,
+    parentId: 2201
+  },
+  {
+    id: 3123324,
+    parentId: 2204,
+    name: '用户列表',
+    type: 2,
+    icon: '',
+    order: 0,
+    route: '',
+    link: '',
+    permission: 'system-user',
+  },
+  {
+    id: 4356464,
+    parentId: 2204,
+    name: '添加用户',
+    type: 2,
+    icon: '',
+    order: 0,
+    route: '',
+    link: '',
+    permission: 'system-add-user',
+  },
+  //
+  {
+    name: '测试页面',
     icon: 'el-icon-football',
-    routeName: 'test',
+    route: 'test',
     id: 1801,
-    parentID: 0
+    parentId: 0
   },
 ];
 
@@ -369,6 +444,7 @@ export const logo = {
   backgroundColor: '#1e3040',
   fixed: true
 };
+// 无 logo
 // export const logo = null;
 
 

@@ -33,11 +33,11 @@
         </div>
       </transition>
       <div class="layout-body" :class="[$route.name + '-page-body']">
-        <section class="route-item" v-show="$route.name === item.routeName"
+        <section class="route-item" v-show="$route.name === item.route"
                  v-for="item in __tagsList" :key="item.id">
           <keep-alive>
             <transition name="router-transition">
-              <router-view v-if="$route.name === item.routeName"/>
+              <router-view v-if="$route.name === item.route"/>
             </transition>
           </keep-alive>
         </section>
@@ -100,26 +100,26 @@
        * @doc https://element.eleme.cn/#/zh-CN/component/menu
        * */
       onMenuSelect(index, path, itemVm) {
-        // 优先级 routeName -> link
+        // 优先级 route -> link
         let item = itemVm.$attrs['data-item'];
 
-        if (!item.hasOwnProperty('routeName')
+        if (!item.hasOwnProperty('route')
           && !item.hasOwnProperty('link')
         ) {
           return this.routeTo404();
         }
         // 匹配
         let resolved = this.$router.resolve({
-          name: item.routeName
+          name: item.route
         });
 
         if (resolved.resolved.matched.length === 0) {
           return this.routeTo404();
         }
 
-        if (item.hasOwnProperty('routeName')) {
+        if (item.hasOwnProperty('route')) {
           return this.$router.push2({
-            name: item.routeName
+            name: item.route
           }, () => {
           });
         }

@@ -39,7 +39,9 @@ import {
   faCode,
   faEdit,
   faBraille,
-  faColumns
+  faColumns,
+  faCogs,
+  faDivide
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faTachometerAlt);
@@ -64,6 +66,8 @@ library.add(faCode);
 library.add(faEdit);
 library.add(faBraille);
 library.add(faColumns);
+library.add(faCogs);
+library.add(faDivide);
 
 
 export default function install(Vue) {

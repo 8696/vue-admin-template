@@ -53,6 +53,11 @@ const router = new Router(merge({
             name: 'va-container-global',
             component: () => import('@/views/pages/doc/global-component/va-container.page')
           },
+          {
+            path: '/doc/va-table-global',
+            name: 'va-table-global',
+            component: () => import('@/views/pages/doc/global-component/va-table.page')
+          },
           //
           {
             path: '/doc/va-table-filter-service',
@@ -85,6 +90,12 @@ const router = new Router(merge({
             path: '/copy-text',
             name: 'copy-text',
             component: () => import('@/views/pages/copy-text/copy-text.page')
+          },
+          //
+          {
+            path: '/js-big-decimal',
+            name: 'js-big-decimal',
+            component: () => import('@/views/pages/js-big-decimal/js-big-decimal.page')
           },
           // antv
           // 曲线折线图
@@ -119,6 +130,17 @@ const router = new Router(merge({
             component: () => import('@/views/pages/antv/antv-g2/funnel-basic.page')
           },
 
+          // 基础饼图
+          {
+            path: '/antv/g2/basic-pie',
+            name: 'antv-g2-basic-pie',
+            component: () => import('@/views/pages/antv/antv-g2/basic-pie.page')
+          },
+          {
+            path: '/antv/g2/basic-pie2',
+            name: 'antv-g2-basic-pie2',
+            component: () => import('@/views/pages/antv/antv-g2/basic-pie2.page')
+          },
           // table
           {
             path: '/table/example-1',
@@ -158,11 +180,25 @@ const router = new Router(merge({
           {
             path: '/store',
             name: 'store',
-            meta: {
-              title: '商家管理'
-            },
             component: () => import('@/views/pages/store/store.page')
           },
+          // 系统管理
+          {
+            path: '/system-role',
+            name: 'system-role',
+            component: () => import('@/views/pages/system/system-role/system-role.page')
+          },
+          {
+            path: '/system-menu',
+            name: 'system-menu',
+            component: () => import('@/views/pages/system/system-menu/system-menu.page')
+          },
+          {
+            path: '/system-user',
+            name: 'system-user',
+            component: () => import('@/views/pages/system/system-user/system-user.page')
+          },
+
           // 响应式配置
           {
             path: '/store-data-logo',
@@ -191,7 +227,7 @@ const router = new Router(merge({
             path: '/personal',
             name: 'personal',
             meta: {
-              title: '个人中心'
+              name: '个人中心'
             },
             component: () => import('@/views/pages/personal/personal.page')
           },
@@ -199,7 +235,7 @@ const router = new Router(merge({
             path: '/test',
             name: 'test',
             meta: {
-              title: '个人中心'
+              name: '个人中心'
             },
             component: () => import('@/views/pages/test/test.page')
           },
@@ -228,7 +264,7 @@ const router = new Router(merge({
             path: 'reload',
             name: 'reload',
             meta: {
-              title: '...'
+              name: '...'
             },
             component: () => import('@/views/default/page/reload.page')
           },
@@ -236,7 +272,7 @@ const router = new Router(merge({
             path: '*',
             name: '404',
             meta: {
-              title: '404'
+              name: '404'
             },
             component: () => import('@/views/default/page/404.page')
           },

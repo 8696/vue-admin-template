@@ -1,6 +1,8 @@
 <script>
   import {Table} from 'element-ui';
+
   export default {
+    extends: Table,
     props: {
       vaTableFilterCancel: {
         type: Function,
@@ -20,7 +22,7 @@
         vaListFilterInstance: null
       };
     },
-    mixins: [Table],
+    // mixins: [Table],
     methods: {
       /**
        * @description 初始化展示表格查询组件

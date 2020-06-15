@@ -12,7 +12,7 @@
         <transition name="init">
           <el-breadcrumb separator="/" v-if="__menuCurrentPaths.length > 0">
             <el-breadcrumb-item :key="index" v-for="(item,index) in __menuCurrentPaths">
-              {{item.title}}
+              {{item.name}}
             </el-breadcrumb-item>
           </el-breadcrumb>
         </transition>

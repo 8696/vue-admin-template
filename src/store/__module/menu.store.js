@@ -1,4 +1,4 @@
-import {parseJsonTree,cloneDeep} from '@/utils/utils';
+import {parseJsonTree, cloneDeep} from '@/utils/utils';
 
 export default {
   namespaced: true,
@@ -18,7 +18,11 @@ export default {
     /**
      * @description 格式化菜单
      * */
-    formatList: []
+    formatList: [],
+    /**
+     * @description 权限列表
+     * */
+    permissions: []
   },
   mutations: {
     /**
@@ -40,12 +44,31 @@ export default {
     /**
      * @description
      * @param state {Object}
-     * @param list {Array}
+     * @param list {Array<Object>}
      * */
     setList(state, list) {
+      list = list.filter(item => item.type !== 2);
       state.list = cloneDeep(list);
       state.formatList = parseJsonTree(list);
     },
+    /**
+     * @description
+     * @param state {Object}
+     * @param permissions {Array<String>}
+     * */
+    setPermissions(state, permissions) {
+      state.permissions = cloneDeep(permissions);
+    },
+    /**
+     * @description 追加一个权限
+     * @param state {Object}
+     * @param permission {String}
+     * */
+    pushPermissions(state, permission) {
+      let p = cloneDeep(state.permissions);
+      !p.includes(permission) && p.push(permission);
+      state.permissions = p;
+    }
 
   }
 };

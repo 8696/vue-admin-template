@@ -19,8 +19,8 @@
           </h2>
         </div>
         <div class="card-body">
-          <div class="fonts-box">
-            <div @click="copyFont" class="item" v-for="item in fonts">
+          <div class="fonts-box" @click="copyFont">
+            <div class="item" v-for="item in fonts">
               <font-awesome-icon-2 size="1x" :icon="item"/>
               <span :data-text="item">{{item}}</span>
             </div>
@@ -35,42 +35,24 @@
   import {library} from '@fortawesome/fontawesome-svg-core';
   import {fas} from '@fortawesome/free-solid-svg-icons';
   import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
+
   Object.keys(fas).forEach(item => {
     library.add(fas[item]);
   });
   export default {
-    components:{
-      FontAwesomeIcon2:FontAwesomeIcon
+    components: {
+      FontAwesomeIcon2: FontAwesomeIcon
     },
     data() {
       return {
-        fonts:[],
-        /*fonts: [
-          'font',
-          'tachometer-alt',
-          'file-alt',
-          'chart-area',
-          'table',
-          'link',
-          'bars',
-          'shopping-cart',
-          'users',
-          'money-bill-alt',
-          'city',
-          'sticky-note',
-          'copy',
-          'marker',
-          'map-marked',
-
-        ]*/
-
+        fonts: []
       };
     },
     mounted() {
 
-      Object.keys(fas).forEach(item=>{
-        this.fonts.push(fas[item].iconName)
-      })
+      Object.keys(fas).forEach(item => {
+        this.fonts.push(fas[item].iconName);
+      });
       //
     },
     methods: {

@@ -17,5 +17,5 @@ export default new Vuex.Store(merge({
     __menu,
     __tags,
     __base
-  },
+  }
 }));

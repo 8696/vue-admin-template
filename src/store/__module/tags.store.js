@@ -6,7 +6,7 @@ export default {
     /**
      * @description tags 列表
      * */
-    list: [], // [ {title: '', active:true, routeName: ''} ,..]
+    list: [], // [ {title: '', active:true, route: ''} ,..]
 
   },
   mutations: {
@@ -20,13 +20,13 @@ export default {
       if (!route) return;
       route = cloneDeep(route);
       let findStatus = state.list.some(item => {
-        return item.routeName === route.routeName;
+        return item.route === route.route;
       });
       if (!findStatus) {
         state.list.push(route);
       }
       state.list = state.list.map(item => {
-        item.active = item.routeName === route.routeName;
+        item.active = item.route === route.route;
         return item;
       });
     },

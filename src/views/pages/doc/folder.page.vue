@@ -15,15 +15,20 @@
       |-- production-static                       实时版本
       |-- history-static                          历史版本
   |-- src                                         开发源代码
+      |-- api                                     提供的参考 Http 模块目录
       |-- assets                                  可被 loader 解析的资源目录
          |-- ...
+      |-- components                              注册全局组件
+         |-- global.components.js                 注册全局组件配置文件
+         |-- service.components.js                注册全局服务组件配置文件
+      |-- directive                               自定义指令配置
+         |-- permission.directive.js              权限指定配置文件
       |-- element-ui                              element UI 配置
          |-- element-ui.js                        element UI 配置文件
       |-- filter                                  全局 filter 配置
-         |-- filter.js                            全局 filter 配置文件
+         |-- global.filter.js                     全局 filter 配置文件
       |-- font-awesome                            Font Awesome 字体配置
          |-- font-awesome.js                      Font Awesome 字体配置文件
-      |-- api                                     提供的参考 Http 模块目录
       |-- mixins                                  全局混入配置
          |-- __mixins.js                          项目内置全局混入配置文件
       |-- route                                   Vue Router 配置
@@ -32,9 +37,6 @@
          |-- store.js                             Vuex 入口配置文件
          |-- __module                             项目内置 Vuex 配置
             |-- ...
-      |-- component                               注册全局组件
-         |-- global.components.js                 注册全局组件配置文件
-         |-- service.components.js                注册全局服务组件配置文件
       |-- utils                                   工具方法
          |-- utils.js                             工具方法文件
       |-- views                                   组件目录

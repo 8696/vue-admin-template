@@ -113,7 +113,8 @@
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         showCancelButton: true,
-        customClass: ''
+        customClass: '',
+        excludeField: []
       };
     },
     mounted() {
@@ -131,12 +132,17 @@
         if (!this.data[index]) {
           this.data.push(cloneDeep(this.initListItem));
         }
-        this.data[index].fields = this.fieldsList;
-        // 初始值
-        this.data[index].fieldValue = this.data[index].fields[0].field;
-        this.data[index].filterType = this.filterType;
-        // 初始值
-        this.data[index].filterValue = this.data[index].filterType[0].value;
+        try {
+          this.data[index].fields = this.fieldsList;
+          // 初始值
+          this.data[index].fieldValue = this.data[index].fields[0].field;
+          // ---
+          this.data[index].filterType = this.filterType;
+          // 初始值
+          this.data[index].filterValue = this.data[index].filterType[0].value;
+        } catch (e) {
+        }
+
       },
       _removeFilterField(index) {
         this.data.splice(index, 1);
@@ -147,20 +153,29 @@
       _confirmFilterField() {
         //
         if (Array.isArray(this.fields)) {
-          return this.fieldsList = this.fields;
+          return this.fieldsList = this.fields.filter(item => {
+            return !this.excludeField.includes(item.name)
+              && !this.excludeField.includes(item.field);
+          });
         }
         // 表格组件
         if (this.tableVm instanceof Vue && Array.isArray(this.tableVm.columns)) {
-          return this.fieldsList = this.tableVm.columns.map((item) => {
-            if (item.hasOwnProperty('property')
-              && item.hasOwnProperty('label')) {
-              return {
-                name: item.label,
-                field: item.property,
-              };
-            }
-            return null;
-          }).filter(item => item);
+          return this.fieldsList = this.tableVm.columns
+            .map((item) => {
+              if (item.hasOwnProperty('property')
+                && item.hasOwnProperty('label')) {
+                return {
+                  name: item.label,
+                  field: item.property,
+                };
+              }
+              return null;
+            })
+            .filter(item => item)
+            .filter(item => {
+              return !this.excludeField.includes(item.name)
+                && !this.excludeField.includes(item.field);
+            });
         }
       },
       _confirm() {

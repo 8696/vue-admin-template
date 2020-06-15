@@ -19,6 +19,10 @@
             item: []
           };
         }
+      },
+      height: {
+        type: Number,
+        default: 400
       }
     },
     data() {
@@ -53,7 +57,7 @@
         this.charInstance = new Chart({
           container: this.elementID,
           autoFit: true,
-          height: 380,
+          height: this.height,
         });
 
         this.charInstance.data(this.chartData);

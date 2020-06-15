@@ -26,6 +26,13 @@
             list: []
           };
         }
+      },
+      /**
+       * @description 容器高度
+       * */
+      height: {
+        type: Number,
+        default: 400
       }
     },
     async mounted() {
@@ -42,7 +49,7 @@
         this.charInstance = new Chart({
           container: this.elementID,
           autoFit: true,
-          height: 380,
+          height: this.height,
         });
 
         this.charInstance.data(this.data.list);

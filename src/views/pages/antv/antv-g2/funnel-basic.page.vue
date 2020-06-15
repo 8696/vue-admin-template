@@ -8,6 +8,7 @@
         <div class="card-body">
           <g2-funnel-basic-component
             :data="data"
+            :height="400"
             ref="g2-funnel"
             @hook:mounted="doSomething"
           />

@@ -22,11 +22,11 @@
         default() {
           return [];
         }
+      },
+      height: {
+        type: Number,
+        default: 400
       }
-    },
-    async mounted() {
-
-
     },
     computed: {},
     methods: {
@@ -51,7 +51,7 @@
         const chart = this.charInstance = new Chart({
           container: this.elementID,
           autoFit: true,
-          height: 380,
+          height: this.height,
           padding: [20, 120, 95],
         });
         chart.data(data);

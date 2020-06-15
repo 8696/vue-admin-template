@@ -2,7 +2,7 @@ import _cloneDeep from 'lodash/cloneDeep';
 
 /**
  * @description 模拟睡眠
- * @param time {Number} 睡眠时间(ms) | default : 1000
+ * @param time {Number} 睡眠时间(ms) | default: 1000
  * @return {Promise}
  * */
 export function sleep(time = 1000) {
@@ -24,7 +24,7 @@ export function makeRandomNumber(minNum = 1, maxNum = 99999) {
 
 /**
  * @description 生成随机字符串
- * @param length {Number} 字符串长度 | default : 32
+ * @param length {Number} 字符串长度 | default: 32
  * @return {String}
  * */
 export function makeRandomString(length = 32) {
@@ -70,14 +70,14 @@ export function cloneDeep(value) {
 /**
  * @description 将集合通过子父 ID 关联成树
  * @param list {Array}
- * @param parentID {Number} |  default : 0
+ * @param parentId {Number} |  default: 0
  * @return {Array}
  * */
-export function parseJsonTree(list, parentID = 0) {
+export function parseJsonTree(list, parentId = 0) {
   let tree = [];
   let temp;
   for (let i = 0; i < list.length; i++) {
-    if (list[i].parentID === parentID) {
+    if (list[i].parentId === parentId) {
       let obj = list[i];
       temp = parseJsonTree(list, list[i].id);
       if (temp.length > 0) {
@@ -100,7 +100,7 @@ export function getParentJson(list, id, parents = []) {
   for (let i = 0; i < list.length; i++) {
     if (list[i].id === id) {
       parents.push(list[i]);
-      getParentJson(list, list[i].parentID, parents);
+      getParentJson(list, list[i].parentId, parents);
     }
   }
   return parents;
@@ -114,3 +114,4 @@ export function getParentJson(list, id, parents = []) {
 export function getType(value) {
   return /\[object ([\w\W]+)\]/.exec(({}).toString.call(value))[1].toLowerCase();
 }
+

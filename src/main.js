@@ -28,11 +28,18 @@ const __mixins = () => import('./mixins/__mixins');
 /**
  * @description 全局 filter
  * */
-import * as filter from './filter/filter';
+import * as globalFilter from './filter/global.filter';
 
-Object.keys(filter).forEach(key => {
-  Vue.filter(key, filter[key]);
+Object.keys(globalFilter).forEach(key => {
+  Vue.filter(key, globalFilter[key]);
 });
+/**
+ * @description 全局权限指令
+ * */
+import permissionDirective from './directive/permission.directive';
+
+Vue.use(permissionDirective);
+
 /**
  * @description element-ui
  * @doc https://element.eleme.cn/

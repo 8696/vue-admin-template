@@ -14,25 +14,29 @@ export default {
       __menuCollapseStatus: state => state.__menu.collapse,
       /**
        * @description 当前菜单的路由父子集合
-       * @type {Array}
+       * @type {Array<Object>}
        * */
       __menuCurrentPaths: state => state.__menu.currentPaths,
       /**
        * @description 原始菜单数据
-       * @type {Array}
+       * @type {Array<Object>}
        * */
       __menuList: state => state.__menu.list,
       /**
        * @description 格式化后的菜单数据
-       * @type {Array}
+       * @type {Array<Object>}
        * */
       __menuFormatList: state => state.__menu.formatList,
-
+      /**
+       * @description 权限列表
+       * @type {Array<String>}
+       * */
+      __permissions: state => state.__menu.permissions,
     }),
     ...mapState({
       /**
        * @description tags 对象集合
-       * @type {Array}
+       * @type {Array<Object>}
        * */
       __tagsList: state => state.__tags.list,
     }),
@@ -45,7 +49,7 @@ export default {
     }),
     /**
      * @description 当前路由菜单项
-     * @type {Array}
+     * @type {Array<Object>}
      * */
     __currentRoute() {
       return this.__menuCurrentPaths[this.__menuCurrentPaths.length - 1];
@@ -60,14 +64,20 @@ export default {
       __setMenuCollapseStatus: 'setCollapseStatus',
       /**
        * @description 设置当前菜单的路由父子集合
-       * @param {Array}
+       * @param {Array<Object>}
        * */
       __setMenuCurrentPaths: 'setCurrentPaths',
       /**
        * @description 设置原始菜单数据
-       * @param {Array}
+       * @param {Array<Object>}
        * */
       __setMenuList: 'setList',
+      /**
+       * @description 设置权限数据
+       * @param {Array<String>}
+       * */
+      __setPermissions: 'setPermissions',
+      __pushPermissions: 'pushPermissions'
     }),
     ...mapMutations('__tags', {
       /**
@@ -128,7 +138,7 @@ export default {
       let routerName = this.$route.name;
       // 存在菜单列表中
       let activeMenuItem = this.__menuList.find(item => {
-        return item.routeName === routerName;
+        return item.route === routerName;
       });
 
       // 匹配当前路由
@@ -136,9 +146,9 @@ export default {
 
 
       // 匹配首页
-      let homeRouteName = this.$router.resolve('/').resolved.name;
+      let homeRoute = this.$router.resolve('/').resolved.name;
       let home = this.__menuList.find(item => {
-        return item.routeName === homeRouteName;
+        return item.route === homeRoute;
       });
 
       let paths = home ? [home] : [];
@@ -150,7 +160,7 @@ export default {
         }).reverse());
 
         // 去重,两个都是首页的情况
-        if (paths[0].routeName === paths[1].routeName) {
+        if (paths[0].route === paths[1].route) {
           paths.splice(0, 1);
         }
         this.__setMenuCurrentPaths(paths);
@@ -159,8 +169,8 @@ export default {
 
         // 存在路由表中
         paths = paths.concat([{
-          routeName: currentRoute.resolved.name,
-          title: currentRoute.resolved.meta.title,
+          route: currentRoute.resolved.name,
+          name: currentRoute.resolved.meta.name,
           id: new Date().getTime(),
           children: []
         }]);
@@ -168,7 +178,7 @@ export default {
 
       } else {
 
-        paths = paths.concat([{routerName: '404', title: '404', children: []}]);
+        paths = paths.concat([{routerName: '404', name: '404', children: []}]);
         // 404
         this.__setMenuCurrentPaths(paths);
       }
@@ -182,7 +192,7 @@ export default {
       if (__menuCurrentPaths.length >= 2) {
         __menuCurrentPaths.splice(0, 1);
       }
-      document.title = __menuCurrentPaths.map(item => item.title).join('-') + ' - 后台管理系统';
+      document.title = __menuCurrentPaths.map(item => item.name).join('-') + ' - 后台管理系统';
     },
     /**
      * @description 初始化全局 store config
@@ -289,6 +299,16 @@ export default {
     __clearMenuList() {
       this.__setMenuList([]);
       this.__setMenuCurrentPaths([]);
+    },
+    /**
+     * @description 判断是否存在权限
+     * @param permission {String | Array<String>}
+     * */
+    hasPermission(permission) {
+      permission = Array.isArray(permission) ? permission : [permission];
+      return permission.some(item => {
+        return this.__permissions.includes(item);
+      });
     }
   }
 };
