@@ -152,10 +152,17 @@ export default {
       });
 
       let paths = home ? [home] : [];
+
       if (activeMenuItem) {
         // 合并其他
         paths = paths.concat(getParentJson(this.__menuList, activeMenuItem.id).map(item => {
           item = cloneDeep(item);
+          // 如果存在路由表中，名称优先使用路由表的 meta.name
+          if (currentRoute.resolved.matched.length > 0
+            && currentRoute.resolved.meta.name
+          ) {
+            item.name = currentRoute.resolved.meta.name;
+          }
           return item;
         }).reverse());
 
@@ -163,11 +170,12 @@ export default {
         if (paths[0].route === paths[1].route) {
           paths.splice(0, 1);
         }
+
         this.__setMenuCurrentPaths(paths);
 
       } else if (currentRoute.resolved.matched.length > 0) {
-
         // 存在路由表中
+
         paths = paths.concat([{
           route: currentRoute.resolved.name,
           name: currentRoute.resolved.meta.name,
@@ -177,9 +185,8 @@ export default {
         this.__setMenuCurrentPaths(cloneDeep(paths));
 
       } else {
-
-        paths = paths.concat([{routerName: '404', name: '404', children: []}]);
         // 404
+        paths = paths.concat([{routerName: '404', name: '404', children: []}]);
         this.__setMenuCurrentPaths(paths);
       }
       this.__setDocumentTitle();
@@ -196,7 +203,7 @@ export default {
     },
     /**
      * @description 初始化全局 store config
-     * @param itemKey {Array}
+     * @param itemKey {Array<String>}
      * */
     __initStoreConfig(itemKey) {
 

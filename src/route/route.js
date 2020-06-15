@@ -235,23 +235,12 @@ const router = new Router(merge({
             path: '/test',
             name: 'test',
             meta: {
-              name: '个人中心'
+              name: 'test-123'
             },
             component: () => import('@/views/pages/test/test.page')
           },
         ]
-      },
-      {
-        path: '/',
-        component: () => import('@/views/default/route/default.route.component'),
-        children: [
-          {
-            path: '/login',
-            name: 'login',
-            component: () => import('@/views/pages/login/login.page')
-          }
-        ]
-      },
+      }
     ]
   },
   {
@@ -279,7 +268,23 @@ const router = new Router(merge({
         ]
       }
     ]
-  }));
+  },
+  {
+    routes: [
+      {
+        path: '/',
+        component: () => import('@/views/default/route/default.route.component'),
+        children: [
+          {
+            path: '/login',
+            name: 'login',
+            component: () => import('@/views/pages/login/login.page')
+          }
+        ]
+      }
+    ]
+  }
+));
 
 
 /**

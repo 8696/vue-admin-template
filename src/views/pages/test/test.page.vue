@@ -26,8 +26,7 @@
         this.__clearMenuList();
       },
       add() {
-        this.__pushPermissions('a');
-        this.__pushPermissions('b');
+        this.__pushPermissions(['a', 'b']);
       },
       remove() {
         this.__setPermissions([]);

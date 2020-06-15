@@ -3,8 +3,7 @@
     <div class="layout-menu-p"
          element-loading-background="rgba(255, 255, 255, 0.8)"
     >
-      <vue-scroll ref="refScroller" :ops="scrollOptions">
-
+      <menu-scroll-component ref="scroll" :ops="scrollOptions">
         <div class="layout-menu"
              :class="{
             'layout-menu-collapse': __menuCollapseStatus,
@@ -20,7 +19,7 @@
             <menu-component :menu-list="__menuFormatList"/>
           </el-menu>
         </div>
-      </vue-scroll>
+      </menu-scroll-component>
     </div>
 
     <div class="layout-content" :class="{'layout-content-collapse': __menuCollapseStatus}">
@@ -32,9 +31,11 @@
           <page-tags-component/>
         </div>
       </transition>
-      <div class="layout-body" :class="[$route.name + '-page-body']">
-        <section class="route-item" v-show="$route.name === item.route"
-                 v-for="item in __tagsList" :key="item.id">
+      <div class="layout-body">
+        <section class="route-item" :class="{'active-page': $route.name === item.route}"
+                 v-show="$route.name === item.route"
+                 v-for="item in __tagsList"
+                 :key="item.id">
           <keep-alive>
             <transition name="router-transition">
               <router-view v-if="$route.name === item.route"/>
@@ -51,18 +52,18 @@
 
 <script>
   import {sleep} from '@/utils/utils';
-  import vueScroll from 'vuescroll';
 
   const MenuComponent = () => import('../layout/menu.component');
   const HeaderComponent = () => import('../layout/header.component');
   const PageTagsComponent = () => import('../layout/page-tags.component');
+  const MenuScrollComponent = () => import('../layout/menu.scroll.component');
 
   export default {
     components: {
       MenuComponent,
       HeaderComponent,
       PageTagsComponent,
-      vueScroll
+      MenuScrollComponent
     },
     data() {
       return {
@@ -143,11 +144,7 @@
           this.$off('menu-list-init');
           await this.$nextTick();
           setTimeout(() => {
-            let activeMenu = document.querySelectorAll('.layout-menu-ls .is-active')[0];
-            if (activeMenu.offsetTop <= window.innerHeight) return;
-            this.$refs.refScroller.scrollTo({
-              y: activeMenu.offsetTop - 60
-            });
+            this.$refs.scroll.scrollTo();
           });
         });
       }

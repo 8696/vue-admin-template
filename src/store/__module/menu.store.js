@@ -26,23 +26,23 @@ export default {
   },
   mutations: {
     /**
-     * @description
+     * @description 设置菜单折叠状态
      * @param state {Object}
      * @param status {Boolean}
      * */
     setCollapseStatus(state, status) {
       state.collapse = status;
     },
-    /**
+    /** 设置当前页面菜单路径
      * @description
      * @param state {Object}
-     * @param list {Array}
+     * @param list {Array<Object>}
      * */
     setCurrentPaths(state, list) {
       state.currentPaths = list;
     },
     /**
-     * @description
+     * @description 设置菜单数据
      * @param state {Object}
      * @param list {Array<Object>}
      * */
@@ -52,7 +52,7 @@ export default {
       state.formatList = parseJsonTree(list);
     },
     /**
-     * @description
+     * @description 设置权限列表
      * @param state {Object}
      * @param permissions {Array<String>}
      * */
@@ -60,14 +60,14 @@ export default {
       state.permissions = cloneDeep(permissions);
     },
     /**
-     * @description 追加一个权限
+     * @description 追加一个或多个权限
      * @param state {Object}
-     * @param permission {String}
+     * @param permission {String | Array<String>}
      * */
     pushPermissions(state, permission) {
       let p = cloneDeep(state.permissions);
-      !p.includes(permission) && p.push(permission);
-      state.permissions = p;
+      permission = Array.isArray(permission) ? permission : [permission];
+      state.permissions = [...new Set(p.concat(permission))];
     }
 
   }
