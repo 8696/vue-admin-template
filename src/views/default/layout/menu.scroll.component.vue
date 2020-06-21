@@ -25,12 +25,10 @@
       let userAgent = navigator.userAgent.toLowerCase();
       this.type = (userAgent.includes('chrome') || userAgent.includes('safari') || userAgent.includes('mac os')) ? 1 : 2;
     },
-    mounted() {
-    },
-    computed: {},
     methods: {
-      scrollTo() {
+      menuActive() {
         let activeMenu = document.querySelectorAll('.layout-menu-ls .is-active')[0];
+        if (!activeMenu) return;
         if (activeMenu.offsetTop <= window.innerHeight) return;
         let y = activeMenu.offsetTop - 60;
         if (this.type === 2) {

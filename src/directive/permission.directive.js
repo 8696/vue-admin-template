@@ -9,8 +9,8 @@ function is(el, binding, vnode) {
   }
 }
 
-/*
 
+/*
 function is(el, {value}, vnode) {
   value = Array.isArray(value) ? value : [value];
   let has = vnode.context.hasPermission(value);

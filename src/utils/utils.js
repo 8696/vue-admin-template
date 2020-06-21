@@ -115,3 +115,40 @@ export function getType(value) {
   return /\[object ([\w\W]+)\]/.exec(({}).toString.call(value))[1].toLowerCase();
 }
 
+
+/**
+ * @description 异步加载js和css
+ * */
+export function asyncLoadScript() {
+  return {
+    js(link) {
+      return new Promise((resolve, reject) => {
+        let script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = link;
+        document.body.appendChild(script);
+        if (script.readyState) { // ie
+          script.onreadystatechange = function () {
+            if (script.readyState === 'loaded' || script.readyState === 'complete') {
+              resolve();
+            }
+          };
+        } else {
+          script.onload = function () {
+            resolve();
+          };
+          script.onerror = function () {
+            reject();
+          };
+        }
+      });
+    },
+    css(link) {
+      let css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = link;
+      document.body.appendChild(css);
+      return Promise.resolve();
+    },
+  };
+}

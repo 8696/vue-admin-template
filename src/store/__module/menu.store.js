@@ -68,6 +68,18 @@ export default {
       let p = cloneDeep(state.permissions);
       permission = Array.isArray(permission) ? permission : [permission];
       state.permissions = [...new Set(p.concat(permission))];
+    },
+    /**
+     * @description 删除一个或多个权限
+     * @param state {Object}
+     * @param permission {String | Array<String>}
+     * */
+    removePermissions(state, permission) {
+      permission = Array.isArray(permission) ? permission : [permission];
+
+      state.permissions = cloneDeep(state.permissions).filter(item => {
+        return !permission.includes(item);
+      });
     }
 
   }

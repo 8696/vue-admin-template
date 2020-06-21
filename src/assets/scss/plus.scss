@@ -37,8 +37,8 @@
 // 滚动条
 $scrollbar-color: rgba(0, 0, 0, 0);
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   background-color: $scrollbar-color;
 }
 

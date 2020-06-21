@@ -58,9 +58,10 @@
          |-- service                              服务组件、这些组件会被 /src/component/service.components.js 注册
             |-- ...
          |-- App.vue                              项目根组件
-      |-- main.js                                 项目主入口文件、配置全局功能、全局第三个组件等
-      |-- store.config.js                         项目全局配置
-      |-- vm.vue.js                               项目自定义的 vm 实例
+      |-- config.js                               基础配置文件
+      |-- main.js                                 主入口文件、配置全局功能、全局第三个组件等
+      |-- store.config.js                         响应式配置文件
+      |-- vm.vue.js                               自定义的 vm 实例
   |-- static                                      内置静态资源目录
   |-- .babelrc                                    项目 babel 配置
   |-- .editorconfig                               编辑器配置
@@ -69,7 +70,7 @@
   |-- index.html                                  项目入口
   |-- package.json                                项目信息、依赖等
   |-- README.md                                   README
-  |-- server.js                                   预览生产环境
+  |-- server.js                                   预览生产环境nodeJs文件
 
             </pre>
         </div>

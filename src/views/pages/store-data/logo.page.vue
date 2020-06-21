@@ -18,7 +18,7 @@
           <el-form label-width="80px">
             <el-form-item label="Logo">
               <el-input v-model="logo.path"></el-input>
-              <div style="opacity: .5;font-size: 13px;line-height: 20px">可以设置为/static下的本地图片(源代码绝对路径，已经处理过、打包仍按可按此方式设置)或者远程图片</div>
+              <div style="opacity: .5;font-size: 13px;line-height: 20px;margin-top: 4px">可以设置为/static下的本地图片(源代码绝对路径，已经处理过、生成环境仍按可按此方式设置)或者远程图片</div>
             </el-form-item>
             <el-form-item label="折叠Logo">
               <el-input v-model="logo.miniPath"></el-input>

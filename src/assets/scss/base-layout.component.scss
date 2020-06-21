@@ -56,6 +56,24 @@
       justify-content: space-between;
       background-color: #fff;
       border-bottom: 1px solid #e7eaec;
+
+      .item {
+        padding: 0 10px;
+
+        i {
+          cursor: pointer;
+        }
+
+        .el-icon-full-screen {
+          font-weight: bold;
+        }
+      }
+
+      .item:hover {
+        > i {
+          color: #409EFF;
+        }
+      }
     }
 
     .l-left {
@@ -92,23 +110,6 @@
       }
     }
 
-    .item {
-      padding: 0 10px;
-
-      i {
-        cursor: pointer;
-      }
-
-      .el-icon-full-screen {
-        font-weight: bold;
-      }
-    }
-
-    .item:hover {
-      > i {
-        color: #409EFF;
-      }
-    }
 
     .action-more {
 
@@ -141,6 +142,7 @@
     .el-submenu__title {
       .children-title {
         display: none;
+
         + i {
           display: none;
         }
@@ -379,6 +381,15 @@
 
     > * {
       height: 100%;
+    }
+  }
+
+  .layout-auto-header {
+    overflow-y: auto;
+
+    .layout-body {
+      height: auto;
+      overflow-y: visible;
     }
   }
 }

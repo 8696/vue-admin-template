@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 import merge from 'webpack-merge';
+import vm from '@/vm.vue';
 
 const router = new Router(merge({
     routes: [
@@ -23,7 +24,7 @@ const router = new Router(merge({
           },
 
           {
-            path: '/doc/card-layout',
+            path: '/card-layout',
             name: 'card-layout',
             component: () => import('@/views/pages/card-layout/card-layout.page')
           },
@@ -54,6 +55,11 @@ const router = new Router(merge({
             component: () => import('@/views/pages/doc/global-component/va-container.page')
           },
           {
+            path: '/doc/permission',
+            name: 'doc-permission',
+            component: () => import('@/views/pages/doc/permission.page')
+          },
+          {
             path: '/doc/va-table-global',
             name: 'va-table-global',
             component: () => import('@/views/pages/doc/global-component/va-table.page')
@@ -70,12 +76,12 @@ const router = new Router(merge({
             component: () => import('@/views/pages/doc/store-data.page')
           },
           {
-            path: '/doc/base-layout',
+            path: '/base-layout',
             name: 'base-layout',
             component: () => import('@/views/pages/base-layout/base-layout.page')
           },
           {
-            path: '/doc/font-awesome',
+            path: '/font-awesome',
             name: 'doc-font-awesome',
             component: () => import('@/views/pages/doc/font-awesome.page')
           },
@@ -153,6 +159,11 @@ const router = new Router(merge({
             name: 'editor-wangEditor',
             component: () => import('@/views/pages/editor/wangEditor.page')
           },
+          {
+            path: '/editor/editor-ueditor',
+            name: 'editor-ueditor',
+            component: () => import('@/views/pages/editor/editor-ueditor.page')
+          },
           // 解析md
           {
             path: '/markdown',
@@ -181,6 +192,12 @@ const router = new Router(merge({
             path: '/store',
             name: 'store',
             component: () => import('@/views/pages/store/store.page')
+          },
+          // 权限指令
+          {
+            path: '/permission',
+            name: 'permission',
+            component: () => import('@/views/pages/permission/permission.page')
           },
           // 系统管理
           {
@@ -216,6 +233,11 @@ const router = new Router(merge({
             name: 'store-data-menu-list',
             component: () => import('@/views/pages/store-data/menu-list.page')
           },
+          {
+            path: '/store-data-fixed-hedaer',
+            name: 'store-data-fixed-header',
+            component: () => import('@/views/pages/store-data/fixed-header.page')
+          },
           // 小组件
           {
             path: '/component-va-table-filter',
@@ -235,35 +257,9 @@ const router = new Router(merge({
             path: '/test',
             name: 'test',
             meta: {
-              name: 'test-123'
+              name: 'Test'
             },
             component: () => import('@/views/pages/test/test.page')
-          },
-        ]
-      }
-    ]
-  },
-  {
-    routes: [
-      {
-        path: '/',
-        component: () => import('@/views/default/route/base.route.component'),
-        children: [
-          {
-            path: 'reload',
-            name: 'reload',
-            meta: {
-              name: '...'
-            },
-            component: () => import('@/views/default/page/reload.page')
-          },
-          {
-            path: '*',
-            name: '404',
-            meta: {
-              name: '404'
-            },
-            component: () => import('@/views/default/page/404.page')
           },
         ]
       }
@@ -281,26 +277,52 @@ const router = new Router(merge({
             component: () => import('@/views/pages/login/login.page')
           }
         ]
+      },
+      {
+        path: '/',
+        component: () => import('@/views/default/route/base.route.component'),
+        children: [
+          {
+            path: 'reload',
+            name: 'reload',
+            meta: {
+              name: '...'
+            },
+            component: () => import('@/views/default/page/reload.page')
+          },
+          {
+            path: '*',
+            name: '404',
+            meta: {
+              name: '404 Not found'
+            },
+            component: () => import('@/views/default/page/404.page')
+          }
+        ]
       }
     ]
-  }
+  },
 ));
 
 
 /**
  * 当一个导航触发时，全局前置守卫按照创建顺序调用。守卫是异步解析执行，此时导航在所有守卫 resolve 完之前一直处于 等待中。
- 每个守卫方法接收三个参数：
- to: Route: 即将要进入的目标 路由对象
- from: Route: 当前导航正要离开的路由
- next: Function: 一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。
- ** next(): 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 confirmed (确认的)。
- ** next(false): 中断当前的导航。如果浏览器的 URL 改变了 (可能是用户手动或者浏览器后退按钮)，那么 URL 地址会重置到 from 路由对应的地址。
- ** next('/') 或者 next({ path: '/' }): 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。你可以向 next 传递任意位置对象，且允许设置诸如 replace: true、name: 'home' 之类的选项以及任何用在 router-link 的 to prop 或 router.push 中的选项。
- ** next(error): (2.4.0+) 如果传入 next 的参数是一个 Error 实例，则导航会被终止且该错误会被传递给 router.onError() 注册过的回调。
+ * 每个守卫方法接收三个参数：
+ * to: Route: 即将要进入的目标 路由对象
+ * from: Route: 当前导航正要离开的路由
+ * next: Function: 一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。
+ * next(): 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 confirmed (确认的)。
+ * next(false): 中断当前的导航。如果浏览器的 URL 改变了 (可能是用户手动或者浏览器后退按钮)，那么 URL 地址会重置到 from 路由对应的地址。
+ * next('/') 或者 next({ path: '/' }): 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。你可以向 next 传递任意位置对象，且允许设置诸如 replace: true、name: 'home' 之类的选项以及任何用在 router-link 的 to prop 或 router.push 中的选项。
+ * next(error): (2.4.0+) 如果传入 next 的参数是一个 Error 实例，则导航会被终止且该错误会被传递给 router.onError() 注册过的回调。
  * */
 router.beforeEach(async (to, from, next) => {
-  await new Vue().__appMounted();
+
+  if (to.name === 'login') return next();
+  if (!window.sessionStorage.getItem('token')) return next({name: 'login', replace: true});
+
   next();
+
 });
 
 /**
@@ -314,6 +336,18 @@ router.beforeResolve(async (to, from, next) => {
  * */
 router.afterEach(async (to, from) => {
 });
+
+/**
+ * */
+router.beforeEach(async (to, from, next) => {
+  await new Vue().__appMounted();
+  vm.$emit('route-before-each', {to, from});
+  next();
+});
+router.afterEach(async (to, from) => {
+  vm.$emit('route-after-each', {to, from});
+});
+
 
 /**
  * @description 扩展实例方法

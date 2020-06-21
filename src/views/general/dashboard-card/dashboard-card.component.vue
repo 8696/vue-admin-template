@@ -7,7 +7,7 @@
             <font-awesome-icon size="3x" icon="users"/>
           </div>
           <div class="data">
-            <span class="value">200010</span>
+            <span class="value">20k</span>
             <span class="title">用户量</span>
           </div>
         </div>
@@ -18,7 +18,7 @@
             <font-awesome-icon size="3x" icon="shopping-cart"/>
           </div>
           <div class="data">
-            <span class="value">2004040</span>
+            <span class="value">6004k</span>
             <span class="title">订单数</span>
           </div>
         </div>
@@ -29,7 +29,7 @@
             <font-awesome-icon size="3x" icon="city"/>
           </div>
           <div class="data">
-            <span class="value">200010</span>
+            <span class="value">20k</span>
             <span class="title">网点数量</span>
           </div>
         </div>
@@ -40,7 +40,7 @@
             <font-awesome-icon size="3x" icon="money-bill-alt"/>
           </div>
           <div class="data">
-            <span class="value">200010 <span class="mini">$</span></span>
+            <span class="value">26k <span class="mini">$</span></span>
             <span class="title">交易额</span>
           </div>
         </div>

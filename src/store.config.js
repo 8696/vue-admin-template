@@ -99,6 +99,20 @@ export const menuList = [
     id: 105,
     parentId: 2
   },
+  {
+    name: '权限配置',
+    icon: '',
+    route: 'doc-permission',
+    id: 115,
+    parentId: 2
+  },
+  {
+    name: '打包配置',
+    icon: '',
+    route: 'build',
+    id: 107,
+    parentId: 2
+  },
   //
   {
     name: '小组件',
@@ -113,13 +127,6 @@ export const menuList = [
     route: 'component-va-table-filter',
     id: 2002,
     parentId: 2001
-  },
-  {
-    name: '打包配置',
-    icon: '',
-    route: 'build',
-    id: 107,
-    parentId: 2
   },
   //
   {
@@ -150,6 +157,14 @@ export const menuList = [
     id: 1504,
     parentId: 1501
   },
+  {
+    name: '固定头部',
+    icon: '',
+    route: 'store-data-fixed-header',
+    id: 1505,
+    parentId: 1501
+  },
+
   //
   {
     name: '基本布局',
@@ -273,6 +288,14 @@ export const menuList = [
     id: 1702,
     parentId: 1701
   },
+  {
+    name: 'ueditor',
+    icon: '',
+    route: 'editor-ueditor',
+    id: 1703,
+    parentId: 1701
+  },
+
   //
   {
     name: '数据表格',
@@ -366,6 +389,13 @@ export const menuList = [
     id: 1401,
     parentId: 0
   },
+  {
+    name: '权限使用',
+    icon: 'user-lock',
+    route: 'permission',
+    id: 2401,
+    parentId: 0
+  },
   //
   {
     name: '系统管理',
@@ -442,9 +472,13 @@ export const logo = {
   path: '/static/logo/element-ui.svg',
   miniPath: '/static/logo/eleme.png',
   backgroundColor: '#1e3040',
-  fixed: true
+  fixed: false
 };
 // 无 logo
 // export const logo = null;
 
-
+/**
+ * @description 固定 Header
+ * @type {Boolean}
+ * */
+export const fixedHeader = false;

@@ -1,20 +1,14 @@
 <template>
   <div>
-    404.page
+    <div>
+      404
+    </div>
+    <div>
+      Not found
+    </div>
   </div>
 </template>
 
-<script>
-  export default {
-    data() {
-      return {};
-    },
-    mounted() {
-    },
-    computed: {},
-    methods: {}
-  };
-</script>
 
 <style scoped>
 

@@ -75,7 +75,8 @@ import {
   Loading,
   MessageBox,
   Message,
-  // Notification
+  // Notification,
+  // Drawer
 } from 'element-ui';
 
 export default function install(Vue) {
@@ -152,6 +153,7 @@ export default function install(Vue) {
   // Vue.use(Backtop);
   // Vue.use(PageHeader);
   // Vue.use(CascaderPanel);
+  // Vue.use(Drawer);
   //
   Vue.use(Loading.directive);
 

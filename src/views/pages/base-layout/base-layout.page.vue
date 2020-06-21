@@ -3,8 +3,11 @@
     <va-container :containerHeight="containerHeight">
       <template v-slot:header>
         <div class="flex-center"
-             style="height:100%;background-color: #fff;border: 1px solid #cccccc;padding: 20px">
+             style="height:100%;background-color: #fff;border: 1px solid #cccccc;padding: 20px;text-align: center">
           固定在头部 <br> 高度自适应
+          <br>
+          该组件在头部固定下才生效
+
         </div>
       </template>
       <template v-slot:body>
@@ -29,6 +32,8 @@
       return {
         containerHeight: '100%'
       };
+    },
+    mounted() {
     }
   };
 </script>

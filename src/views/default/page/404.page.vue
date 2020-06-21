@@ -1,24 +1,31 @@
 <template>
-  <div>
-    404.page.sys
+  <div class="not-found">
+    <div>
+      404
+    </div>
+    <div>
+      Not found
+    </div>
   </div>
 </template>
 
-<script>
-  export default {
-    data() {
-      return {};
-    },
-    mounted() {
-    },
-    computed: {},
-    methods: {},
-    activated() {
+<style scoped lang="scss">
+  .not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
+    div:first-child {
+      color: #409eff;
+      font-size: 120px;
+      font-weight: bold;
     }
-  };
-</script>
 
-<style scoped>
+    div:last-child {
+      color: #409eff;
+      font-size: 60px;
+    }
+  }
 
 </style>

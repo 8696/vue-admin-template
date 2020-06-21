@@ -24,7 +24,7 @@
             </el-form-item>
             <div class="code-con" style="
             width: 36%;
-            background-color: #2a3f54;
+            background-color: rgba(42,63,84,0.71);
             height: 34px;">
             </div>
           </div>
@@ -59,15 +59,18 @@
           code: [
             {required: true, message: '请输入验证码', trigger: 'blur'}
           ]
-
         },
         checked: true
       };
+    },
+    created() {
+      this.__setDocumentTitle('登录');
     },
     methods: {
       submitForm(formName) {
         this.$refs[formName].validate(async (valid) => {
           if (valid) {
+            window.sessionStorage.setItem('token', 'token value');
             this.$router.push2('/');
           } else {
             return false;

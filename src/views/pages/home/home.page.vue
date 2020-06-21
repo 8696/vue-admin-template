@@ -39,7 +39,12 @@
             <h2>下单热榜</h2>
           </div>
           <div class="card-body">
-            <!--            <line01-component/>-->
+            <g2-basic-pie-component
+              :data="data3"
+              ref="g2-pie"
+              :height="400"
+              @hook:mounted="doSomething3"
+            />
           </div>
         </div>
       </el-col>
@@ -52,6 +57,7 @@
   const DashboardCardComponent = () => import('@/views/general/dashboard-card/dashboard-card.component');
   const G2LineBasicComponent = () => import('@/views/general/antv-g2/g2-line/line-curved.component');
   const G2FunnelBasicComponent = () => import('@/views/general/antv-g2/g2-funnel/funnel-basic.componeent');
+  const G2BasicPieComponent = () => import('@/views/general/antv-g2/g2-pie/pie-basic.componeent');
 
   import {makeRandomNumber} from '@/utils/utils';
 
@@ -60,7 +66,8 @@
     components: {
       DashboardCardComponent,
       G2LineBasicComponent,
-      G2FunnelBasicComponent
+      G2FunnelBasicComponent,
+      G2BasicPieComponent
     },
     data() {
       return {
@@ -84,8 +91,18 @@
           {action: '生成订单', pv: 25000},
           {action: '支付订单', pv: 15000},
           {action: '完成交易', pv: 8000},
+        ],
+        data3: [
+          {title: '示例A', count: 1},
+          {title: '示例B', count: 1},
+          {title: '示例C', count: 1},
+          {title: '示例D', count: 1},
+          {title: '示例E', count: 1},
+          {title: '示例F', count: 0},
+          {title: '示例G', count: 0},
         ]
       };
+
 
     },
     methods: {
@@ -112,13 +129,18 @@
         this.$refs['g2-line'].render();
       },
       doSomething2() {
-
         // 渲染
         this.$refs['g2-funnel'].render();
-
       },
-    }
 
+      doSomething3() {
+        for (let i = 0; i < 7; i++) {
+          this.data3[i].count = makeRandomNumber(1000, 9999);
+        }
+        // 渲染
+        this.$refs['g2-pie'].render();
+      }
+    }
   };
 </script>
 

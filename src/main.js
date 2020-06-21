@@ -71,9 +71,7 @@ import VueClipboard from 'vue-clipboard2';
 
 Vue.use(VueClipboard);
 
-/**
- * @description 生产提示
- * */
+
 Vue.config.productionTip = false;
 
 

@@ -1,6 +1,7 @@
 import {mapState, mapMutations} from 'vuex';
 import {cloneDeep, getParentJson} from '@/utils/utils';
 import * as storeConfig from '@/store.config';
+import {titleSuffix} from '@/config';
 import vm from '@/vm.vue';
 
 export default {
@@ -46,6 +47,11 @@ export default {
        * @type {Null | Object}
        * */
       __logo: state => state.__base.logo,
+      /**
+       * @description 头部固定状态
+       * @type {Boolean}
+       * */
+      __fixedHeader: state => state.__base.fixedHeader,
     }),
     /**
      * @description 当前路由菜单项
@@ -77,7 +83,17 @@ export default {
        * @param {Array<String>}
        * */
       __setPermissions: 'setPermissions',
-      __pushPermissions: 'pushPermissions'
+      /**
+       * @description 追加权限数据
+       * @param {Array<String> | String}
+       * */
+      __pushPermissions: 'pushPermissions',
+      /**
+       * @description 删除权限
+       * @param {Array<String> | String}
+       * */
+      __removePermissions: 'removePermissions'
+
     }),
     ...mapMutations('__tags', {
       /**
@@ -110,6 +126,10 @@ export default {
        * @description 设置 logo 状态
        * */
       __setBaseLogo: 'setLogo',
+      /**
+       * @description 设置头部是否固定
+       * */
+      __setFixedHeader: 'setFixedHeader'
     }),
     __appMounted() {
       return new Promise(resolve => {
@@ -130,6 +150,11 @@ export default {
       this.__initMenuCurrentPaths();
       // ------- 追加 tags 的一项
       this.__pushTagsList(this.__currentRoute);
+
+
+          // document.querySelector('.layout-content').scrollTop = obj[from.name] || 0;
+
+
     },
     /**
      * @description 设置当前菜单的路由父子集合
@@ -175,7 +200,6 @@ export default {
 
       } else if (currentRoute.resolved.matched.length > 0) {
         // 存在路由表中
-
         paths = paths.concat([{
           route: currentRoute.resolved.name,
           name: currentRoute.resolved.meta.name,
@@ -193,13 +217,15 @@ export default {
     },
     /**
      * @description 设置文档标题
+     * @param title {Null | String}
      * */
-    __setDocumentTitle() {
+    __setDocumentTitle(title = null) {
+      if (typeof title === 'string') return document.title = title + titleSuffix;
       let __menuCurrentPaths = cloneDeep(this.__menuCurrentPaths);
       if (__menuCurrentPaths.length >= 2) {
         __menuCurrentPaths.splice(0, 1);
       }
-      document.title = __menuCurrentPaths.map(item => item.name).join('-') + ' - 后台管理系统';
+      document.title = __menuCurrentPaths.map(item => item.name).join('-') + titleSuffix;
     },
     /**
      * @description 初始化全局 store config
@@ -249,15 +275,11 @@ export default {
               this.__setBaseLogo({
                 miniPath: value.miniPath,
               });
-
             } else {
-
               this.__setBaseLogo({
                 miniPath: this.__makeStaticPath(value.miniPath),
               });
-
             }
-
           }
           if (value.hasOwnProperty('fixed')) {
             this.__setBaseLogo({
@@ -271,6 +293,8 @@ export default {
             });
           }
           break;
+        case 'fixedHeader':
+          this.__setFixedHeader(value);
       }
     },
     /**
@@ -288,6 +312,8 @@ export default {
           return this.__menuCollapseStatus;
         case 'logo':
           return cloneDeep(this.__logo);
+        case 'fixedHeader':
+          return this.__fixedHeader;
       }
     },
     /**
@@ -316,6 +342,12 @@ export default {
       return permission.some(item => {
         return this.__permissions.includes(item);
       });
+    },
+    /**
+     * @description 清除权限
+     * */
+    __clearPermission() {
+      this.__setPermissions([]);
     }
   }
 };

@@ -22,7 +22,9 @@
       </menu-scroll-component>
     </div>
 
-    <div class="layout-content" :class="{'layout-content-collapse': __menuCollapseStatus}">
+    <div class="layout-content"
+         :class="{'layout-content-collapse': __menuCollapseStatus,
+         'layout-auto-header': !__fixedHeader}">
       <div class="layout-header">
         <header-component/>
       </div>
@@ -37,8 +39,8 @@
                  v-for="item in __tagsList"
                  :key="item.id">
           <keep-alive>
-            <transition name="router-transition">
-              <router-view v-if="$route.name === item.route"/>
+            <transition v-if="$route.name === item.route" name="router-transition">
+              <router-view/>
             </transition>
           </keep-alive>
         </section>
@@ -52,11 +54,14 @@
 
 <script>
   import {sleep} from '@/utils/utils';
+  import Vue from 'vue';
 
   const MenuComponent = () => import('../layout/menu.component');
   const HeaderComponent = () => import('../layout/header.component');
   const PageTagsComponent = () => import('../layout/page-tags.component');
   const MenuScrollComponent = () => import('../layout/menu.scroll.component');
+  import vm from '@/vm.vue';
+  import router from '../../../route/route';
 
   export default {
     components: {
@@ -83,7 +88,8 @@
             specifyBorderRadius: '0',
             onlyShowBarOnScroll: true
           }
-        }
+        },
+        scrollTop: {}
       };
     },
 
@@ -142,18 +148,38 @@
       initMenuScroll() {
         this.$once('menu-list-init', async () => {
           this.$off('menu-list-init');
-          await this.$nextTick();
-          setTimeout(() => {
-            this.$refs.scroll.scrollTo();
-          });
+          await Vue.nextTick();
+          this.$refs.scroll.menuActive();
         });
       }
     },
     async mounted() {
       this.initMenuScroll();
-      this.__initStoreConfig(['menuCollapseStatus', 'logo']);
+      this.__initStoreConfig(['menuCollapseStatus', 'logo', 'fixedHeader']);
       await sleep();
       this.__initStoreConfig(['menuList']);
+    },
+    created() {
+
+      vm.$on('route-before-each', async ({to, from}) => {
+        if (this.__fixedHeader || !from) return;
+        // console.log('route-before-each');
+        this.scrollTop[from.name] = document.querySelector('.layout-content').scrollTop;
+      });
+
+      vm.$on('route-after-each', async ({to, from}) => {
+        if (this.__fixedHeader || !to) return;
+        // console.log('route-after-each');
+        await Vue.nextTick();
+        try {
+          document.querySelector('.layout-content').scrollTop = this.scrollTop[to.name] || 0;
+        } catch (e) {
+        }
+      });
+    },
+    beforeDestroy() {
+      vm.$off('route-before-each');
+      vm.$off('route-after-each');
     }
 
   };

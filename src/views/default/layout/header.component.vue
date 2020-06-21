@@ -49,12 +49,9 @@
 
   export default {
     data() {
-      return {};
+      return {
+      };
     },
-    mounted() {
-    },
-
-    computed: {},
     methods: {
       userActionHandleCommand(command) {
         switch (command) {
@@ -72,9 +69,9 @@
               window.sessionStorage.clear();
               this.__clearTagsList();
               this.__clearMenuList();
+              this.__clearPermission();
               this.$router.replace({name: 'login'});
             }).catch(() => {
-
             });
             break;
         }
@@ -85,7 +82,8 @@
       async toggleScreenFull() {
         const screenFullIns = await screenFullLoad();
         screenFullIns.toggle();
-      }
+      },
+
     }
   };
 </script>
