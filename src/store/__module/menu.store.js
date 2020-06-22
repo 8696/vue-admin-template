@@ -47,9 +47,11 @@ export default {
      * @param list {Array<Object>}
      * */
     setList(state, list) {
-      list = list.filter(item => item.type !== 2);
-      state.list = cloneDeep(list);
-      state.formatList = parseJsonTree(list);
+      let menuList = list.filter(item => item.type !== 2);
+      let permissionList = list.filter(item => item.type === 2).map(item => item.permission);
+      this.commit('__menu/pushPermissions', permissionList);
+      state.list = cloneDeep(menuList);
+      state.formatList = parseJsonTree(menuList);
     },
     /**
      * @description 设置权限列表

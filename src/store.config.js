@@ -434,7 +434,7 @@ export const menuList = [
     order: 0,
     route: '',
     link: '',
-    permission: 'system-user',
+    permission: 'system-user-list',
   },
   {
     id: 4356464,

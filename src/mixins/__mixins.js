@@ -336,6 +336,7 @@ export default {
     /**
      * @description 判断是否存在权限
      * @param permission {String | Array<String>}
+     * @return {Boolean}
      * */
     hasPermission(permission) {
       permission = Array.isArray(permission) ? permission : [permission];

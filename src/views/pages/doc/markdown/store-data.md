@@ -62,16 +62,16 @@ mounted() {
 
 
 - __setStoreConfig(key: String, config: Any)
-    + 参数：
+    + param
         + key：String 对应 store.config.js 文件中的配置
         + config：Any 对应配置中的具体类型
-    + 返回：
+    + return
         + undefined
 
 - __getStoreConfig(key: String)
-    + 参数：
+    + param
         + key：String 对应 store.config.js 文件中的配置
-    + 返回：
+    + return
         + Any 具体类型为配置可支持的类型
 
 目前只支持自定义配置，例如场景：
