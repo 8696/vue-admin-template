@@ -164,7 +164,6 @@ export const menuList = [
     id: 1505,
     parentId: 1501
   },
-
   //
   {
     name: '基本布局',

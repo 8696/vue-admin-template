@@ -234,10 +234,11 @@ const router = new Router(merge({
             component: () => import('@/views/pages/store-data/menu-list.page')
           },
           {
-            path: '/store-data-fixed-hedaer',
+            path: '/store-data-fixed-header',
             name: 'store-data-fixed-header',
             component: () => import('@/views/pages/store-data/fixed-header.page')
           },
+
           // 小组件
           {
             path: '/component-va-table-filter',

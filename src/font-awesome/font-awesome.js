@@ -42,7 +42,8 @@ import {
   faColumns,
   faCogs,
   faDivide,
-  faUserLock
+  faUserLock,
+  faSync
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faTachometerAlt);
@@ -70,6 +71,7 @@ library.add(faColumns);
 library.add(faCogs);
 library.add(faDivide);
 library.add(faUserLock);
+library.add(faSync);
 
 
 export default function install(Vue) {
