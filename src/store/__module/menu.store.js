@@ -48,10 +48,11 @@ export default {
      * */
     setList(state, list) {
       let menuList = list.filter(item => item.type !== 2);
-      let permissionList = list.filter(item => item.type === 2).map(item => item.permission);
+      // 筛选权限
+      let permissionList = list.filter(item => item.permission && item.permission.trim()).map(item => item.permission);
       this.commit('__menu/pushPermissions', permissionList);
       state.list = cloneDeep(menuList);
-      state.formatList = parseJsonTree(menuList);
+      state.formatList = parseJsonTree(cloneDeep(menuList));
     },
     /**
      * @description 设置权限列表
@@ -59,17 +60,31 @@ export default {
      * @param permissions {Array<String>}
      * */
     setPermissions(state, permissions) {
-      state.permissions = cloneDeep(permissions);
+      permissions = permissions
+        // 支持 ['aaa', 'bbb,ccc', '', '  ']
+        .map(item => item.split(','))
+        // 扁平化
+        .flat()
+        // 去除空格
+        .filter(item => item && item.trim())
+        .map(item => item.trim());
+      state.permissions = permissions;
     },
     /**
      * @description 追加一个或多个权限
      * @param state {Object}
-     * @param permission {String | Array<String>}
+     * @param permissions {String | Array<String>}
      * */
-    pushPermissions(state, permission) {
+    pushPermissions(state, permissions) {
       let p = cloneDeep(state.permissions);
-      permission = Array.isArray(permission) ? permission : [permission];
-      state.permissions = [...new Set(p.concat(permission))];
+      permissions = Array.isArray(permissions) ? permissions : [permissions];
+      permissions = permissions
+        // 支持 ['aaa', 'bbb,ccc', '', '  ']
+        .map(item => item.split(','))
+        .flat()
+        .filter(item => item && item.trim())
+        .map(item => item.trim());
+      state.permissions = [...new Set(p.concat(permissions))];
     },
     /**
      * @description 删除一个或多个权限
@@ -78,7 +93,6 @@ export default {
      * */
     removePermissions(state, permission) {
       permission = Array.isArray(permission) ? permission : [permission];
-
       state.permissions = cloneDeep(state.permissions).filter(item => {
         return !permission.includes(item);
       });

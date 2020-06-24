@@ -14,7 +14,7 @@
 格式：
     [
       {
-        title: String,
+        name: String,
         icon: String,
         route: String,
         link: String,
@@ -27,7 +27,7 @@
     ]
 
 说明：
-    title       ->   名称
+    name       ->   名称
     icon        ->   图标(支持Font Awesome和element-ui图标)
     route       ->   vue-router名称
     link        ->   外链地址
@@ -42,9 +42,20 @@
 完整示例：
     [
       {
+        id: 21,
+        parentId: 0,
+        name: '首页',
+        type: 1,
+        icon: 'cogs',
+        order: 0,
+        route: 'home',
+        link: '',
+        permission: '',
+      },
+      {
         id: 1,
         parentId: 0,
-        title: '系统管理',
+        name: '系统管理',
         type: 0,
         icon: 'cogs',
         order: 0,
@@ -55,7 +66,7 @@
       {
         id: 2,
         parentId: 1,
-        title: '用户管理',
+        name: '用户管理',
         type: 1,
         icon: '',
         order: 0,
@@ -66,7 +77,7 @@
       {
         id: 3,
         parentId: 2,
-        title: '用户列表',
+        name: '用户列表',
         type: 2,
         icon: '',
         order: 0,
@@ -77,7 +88,7 @@
       {
         id: 4,
         parentId: 2,
-        title: '添加用户',
+        name: '添加用户',
         type: 2,
         icon: '',
         order: 0,
@@ -88,7 +99,7 @@
       {
         id: 5,
         parentId: 2,
-        title: '删除用户',
+        name: '删除用户',
         type: 2,
         icon: '',
         order: 0,
@@ -99,7 +110,7 @@
       {
         id: 10,
         parentId: 0,
-        title: '商家管理',
+        name: '商家管理',
         type: 0,
         icon: '',
         order: 0,
@@ -110,18 +121,18 @@
       {
         id: 11,
         parentId: 10,
-        title: '商家列表',
+        name: '商家列表',
         type: 1,
         icon: '',
         order: 0,
-        route: '',
+        route: 'store',
         link: '',
         permission: '',
       },
       {
         id: 12,
         parentId: 11,
-        title: '商家更新',
+        name: '商家更新',
         type: 2,
         icon: '',
         order: 0,
@@ -132,7 +143,7 @@
       {
         id: 13,
         parentId: 11,
-        title: '商家删除',
+        name: '商家删除',
         type: 2,
         icon: '',
         order: 0,
@@ -145,9 +156,19 @@
 格式化后：
     [
       {
+        'id': 21,
+        'parentId': 0,
+        'name': '首页',
+        'type': 1,
+        'icon': 'cogs',
+        'order': 0,
+        'route': 'home',
+        'link': '',
+        'permission': ''
+      }, {
         'id': 1,
         'parentId': 0,
-        'title': '系统管理',
+        'name': '系统管理',
         'type': 0,
         'icon': 'cogs',
         'order': 0,
@@ -157,7 +178,7 @@
         'children': [{
           'id': 2,
           'parentId': 1,
-          'title': '用户管理',
+          'name': '用户管理',
           'type': 1,
           'icon': '',
           'order': 0,
@@ -167,7 +188,7 @@
           'children': [{
             'id': 3,
             'parentId': 2,
-            'title': '用户列表',
+            'name': '用户列表',
             'type': 2,
             'icon': '',
             'order': 0,
@@ -177,7 +198,7 @@
           }, {
             'id': 4,
             'parentId': 2,
-            'title': '添加用户',
+            'name': '添加用户',
             'type': 2,
             'icon': '',
             'order': 0,
@@ -187,7 +208,7 @@
           }, {
             'id': 5,
             'parentId': 2,
-            'title': '删除用户',
+            'name': '删除用户',
             'type': 2,
             'icon': '',
             'order': 0,
@@ -199,7 +220,7 @@
       }, {
         'id': 10,
         'parentId': 0,
-        'title': '商家管理',
+        'name': '商家管理',
         'type': 0,
         'icon': '',
         'order': 0,
@@ -209,17 +230,17 @@
         'children': [{
           'id': 11,
           'parentId': 10,
-          'title': '商家列表',
+          'name': '商家列表',
           'type': 1,
           'icon': '',
           'order': 0,
-          'route': '',
+          'route': 'store',
           'link': '',
           'permission': '',
           'children': [{
             'id': 12,
             'parentId': 11,
-            'title': '商家更新',
+            'name': '商家更新',
             'type': 2,
             'icon': '',
             'order': 0,
@@ -229,7 +250,7 @@
           }, {
             'id': 13,
             'parentId': 11,
-            'title': '商家删除',
+            'name': '商家删除',
             'type': 2,
             'icon': '',
             'order': 0,

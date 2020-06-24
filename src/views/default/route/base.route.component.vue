@@ -3,7 +3,7 @@
     <div class="layout-menu-p"
          element-loading-background="rgba(255, 255, 255, 0.8)"
     >
-      <menu-scroll-component ref="scroll" :ops="scrollOptions">
+      <menu-scroll-component ref="scroll">
         <div class="layout-menu"
              :class="{
             'layout-menu-collapse': __menuCollapseStatus,
@@ -53,15 +53,13 @@
 </template>
 
 <script>
-  import {sleep} from '@/utils/utils';
   import Vue from 'vue';
-
-  const MenuComponent = () => import('../layout/menu.component');
-  const HeaderComponent = () => import('../layout/header.component');
-  const PageTagsComponent = () => import('../layout/page-tags.component');
-  const MenuScrollComponent = () => import('../layout/menu.scroll.component');
   import vm from '@/vm.vue';
-  import router from '../../../route/route';
+
+  import MenuScrollComponent from '../layout/menu.scroll.component';
+  import PageTagsComponent from '../layout/page-tags.component';
+  import HeaderComponent from '../layout/header.component';
+  import MenuComponent from '../layout/menu.component';
 
   export default {
     components: {
@@ -72,23 +70,6 @@
     },
     data() {
       return {
-        scrollOptions: {
-          vuescroll: {
-            detectResize: true
-          },
-          rail: {
-            opacity: 0,
-          },
-          bar: {
-            size: '6px',
-            showDelay: 500,
-            keepShow: true,
-            background: '#ffffff',
-            opacity: .2,
-            specifyBorderRadius: '0',
-            onlyShowBarOnScroll: true
-          }
-        },
         scrollTop: {}
       };
     },
@@ -147,39 +128,156 @@
        * */
       initMenuScroll() {
         this.$once('menu-list-init', async () => {
-          this.$off('menu-list-init');
           await Vue.nextTick();
           this.$refs.scroll.menuActive();
         });
+      },
+      onCreated() {
+        this.__initStoreConfig(['menuCollapseStatus', 'logo', 'fixedHeader']);
+        this.initMenuScroll();
+        vm.$on('route-before-each', async ({to, from}) => {
+          if (this.__fixedHeader || !from) return;
+          this.scrollTop[from.name] = document.querySelector('.layout-content').scrollTop;
+        });
+
+        vm.$on('route-after-each', async ({to, from}) => {
+          if (this.__fixedHeader || !to) return;
+          await Vue.nextTick();
+          try {
+            document.querySelector('.layout-content').scrollTop = this.scrollTop[to.name] || 0;
+          } catch (e) {
+          }
+        });
+      },
+      onBeforeDestroy() {
+        vm.$off('route-before-each');
+        vm.$off('route-after-each');
       }
     },
     async mounted() {
-      this.initMenuScroll();
-      this.__initStoreConfig(['menuCollapseStatus', 'logo', 'fixedHeader']);
-      await sleep();
-      this.__initStoreConfig(['menuList']);
+      setTimeout(() => {
+        this.__initStoreConfig(['menuList']);
+      }, 2000);
+      return;
+      this.__setStoreConfig('menuList', [
+        {
+          id: 21,
+          parentId: 0,
+          name: '首页',
+          type: 1,
+          icon: 'cogs',
+          order: 0,
+          route: 'home',
+          link: '',
+          permission: '',
+        },
+        {
+          id: 1,
+          parentId: 0,
+          name: '系统管理',
+          type: 0,
+          icon: 'cogs',
+          order: 0,
+          route: '',
+          link: '',
+          permission: '',
+        },
+        {
+          id: 2,
+          parentId: 1,
+          name: '用户管理',
+          type: 1,
+          icon: '',
+          order: 0,
+          route: 'system-menu',
+          link: '',
+          permission: 'system-user',
+        },
+        {
+          id: 3,
+          parentId: 2,
+          name: '用户列表',
+          type: 2,
+          icon: '',
+          order: 0,
+          route: '',
+          link: '',
+          permission: 'system-user',
+        },
+        {
+          id: 4,
+          parentId: 2,
+          name: '添加用户',
+          type: 2,
+          icon: '',
+          order: 0,
+          route: '',
+          link: '',
+          permission: 'system-add-user',
+        },
+        {
+          id: 5,
+          parentId: 2,
+          name: '删除用户',
+          type: 2,
+          icon: '',
+          order: 0,
+          route: '',
+          link: '',
+          permission: 'system-remove-user',
+        },
+        {
+          id: 10,
+          parentId: 0,
+          name: '商家管理',
+          type: 0,
+          icon: '',
+          order: 0,
+          route: '',
+          link: '',
+          permission: '',
+        },
+        {
+          id: 11,
+          parentId: 10,
+          name: '商家列表',
+          type: 1,
+          icon: '',
+          order: 0,
+          route: 'store',
+          link: '',
+          permission: '',
+        },
+        {
+          id: 12,
+          parentId: 11,
+          name: '商家更新',
+          type: 2,
+          icon: '',
+          order: 0,
+          route: '',
+          link: '',
+          permission: 'store-update',
+        },
+        {
+          id: 13,
+          parentId: 11,
+          name: '商家删除',
+          type: 2,
+          icon: '',
+          order: 0,
+          route: '',
+          link: '',
+          permission: 'store-update',
+        }
+      ]);
+
     },
     created() {
-
-      vm.$on('route-before-each', async ({to, from}) => {
-        if (this.__fixedHeader || !from) return;
-        // console.log('route-before-each');
-        this.scrollTop[from.name] = document.querySelector('.layout-content').scrollTop;
-      });
-
-      vm.$on('route-after-each', async ({to, from}) => {
-        if (this.__fixedHeader || !to) return;
-        // console.log('route-after-each');
-        await Vue.nextTick();
-        try {
-          document.querySelector('.layout-content').scrollTop = this.scrollTop[to.name] || 0;
-        } catch (e) {
-        }
-      });
+      this.onCreated();
     },
     beforeDestroy() {
-      vm.$off('route-before-each');
-      vm.$off('route-after-each');
+      this.onBeforeDestroy();
     }
 
   };

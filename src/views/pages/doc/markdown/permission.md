@@ -22,6 +22,7 @@ this.__setStoreConfig('menuList', menuList);
 
 ```javascript
 this.__setPermissions(['p1','p2'])
+this.__setPermissions(['p1','p2,p3'])
 ```
 
 ---
@@ -35,6 +36,7 @@ this.__setPermissions(['p1','p2'])
 ```javascript
 this.__pushPermissions(['p1','p2'])
 this.__pushPermissions('p3')
+this.__pushPermissions('p3,p4')
 ```
 
 ---

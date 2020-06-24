@@ -422,8 +422,10 @@ export const menuList = [
     icon: '',
     route: 'system-menu',
     id: 2204,
-    parentId: 2201
+    parentId: 2201,
+    permission: 'system-menu, system-menu-m'
   },
+  //
   {
     id: 3123324,
     parentId: 2204,
@@ -433,7 +435,7 @@ export const menuList = [
     order: 0,
     route: '',
     link: '',
-    permission: 'system-user-list',
+    permission: 'system-user-list,system-user-items',
   },
   {
     id: 4356464,

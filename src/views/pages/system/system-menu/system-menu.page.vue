@@ -307,7 +307,7 @@
           order: 0,
           route: '',
           link: '',
-          permission: 'store-update',
+          permission: 'store-remove,store-delete',
         }
       ];
 

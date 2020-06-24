@@ -15,6 +15,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: 80vh !important;
 
     div:first-child {
       color: #409eff;

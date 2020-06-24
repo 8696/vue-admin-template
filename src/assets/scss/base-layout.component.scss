@@ -134,8 +134,8 @@
 
   .layout-header {
     height: 58px;
-    //box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
     z-index: 1;
+    min-height: 58px;
   }
 
   .el-menu--collapse {

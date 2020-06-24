@@ -3,7 +3,7 @@
     <div class="native-scroll" v-if="type === 1">
       <slot/>
     </div>
-    <vue-scroll ref="scroll" v-if="type === 2" v-bind="$attrs" v-on="$listeners">
+    <vue-scroll :ops="scrollOptions" ref="scroll" v-if="type === 2" v-bind="$attrs" v-on="$listeners">
       <slot/>
     </vue-scroll>
   </section>
@@ -18,7 +18,24 @@
     },
     data() {
       return {
-        type: 2 // 1 原生滚动条 | 2 vuescroll
+        type: 2, // 1 原生滚动条 | 2 vuescroll
+        scrollOptions:{
+          vuescroll: {
+            detectResize: true
+          },
+          rail: {
+            opacity: 0,
+          },
+          bar: {
+            size: '6px',
+            showDelay: 500,
+            keepShow: true,
+            background: '#ffffff',
+            opacity: .2,
+            specifyBorderRadius: '0',
+            onlyShowBarOnScroll: true
+          }
+        }
       };
     },
     created() {

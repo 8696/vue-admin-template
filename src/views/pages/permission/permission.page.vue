@@ -38,6 +38,7 @@
           <el-button size="small" @click="addRemove">添加删除权限</el-button>
           <el-button size="small" @click="removeUpdate">移除修改权限</el-button>
           <el-button size="small" @click="removeRemove">移除删除权限</el-button>
+          <el-button size="small" @click="addOther">添加其他</el-button>
           <el-button size="small" @click="clearAll">清空所有权限</el-button>
         </div>
       </div>
@@ -71,6 +72,11 @@
       addRemove() {
         // 支持数组
         this.__pushPermissions(['remove']);
+      },
+      // 添加其他测试
+      addOther() {
+        this.__pushPermissions(['aaa ', 'bbb ,  ccc  ', '', '  ']);
+        // this.__setPermissions(['aaa', 'bbb  ,  ccc     ', '', '  ']);
       },
       // 移除修改权限
       removeUpdate() {
