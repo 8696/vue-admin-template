@@ -71,7 +71,14 @@
         this.$refs[formName].validate(async (valid) => {
           if (valid) {
             window.sessionStorage.setItem('token', 'token value');
-            this.$router.push2('/');
+            if (this.$route.query.redirect) {
+              return this.$router.replace2({
+                name: this.$route.query.redirect
+              });
+            }
+            this.$router.replace2({
+              path: '/'
+            });
           } else {
             return false;
           }

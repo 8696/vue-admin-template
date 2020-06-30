@@ -320,7 +320,7 @@ const router = new Router(merge({
 router.beforeEach(async (to, from, next) => {
 
   if (to.name === 'login') return next();
-  if (!window.sessionStorage.getItem('token')) return next({name: 'login', replace: true});
+  if (!window.sessionStorage.getItem('token')) return next({name: 'login', query: {redirect: to.name}, replace: true});
 
   next();
 
