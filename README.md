@@ -11,7 +11,7 @@
 
 ### 介绍
 
-`vue-admin-template` 基于 `vue2.x`+`element-ui` 为基础搭建的后台管理系统模板，可以满足大部分中小应用
+`vue-admin-template` 是基于 `vue2.x`+`element-ui` 为基础搭建的后台管理系统模板，可以满足大部分中小应用
 
 ### 预览
 
@@ -42,7 +42,7 @@
 
 ### 环境支持
 
-|  Chrome|Firefox |Edge| Safari | nodeJS |
+|  Chrome|Firefox |Edge| Safari | nodeJs |
 | :----:| :----: | :----: |:----: |:----: |
 | <img width="24" src="http://vue-admin.icodekk.com/chrome_48x48.png"> | <img width="24" src="http://vue-admin.icodekk.com/firefox_48x48.png"> | <img width="24" src="http://vue-admin.icodekk.com/edge_48x48.png"> |   <img width="24" src="http://vue-admin.icodekk.com/safari_48x48.png"> | <img width="24" src="http://vue-admin.icodekk.com/nodejs_48_48.png"> |
 | * |  * | * | * |  ^10.0 |

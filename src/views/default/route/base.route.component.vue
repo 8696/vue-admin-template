@@ -157,7 +157,7 @@
     async mounted() {
       setTimeout(() => {
         this.__initStoreConfig(['menuList']);
-      }, 2000);
+      }, 1000);
       return;
       this.__setStoreConfig('menuList', [
         {
