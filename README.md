@@ -20,8 +20,8 @@
 
 ### 文档
 
-[深圳节点](http://vue-admin.icodekk.com/#/doc/folder)
-[香港节点](http://vue-admin.icode.link/#/doc/folder)
+[深圳节点](http://vue-admin.icodekk.com/#/doc/readme)
+[香港节点](http://vue-admin.icode.link/#/doc/readme)
 
 ### 快速开始
 
