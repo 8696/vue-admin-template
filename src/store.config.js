@@ -27,6 +27,13 @@ export const menuList = [
   },
 
   {
+    name: 'README',
+    icon: '',
+    route: 'readme',
+    id: 134,
+    parentId: 2
+  },
+  {
     name: '目录介绍',
     icon: '',
     route: 'folder',

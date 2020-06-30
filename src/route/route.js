@@ -22,17 +22,22 @@ const router = new Router(merge({
             name: 'home',
             component: () => import('@/views/pages/home/home.page')
           },
-
           {
-            path: '/card-layout',
-            name: 'card-layout',
-            component: () => import('@/views/pages/card-layout/card-layout.page')
+            path: '/doc/readme',
+            name: 'readme',
+            component: () => import('@/views/pages/doc/readme.page')
           },
           {
             path: '/doc/folder',
             name: 'folder',
             component: () => import('@/views/pages/doc/folder.page')
           },
+          {
+            path: '/card-layout',
+            name: 'card-layout',
+            component: () => import('@/views/pages/card-layout/card-layout.page')
+          },
+
           {
             path: '/doc/build',
             name: 'build',

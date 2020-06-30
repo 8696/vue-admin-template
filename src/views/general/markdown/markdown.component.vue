@@ -484,7 +484,7 @@
       border-left: 1px solid #ccc;
       border-top: 1px solid #ccc;
       padding: 10px;
-      text-align: left;
+      /*text-align: left;*/
     }
 
     table th {
