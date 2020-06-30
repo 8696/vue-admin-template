@@ -94,6 +94,22 @@
 [深圳节点](http://vue-admin.icodekk.com/#/doc/folder)
 [香港节点](http://vue-admin.icode.link/#/doc/folder)
 
+### 快速开始
+
+##### 开发
+
+> git clone https://github.com/8696/vue-admin-template.git
+>
+> cd vue-admin-template
+>
+> npm install
+>
+> npm run dev
+
+##### 打包
+
+[文档](http://vue-admin.icode.link/#/doc/build)
+
 ### 环境支持
 
 |  Chrome|Firefox |Edge| Safari | nodeJS |
@@ -101,4 +117,4 @@
 | <img width="24" src="http://vue-admin.icode.link/chrome_48x48.png"> | <img width="24" src="http://vue-admin.icode.link/firefox_48x48.png"> | <img width="24" src="http://vue-admin.icode.link/edge_48x48.png"> |   <img width="24" src="http://vue-admin.icode.link/safari_48x48.png"> | <img width="24" src="http://vue-admin.icode.link/nodejs_48_48.png"> |
 | * |  * | * | * |  ^10.0 |
 
-###
+
