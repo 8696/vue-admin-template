@@ -40,7 +40,9 @@
     },
     created() {
       let userAgent = navigator.userAgent.toLowerCase();
-      this.type = (userAgent.includes('chrome') || userAgent.includes('safari') || userAgent.includes('mac os')) ? 1 : 2;
+      this.type = (userAgent.includes('chrome') || userAgent.includes('safari') || userAgent.includes('mac os'))
+        && (!userAgent.includes('edge'))
+        ? 1 : 2;
     },
     methods: {
       menuActive() {
