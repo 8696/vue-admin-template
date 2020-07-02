@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
 import Vue from 'vue';
-import './polyfill/polyfill';
+import 'array-flat-polyfill';
 import router from './route/route';
 import store from './store/store';
 
