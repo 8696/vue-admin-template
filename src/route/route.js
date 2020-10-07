@@ -297,6 +297,14 @@ const router = new Router(merge({
             component: () => import('@/views/default/page/reload.page')
           },
           {
+            path: 'permission-denied',
+            name: '401',
+            meta: {
+              name: '401 Permission denied'
+            },
+            component: () => import('@/views/default/page/401.page')
+          },
+          {
             path: '*',
             name: '404',
             meta: {
@@ -310,6 +318,12 @@ const router = new Router(merge({
   },
 ));
 
+/**
+ * @description 路由白名单
+ * */
+const routeWhiteList = [
+  'login'
+];
 
 /**
  * 当一个导航触发时，全局前置守卫按照创建顺序调用。守卫是异步解析执行，此时导航在所有守卫 resolve 完之前一直处于 等待中。
@@ -323,12 +337,20 @@ const router = new Router(merge({
  * next(error): (2.4.0+) 如果传入 next 的参数是一个 Error 实例，则导航会被终止且该错误会被传递给 router.onError() 注册过的回调。
  * */
 router.beforeEach(async (to, from, next) => {
-
-  if (to.name === 'login') return next();
-  if (!window.sessionStorage.getItem('token')) return next({name: 'login', query: {redirect: to.name}, replace: true});
-
+  await new Vue().__appMounted();
+  // 白名单
+  if (routeWhiteList.includes(to.name)) return next();
+  // token 不存在
+  if (!window.localStorage.getItem('token')) {
+    return next({
+      name: 'login',
+      query: {
+        redirect: to.name,
+      },
+      replace: true
+    });
+  }
   next();
-
 });
 
 /**
@@ -346,7 +368,6 @@ router.afterEach(async (to, from) => {
 /**
  * */
 router.beforeEach(async (to, from, next) => {
-  await new Vue().__appMounted();
   vm.$emit('route-before-each', {to, from});
   next();
 });

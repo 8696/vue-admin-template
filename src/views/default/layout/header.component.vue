@@ -12,7 +12,7 @@
         <transition name="init">
           <el-breadcrumb separator="/" v-if="__menuCurrentPaths.length > 0">
             <el-breadcrumb-item :key="index" v-for="(item,index) in __menuCurrentPaths">
-              {{item.name}}
+              {{ item.name }}
             </el-breadcrumb-item>
           </el-breadcrumb>
         </transition>
@@ -45,60 +45,59 @@
 
 <script>
 
-  const screenFullLoad = () => import('screenfull');
+const screenFullLoad = () => import('screenfull');
 
-  export default {
-    data() {
-      return {
-      };
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    userActionHandleCommand(command) {
+      switch (command) {
+        case '个人中心':
+          this.$router.push2({name: 'personal'});
+          break;
+        case '退出登录':
+          this.$confirm('确认退出登录, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            // 清除缓存
+            window.localStorage.clear();
+            window.sessionStorage.clear();
+            this.__clearTagsList();
+            this.__clearMenuList();
+            this.__clearPermission();
+            this.$router.replace({name: 'login'});
+          }).catch(() => {
+          });
+          break;
+      }
     },
-    methods: {
-      userActionHandleCommand(command) {
-        switch (command) {
-          case '个人中心':
-            this.$router.push2({name: 'personal'});
-            break;
-          case '退出登录':
-            this.$confirm('确认退出登录, 是否继续?', '提示', {
-              confirmButtonText: '确定',
-              cancelButtonText: '取消',
-              type: 'warning'
-            }).then(() => {
-              // 清除缓存
-              window.localStorage.clear();
-              window.sessionStorage.clear();
-              this.__clearTagsList();
-              this.__clearMenuList();
-              this.__clearPermission();
-              this.$router.replace({name: 'login'});
-            }).catch(() => {
-            });
-            break;
-        }
-      },
-      /**
-       * @description 切换全屏
-       * */
-      async toggleScreenFull() {
-        const screenFullIns = await screenFullLoad();
-        screenFullIns.toggle();
-      },
+    /**
+     * @description 切换全屏
+     * */
+    async toggleScreenFull() {
+      const screenFullIns = await screenFullLoad();
+      screenFullIns.toggle();
+    },
 
-    }
-  };
+  }
+};
 </script>
 
 <style scoped lang="scss">
-  .router-transition-enter-active,
-  .router-transition-leave-active {
-    transition: all .3s cubic-bezier(0, 0.1, 0.25, .8), opacity 1s ease-out;
-    transform: translate(0, 0);
-  }
+.router-transition-enter-active,
+.router-transition-leave-active {
+  transition: all .3s cubic-bezier(0, 0.1, 0.25, .8), opacity 1s ease-out;
+  transform: translate(0, 0);
+}
 
-  .router-transition-enter,
-  .router-transition-leave-to {
-    opacity: 0;
-    transform: translate(30%, 0);
-  }
+.router-transition-enter,
+.router-transition-leave-to {
+  opacity: 0;
+  transform: translate(30%, 0);
+}
 
 </style>

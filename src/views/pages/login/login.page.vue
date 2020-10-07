@@ -70,7 +70,7 @@
       submitForm(formName) {
         this.$refs[formName].validate(async (valid) => {
           if (valid) {
-            window.sessionStorage.setItem('token', 'token value');
+            window.localStorage.setItem('token', 'token value');
             if (this.$route.query.redirect) {
               return this.$router.replace2({
                 name: this.$route.query.redirect

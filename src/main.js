@@ -18,8 +18,7 @@ import './assets/scss/app.scss';
  * */
 import vm from './vm.vue';
 
-Vue.prototype.vm = vm;
-Vue.vm = Vue.prototype.vm;
+Vue.vm = Vue.prototype.vm = vm;
 
 /**
  * @description 全局 mixin

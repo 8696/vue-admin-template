@@ -56,6 +56,11 @@
     created() {
       this.__pushPermissions('update');
     },
+    mounted() {
+      // setInterval(() => {
+      //   console.log(this.hasPermission(['update', 'remove']))
+      // }, 2000)
+    },
     computed: {},
     methods: {
       update() {

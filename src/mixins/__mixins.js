@@ -3,6 +3,8 @@ import {cloneDeep, getParentJson} from '@/utils/utils';
 import * as storeConfig from '@/store.config';
 import {titleSuffix} from '@/config';
 import vm from '@/vm.vue';
+import menuData from '../menu.data';
+import store from '../store/store';
 
 export default {
 
@@ -150,11 +152,6 @@ export default {
       this.__initMenuCurrentPaths();
       // ------- 追加 tags 的一项
       this.__pushTagsList(this.__currentRoute);
-
-
-          // document.querySelector('.layout-content').scrollTop = obj[from.name] || 0;
-
-
     },
     /**
      * @description 设置当前菜单的路由父子集合
@@ -232,7 +229,6 @@ export default {
      * @param itemKey {Array<String>}
      * */
     __initStoreConfig(itemKey) {
-
       Object.keys(storeConfig).forEach(item => {
         if (!itemKey.includes(item)) return;
         this.__setStoreConfig(item, storeConfig[item]);
@@ -334,13 +330,13 @@ export default {
       this.__setMenuCurrentPaths([]);
     },
     /**
-     * @description 判断是否存在权限
+     * @description 判断是否存在权限、数组则需要每一项都得存在
      * @param permission {String | Array<String>}
      * @return {Boolean}
      * */
     hasPermission(permission) {
       permission = Array.isArray(permission) ? permission : [permission];
-      return permission.some(item => {
+      return permission.every(item => {
         return this.__permissions.includes(item);
       });
     },
