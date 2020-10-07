@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
+NProgress.configure({easing: 'ease', speed: 600});
 Vue.use(Router);
 import merge from 'webpack-merge';
 import vm from '@/vm.vue';
@@ -280,6 +283,9 @@ const router = new Router(merge({
           {
             path: '/login',
             name: 'login',
+            meta: {
+              permission: false
+            },
             component: () => import('@/views/pages/login/login.page')
           }
         ]
@@ -292,7 +298,8 @@ const router = new Router(merge({
             path: 'reload',
             name: 'reload',
             meta: {
-              name: '...'
+              name: '...',
+              permission: false
             },
             component: () => import('@/views/default/page/reload.page')
           },
@@ -300,7 +307,8 @@ const router = new Router(merge({
             path: 'permission-denied',
             name: '401',
             meta: {
-              name: '401 Permission denied'
+              name: '401 Permission denied',
+              permission: false
             },
             component: () => import('@/views/default/page/401.page')
           },
@@ -308,7 +316,8 @@ const router = new Router(merge({
             path: '*',
             name: '404',
             meta: {
-              name: '404 Not found'
+              name: '404 Not found',
+              permission: false
             },
             component: () => import('@/views/default/page/404.page')
           }
@@ -342,13 +351,11 @@ router.beforeEach(async (to, from, next) => {
   if (routeWhiteList.includes(to.name)) return next();
   // token 不存在
   if (!window.localStorage.getItem('token')) {
-    return next({
-      name: 'login',
-      query: {
-        redirect: to.name,
-      },
-      replace: true
-    });
+    return router.app.__logout();
+  }
+  // 校验权限
+  if (!router.app.__testPermissions(to)) {
+    return router.app.__notPermission();
   }
   next();
 });
@@ -368,10 +375,12 @@ router.afterEach(async (to, from) => {
 /**
  * */
 router.beforeEach(async (to, from, next) => {
+  NProgress.start();
   vm.$emit('route-before-each', {to, from});
   next();
 });
 router.afterEach(async (to, from) => {
+  NProgress.done();
   vm.$emit('route-after-each', {to, from});
 });
 

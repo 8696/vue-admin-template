@@ -461,11 +461,11 @@ export default [
     permission: 'system-add-user',
   },
   //
-  {
-    name: '测试页面',
-    icon: 'el-icon-football',
-    route: 'test',
-    id: 1801,
-    parentId: 0
-  },
+  // {
+  //   name: '测试页面',
+  //   icon: 'el-icon-football',
+  //   route: 'test',
+  //   id: 1801,
+  //   parentId: 0
+  // }
 ];

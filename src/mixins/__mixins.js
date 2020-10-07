@@ -1,10 +1,8 @@
 import {mapState, mapMutations} from 'vuex';
 import {cloneDeep, getParentJson} from '@/utils/utils';
 import * as storeConfig from '@/store.config';
-import {titleSuffix} from '@/config';
+import {titleSuffix, permission} from '@/config';
 import vm from '@/vm.vue';
-import menuData from '../menu.data';
-import store from '../store/store';
 
 export default {
 
@@ -345,6 +343,36 @@ export default {
      * */
     __clearPermission() {
       this.__setPermissions([]);
+    },
+    /**
+     * @description 测试权限
+     * */
+    __testPermissions(to, menuList) {
+      if (!permission) return true;
+      const p = to.meta && to.meta.permission === false;
+      if (p) return true;
+      menuList = this.__menuList.length > 1 ? this.__menuList : (menuList || []);
+      if (menuList.length === 0) return true;
+      return menuList.some(item => item.route === to.name);
+    },
+    /**
+     * @description 退出
+     * */
+    __logout() {
+      window.localStorage.clear();
+      window.sessionStorage.clear();
+      this.__clearTagsList();
+      this.__clearMenuList();
+      this.__clearPermission();
+      this.$router.replace2({name: 'login'});
+    },
+    /**
+     * @description 没有权限后续流程
+     * */
+    __notPermission(callBack) {
+      this.$router.replace2({name: '401'}, () => {
+        typeof callBack === 'function' && callBack();
+      });
     }
   }
 };

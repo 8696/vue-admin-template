@@ -68,6 +68,7 @@ import MenuScrollComponent from '../layout/menu.scroll.component';
 import PageTagsComponent from '../layout/page-tags.component';
 import HeaderComponent from '../layout/header.component';
 import MenuComponent from '../layout/menu.component';
+import remoteMenuData from '../../../remote-menu.data';
 
 export default {
   components: {
@@ -160,127 +161,20 @@ export default {
     onBeforeDestroy() {
       vm.$off('route-before-each');
       vm.$off('route-after-each');
+    },
+    setMenuStoreConfig(menuData) {
+      if (!this.__testPermissions(this.$route, menuData)) {
+        return this.__notPermission(() => {
+          this.__setStoreConfig('menuList', menuData);
+        });
+      }
+      this.__setStoreConfig('menuList', menuData);
     }
   },
   async mounted() {
-    setTimeout(() => {
-      this.__initStoreConfig(['menuList']);
-      // this.__setStoreConfig('menuList', [])
-      // console.log(this.$route)
-    }, 3000);
-    return;
-    this.__setStoreConfig('menuList', [
-      {
-        id: 21,
-        parentId: 0,
-        name: '首页',
-        type: 1,
-        icon: 'cogs',
-        order: 0,
-        route: 'home',
-        link: '',
-        permission: '',
-      },
-      {
-        id: 1,
-        parentId: 0,
-        name: '系统管理',
-        type: 0,
-        icon: 'cogs',
-        order: 0,
-        route: '',
-        link: '',
-        permission: '',
-      },
-      {
-        id: 2,
-        parentId: 1,
-        name: '用户管理',
-        type: 1,
-        icon: '',
-        order: 0,
-        route: 'system-menu',
-        link: '',
-        permission: 'system-user',
-      },
-      {
-        id: 3,
-        parentId: 2,
-        name: '用户列表',
-        type: 2,
-        icon: '',
-        order: 0,
-        route: '',
-        link: '',
-        permission: 'system-user',
-      },
-      {
-        id: 4,
-        parentId: 2,
-        name: '添加用户',
-        type: 2,
-        icon: '',
-        order: 0,
-        route: '',
-        link: '',
-        permission: 'system-add-user',
-      },
-      {
-        id: 5,
-        parentId: 2,
-        name: '删除用户',
-        type: 2,
-        icon: '',
-        order: 0,
-        route: '',
-        link: '',
-        permission: 'system-remove-user',
-      },
-      {
-        id: 10,
-        parentId: 0,
-        name: '商家管理',
-        type: 0,
-        icon: '',
-        order: 0,
-        route: '',
-        link: '',
-        permission: '',
-      },
-      {
-        id: 11,
-        parentId: 10,
-        name: '商家列表',
-        type: 1,
-        icon: '',
-        order: 0,
-        route: 'store',
-        link: '',
-        permission: '',
-      },
-      {
-        id: 12,
-        parentId: 11,
-        name: '商家更新',
-        type: 2,
-        icon: '',
-        order: 0,
-        route: '',
-        link: '',
-        permission: 'store-update',
-      },
-      {
-        id: 13,
-        parentId: 11,
-        name: '商家删除',
-        type: 2,
-        icon: '',
-        order: 0,
-        route: '',
-        link: '',
-        permission: 'store-update',
-      }
-    ]);
+    setTimeout(async () => {
+      this.setMenuStoreConfig(remoteMenuData)
+    }, 2000);
   },
   created() {
     this.onCreated();

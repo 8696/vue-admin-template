@@ -24,6 +24,7 @@
       return {};
     },
     created() {
+      console.log('test created')
     },
     mounted() {
     },

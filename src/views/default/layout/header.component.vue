@@ -63,13 +63,7 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            // 清除缓存
-            window.localStorage.clear();
-            window.sessionStorage.clear();
-            this.__clearTagsList();
-            this.__clearMenuList();
-            this.__clearPermission();
-            this.$router.replace({name: 'login'});
+            this.__logout();
           }).catch(() => {
           });
           break;
