@@ -63,7 +63,7 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            this.__logout();
+            this.__logout(this.$route);
           }).catch(() => {
           });
           break;

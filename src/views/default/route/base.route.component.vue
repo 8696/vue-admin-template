@@ -172,6 +172,7 @@ export default {
     }
   },
   async mounted() {
+    // 这里请求数据
     setTimeout(async () => {
       this.setMenuStoreConfig(remoteMenuData)
     }, 2000);

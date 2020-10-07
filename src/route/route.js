@@ -351,7 +351,7 @@ router.beforeEach(async (to, from, next) => {
   if (routeWhiteList.includes(to.name)) return next();
   // token 不存在
   if (!window.localStorage.getItem('token')) {
-    return router.app.__logout();
+    return router.app.__logout(from.name ? from : to);
   }
   // 校验权限
   if (!router.app.__testPermissions(to)) {

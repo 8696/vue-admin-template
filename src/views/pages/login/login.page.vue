@@ -71,9 +71,13 @@
         this.$refs[formName].validate(async (valid) => {
           if (valid) {
             window.localStorage.setItem('token', 'token value');
-            if (this.$route.query.redirect) {
+            if (this.$route.query.__redirect) {
+              const redirect = this.$route.query.__redirect
+              const query = this.$route.query
+              delete query.__redirect
               return this.$router.replace2({
-                name: this.$route.query.redirect
+                name: redirect,
+                query
               });
             }
             this.$router.replace2({

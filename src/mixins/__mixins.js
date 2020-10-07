@@ -357,14 +357,25 @@ export default {
     },
     /**
      * @description 退出
+     * @param route {Object | Null}
      * */
-    __logout() {
+    __logout(route = null) {
       window.localStorage.clear();
       window.sessionStorage.clear();
       this.__clearTagsList();
       this.__clearMenuList();
       this.__clearPermission();
-      this.$router.replace2({name: 'login'});
+      if (route === null) {
+        return this.$router.replace2({
+          name: 'login'
+        });
+      }
+      return this.$router.replace2({
+        name: 'login',
+        query: Object.assign({
+          __redirect: route.name
+        }, route.query)
+      });
     },
     /**
      * @description 没有权限后续流程
