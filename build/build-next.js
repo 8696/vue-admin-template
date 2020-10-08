@@ -1,6 +1,8 @@
 const fsExtra = require('fs-extra');
 const fs = require('fs');
 const path = require('path');
+const cheerio = require('cheerio');
+
 //
 let buildRootStaticPath = require('../config/build.config').buildRootStaticPath;
 buildRootStaticPath = (function () {
@@ -83,7 +85,8 @@ exports.buildNext = function () {
       await fsExtra.copy(path.resolve(distPath, 'static'), productionServerStaticPath);
 
       // 复制入口文件
-      await fsExtra.copy(path.resolve(distPath, 'index.html'), path.resolve(productionServerPath, 'index.html'));
+      const newIndexHtmlFilePath = path.resolve(productionServerPath, 'index.html')
+      await fsExtra.copy(path.resolve(distPath, 'index.html'), newIndexHtmlFilePath);
       fs.writeFileSync(path.resolve(productionServerPath, 'index.html'), htmlContent);
 
       // 复制到打包历史
@@ -91,6 +94,7 @@ exports.buildNext = function () {
       // 删除cli打包的文件
       await fsExtra.remove(path.resolve(distPath, 'index.html'));
       await fsExtra.remove(path.resolve(distPath, 'static'));
+      makeAsyncLoading(newIndexHtmlFilePath)
       try {
         fs.writeFileSync(path.resolve(os.homedir(), './.vue-8696-build.time'), String(new Date().getTime() - buildStartTime));
       }catch (e) {
@@ -133,4 +137,117 @@ function getDateTime(dateTime = 'y-m-d h:i:s', time = 0) {
     .replace(/h/g, h < 10 ? '0' + h : h)
     .replace(/i/g, i < 10 ? '0' + i : i)
     .replace(/s/g, s < 10 ? '0' + s : s);
+}
+
+function makeAsyncLoading(indexFilePath) {
+  const filePath = indexFilePath
+  const content = fs.readFileSync(filePath).toString();
+  const v = /window.__v = '([0-9]+)'/.exec(content)[1];
+  const $ = cheerio.load(content);
+  const script = $('script');
+  const scriptLink = [];
+  for (let i = 0; i < script.length; i++) {
+    const attribs = script[i].attribs;
+    if (attribs.src && new RegExp(v).test(attribs.src)) {
+      scriptLink.push(attribs.src);
+      script.eq(i).remove();
+    }
+  }
+  let appendHtml = `
+<script>
+  (function () {
+    function xhrRequest(link) {
+      return new Promise(resolve => {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', link, true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            resolve(xhr.responseText);
+          }
+        };
+      });
+    }
+
+    function makeLoading() {
+      let style = document.createElement('style');
+      style.innerHTML = \`@keyframes va-rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(1turn);
+            }
+        }
+
+        #va-loading {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            z-index: 2020;
+        }
+
+        #va-loading span {
+            color: #666;
+            font-size: 20px;
+            line-height: 0;
+            position: relative;
+            top: -14vh;
+        }
+
+        #va-loading span:first-child {
+            display: inline-block;
+            margin-right: 16px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid;
+            border-color: #666 #666 transparent;
+            animation: va-rotate 1s linear infinite;
+        }\`;
+      document.body.appendChild(style);
+      let html = document.createElement('div');
+      html.innerHTML = \`<div id="va-loading">
+    <span></span><span>loading...</span>
+</div>\`;
+      document.body.appendChild(html);
+    }
+
+    function requestJs(links) {
+      let request = [];
+      links.forEach(function (link) {
+        request.push(xhrRequest(link));
+      });
+      Promise.all(request)
+        .then(function (res) {
+          res.forEach(function (item) {
+            document.getElementById('va-loading').parentNode.style.display = 'none';
+            let script = document.createElement('script');
+            script.innerHTML = item;
+            document.body.appendChild(script);
+          });
+        });
+    }
+    window.closeVaLoading = function () {
+      document.getElementById('va-loading').parentNode.style.display = 'none';
+    };
+    document.onreadystatechange = function () {
+      if (document.readyState === 'interactive') {
+        makeLoading();
+        requestJs(REQUEST_JS_LIST)
+      }
+    };
+  }());
+</script>
+`;
+  console.log($.html());
+  appendHtml = appendHtml.replace('REQUEST_JS_LIST', JSON.stringify(scriptLink))
+  console.log();
+  fs.writeFileSync(filePath, $.html() + appendHtml)
 }
