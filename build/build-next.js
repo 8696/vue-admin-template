@@ -85,7 +85,7 @@ exports.buildNext = function () {
       await fsExtra.copy(path.resolve(distPath, 'static'), productionServerStaticPath);
 
       // 复制入口文件
-      const newIndexHtmlFilePath = path.resolve(productionServerPath, 'index.html')
+      const newIndexHtmlFilePath = path.resolve(productionServerPath, 'index.html');
       await fsExtra.copy(path.resolve(distPath, 'index.html'), newIndexHtmlFilePath);
       fs.writeFileSync(path.resolve(productionServerPath, 'index.html'), htmlContent);
 
@@ -94,10 +94,10 @@ exports.buildNext = function () {
       // 删除cli打包的文件
       await fsExtra.remove(path.resolve(distPath, 'index.html'));
       await fsExtra.remove(path.resolve(distPath, 'static'));
-      makeAsyncLoading(newIndexHtmlFilePath)
+      makeAsyncLoading(newIndexHtmlFilePath);
       try {
         fs.writeFileSync(path.resolve(os.homedir(), './.vue-8696-build.time'), String(new Date().getTime() - buildStartTime));
-      }catch (e) {
+      } catch (e) {
       }
 
       console.log(chalk.cyan('build complete: '));
@@ -140,7 +140,7 @@ function getDateTime(dateTime = 'y-m-d h:i:s', time = 0) {
 }
 
 function makeAsyncLoading(indexFilePath) {
-  const filePath = indexFilePath
+  const filePath = indexFilePath;
   const content = fs.readFileSync(filePath).toString();
   const v = /window.__v = '([0-9]+)'/.exec(content)[1];
   const $ = cheerio.load(content);
@@ -191,6 +191,7 @@ function makeAsyncLoading(indexFilePath) {
             justify-content: center;
             background: #fff;
             z-index: 2020;
+            transition: all 1s;
         }
 
         #va-loading span {
@@ -227,7 +228,6 @@ function makeAsyncLoading(indexFilePath) {
       Promise.all(request)
         .then(function (res) {
           res.forEach(function (item) {
-            document.getElementById('va-loading').parentNode.style.display = 'none';
             let script = document.createElement('script');
             script.innerHTML = item;
             document.body.appendChild(script);
@@ -235,7 +235,10 @@ function makeAsyncLoading(indexFilePath) {
         });
     }
     window.closeVaLoading = function () {
-      document.getElementById('va-loading').parentNode.style.display = 'none';
+      document.getElementById('va-loading').style.opacity = '0'
+      setTimeout(function() {
+         document.getElementById('va-loading').parentNode.style.display = 'none';
+      }, 1000)
     };
     document.onreadystatechange = function () {
       if (document.readyState === 'interactive') {
@@ -247,7 +250,7 @@ function makeAsyncLoading(indexFilePath) {
 </script>
 `;
   console.log($.html());
-  appendHtml = appendHtml.replace('REQUEST_JS_LIST', JSON.stringify(scriptLink))
+  appendHtml = appendHtml.replace('REQUEST_JS_LIST', JSON.stringify(scriptLink));
   console.log();
-  fs.writeFileSync(filePath, $.html() + appendHtml)
+  fs.writeFileSync(filePath, $.html() + appendHtml);
 }
