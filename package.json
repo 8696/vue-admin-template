@@ -2,12 +2,15 @@
   "name": "vue-admin-template",
   "version": "0.0.2019",
   "description": "基于vue2.x+element-ui为基础搭建的后台管理系统模板，可以满足大部分中小应用",
-  "author": "longjinwen<204084802@qq.com>",
-  "private": false,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js production"
+  },
+  "private": false,
+  "author": {
+    "name": "longjinwen",
+    "email": "204084802@qq.com"
   },
   "repository": {
     "type": "git",

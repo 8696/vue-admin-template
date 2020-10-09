@@ -26,6 +26,9 @@ body{
   #nprogress .bar{
     background-image: linear-gradient(to right, #41b883, #41b883, #409EFF);
   }
+  #nprogress .spinner{
+    top: 20px;
+  }
 }
 @import "common";
 @import "base-layout.component";

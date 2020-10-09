@@ -2,7 +2,6 @@ const fsExtra = require('fs-extra');
 const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
-
 //
 let buildRootStaticPath = require('../config/build.config').buildRootStaticPath;
 buildRootStaticPath = (function () {
@@ -18,7 +17,7 @@ const chalk = require('chalk');
 const os = require('os');
 let consumingTime;
 try {
-  consumingTime = Number(fs.readFileSync(path.resolve(os.homedir(), './.vue-8696-build.time')).toString());
+  consumingTime = Number(fs.readFileSync(path.resolve(os.homedir(), './.vue-admin-template-8696.time')).toString());
 } catch (e) {
   consumingTime = 100000;
 }
@@ -77,9 +76,7 @@ exports.buildNext = function () {
       htmlContent = htmlContent.replace(/<\/head>/,
         `<script type="text/javascript">window.__v = '${v}';window.__static = '/${assetsPublicPath}';</script></head>`);
 
-      Array.from(new Array(100)).map(function () {
-        htmlContent = '\r\n' + htmlContent;
-      });
+
 
       // 复制打包的文件
       await fsExtra.copy(path.resolve(distPath, 'static'), productionServerStaticPath);
@@ -94,15 +91,21 @@ exports.buildNext = function () {
       // 删除cli打包的文件
       await fsExtra.remove(path.resolve(distPath, 'index.html'));
       await fsExtra.remove(path.resolve(distPath, 'static'));
-      makeAsyncLoading(newIndexHtmlFilePath);
+      //
+      const buildUseTime = new Date().getTime() - buildStartTime
+      makeAsyncLoading(newIndexHtmlFilePath, {
+        v,
+        buildUseTime,
+        buildTime
+      });
       try {
-        fs.writeFileSync(path.resolve(os.homedir(), './.vue-8696-build.time'), String(new Date().getTime() - buildStartTime));
+        fs.writeFileSync(path.resolve(os.homedir(), './.vue-admin-template-8696.time'), String(new Date().getTime() - buildStartTime));
       } catch (e) {
       }
 
       console.log(chalk.cyan('build complete: '));
       console.log(chalk.cyan(`    v:            ${v}`));
-      console.log(chalk.cyan(`    time:         ${new Date().getTime() - buildStartTime}`));
+      console.log(chalk.cyan(`    time:         ${buildUseTime}`));
       console.log(chalk.cyan(`    build time:   ${buildTime}`));
       console.log(chalk.cyan(`    static path:  ${productionServerPath}`));
       console.log(chalk.cyan(`    preview:      node server.js`));
@@ -139,7 +142,7 @@ function getDateTime(dateTime = 'y-m-d h:i:s', time = 0) {
     .replace(/s/g, s < 10 ? '0' + s : s);
 }
 
-function makeAsyncLoading(indexFilePath) {
+function makeAsyncLoading(indexFilePath, buildInfo) {
   const filePath = indexFilePath;
   const content = fs.readFileSync(filePath).toString();
   const v = /window.__v = '([0-9]+)'/.exec(content)[1];
@@ -157,7 +160,7 @@ function makeAsyncLoading(indexFilePath) {
 <script>
   (function () {
     function xhrRequest(link) {
-      return new Promise(resolve => {
+      return new Promise(function (resolve){
         let xhr = new XMLHttpRequest();
         xhr.open('GET', link, true);
         xhr.send();
@@ -197,10 +200,14 @@ function makeAsyncLoading(indexFilePath) {
         #va-loading span {
             color: #666;
             font-size: 20px;
-            line-height: 0;
+        }
+         #va-loading div{
             position: relative;
             top: -14vh;
-        }
+            display: flex;
+            justify-content: center;
+            align-items: center;
+         }
 
         #va-loading span:first-child {
             display: inline-block;
@@ -211,12 +218,12 @@ function makeAsyncLoading(indexFilePath) {
             border: 2px solid;
             border-color: #666 #666 transparent;
             animation: va-rotate 1s linear infinite;
+            position: relative;
+            top: 1px;
         }\`;
       document.body.appendChild(style);
       let html = document.createElement('div');
-      html.innerHTML = \`<div id="va-loading">
-    <span></span><span>loading...</span>
-</div>\`;
+      html.innerHTML = \`<div id="va-loading"><div><span></span><span>loading...</span></div></div>\`;
       document.body.appendChild(html);
     }
 
@@ -235,10 +242,10 @@ function makeAsyncLoading(indexFilePath) {
         });
     }
     window.closeVaLoading = function () {
-      document.getElementById('va-loading').style.opacity = '0'
+      document.getElementById('va-loading').style.opacity = '0';
       setTimeout(function() {
-         document.getElementById('va-loading').parentNode.style.display = 'none';
-      }, 1000)
+         document.getElementById('va-loading').parentNode.remove();
+      }, 1000);
     };
     document.onreadystatechange = function () {
       if (document.readyState === 'interactive') {
@@ -249,8 +256,10 @@ function makeAsyncLoading(indexFilePath) {
   }());
 </script>
 `;
-  console.log($.html());
   appendHtml = appendHtml.replace('REQUEST_JS_LIST', JSON.stringify(scriptLink));
-  console.log();
-  fs.writeFileSync(filePath, $.html() + appendHtml);
+  let htmlContent = $.html()
+  Array.from(new Array(100)).forEach(function (_, index) {
+    htmlContent = `\r\n` + htmlContent;
+  });
+  fs.writeFileSync(filePath, htmlContent + appendHtml);
 }
