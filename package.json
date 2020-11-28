@@ -3,9 +3,14 @@
   "version": "0.0.2019",
   "description": "基于vue2.x+element-ui为基础搭建的后台管理系统模板，可以满足大部分中小应用",
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "build": "node build/build.js production"
+    "local:dev": "cross-env ENV_CONFIG=dev webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "local:test": "cross-env ENV_CONFIG=test webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "local:beta": "cross-env ENV_CONFIG=beta webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "local:prod": "cross-env ENV_CONFIG=prod webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "build:dev": "cross-env ENV_CONFIG=dev node build/build.js production",
+    "build:test": "cross-env ENV_CONFIG=test node build/build.js production",
+    "build:beta": "cross-env ENV_CONFIG=beta node build/build.js production",
+    "build:prod": "cross-env ENV_CONFIG=prod node build/build.js production"
   },
   "private": false,
   "author": {
@@ -29,7 +34,6 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/vue-fontawesome": "^0.1.9",
     "address": "^1.1.2",
-    "array-flat-polyfill": "^1.0.1",
     "autoprefixer": "^7.1.2",
     "axios": "^0.19.0",
     "babel-core": "^6.22.1",
@@ -45,6 +49,7 @@
     "chalk": "^2.0.1",
     "cheerio": "^1.0.0-rc.3",
     "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^7.0.2",
     "css-loader": "^0.28.0",
     "element-ui": "^2.13.0",
     "es6-promise": "^4.2.8",
@@ -58,7 +63,7 @@
     "html-webpack-plugin": "^2.30.1",
     "js-big-decimal": "^1.2.2",
     "koa": "^2.7.0",
-    "koa-static": "^5.0.0",
+    "koa2-static2": "^1.0.0",
     "lodash": "^4.17.15",
     "markdown-loader": "^5.1.0",
     "marked": "^1.0.0",

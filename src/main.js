@@ -6,6 +6,8 @@ import router from './route/route';
 import store from './store/store';
 
 console.log('vue version: ' + Vue.version);
+console.log(process.env.NODE_ENV);
+console.log(process.env.ENV_CONFIG);
 
 /**
  * @description 全局 css

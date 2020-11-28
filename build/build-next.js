@@ -34,12 +34,12 @@ let timer = setInterval(function () {
     p = String(parseInt(p * 100));
     if (pp !== p) {
       console.log(chalk.green(
-        `building----------------------------------------------${v}---` + p + '%'));
+        `building-ENV_CONFIG=${process.env.ENV_CONFIG}---------------------------------------------v=${v}---` + p + '%'));
     }
     pp = p;
     return;
   }
-  console.log(chalk.green(`building----------------------------------------------${v}`));
+  console.log(chalk.green(`building-ENV_CONFIG=${process.env.ENV_CONFIG}---------------------------------------------v=${v}`));
   clearInterval(timer);
 }, 100);
 

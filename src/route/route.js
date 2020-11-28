@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import { permissionWhiteList, routeWhiteList } from '../config';
+import {permissionWhiteList, routeWhiteList} from '../config';
 
 NProgress.configure({easing: 'ease', speed: 600});
 Vue.use(Router);
@@ -322,7 +322,6 @@ const router = new Router(merge({
     ]
   },
 ));
-
 
 
 /**
