@@ -1,8 +1,8 @@
 import {mapState, mapMutations} from 'vuex';
-import {cloneDeep, getParentJson} from '@/utils/utils';
-import * as storeConfig from '@/store.config';
-import {titleSuffix, permission} from '@/config';
-import vm from '@/vm.vue';
+import {cloneDeep, getParentJson} from '../utils/utils';
+import * as storeConfig from '../store.config';
+import {titleSuffix, permission, permissionWhiteList} from '../config';
+import vm from '../vm.vue';
 
 export default {
 
@@ -348,9 +348,8 @@ export default {
      * @description 测试权限
      * */
     __testPermissions(to, menuList) {
+      if (permissionWhiteList.includes(to.name)) return true;
       if (!permission) return true;
-      const p = to.meta && to.meta.permission === false;
-      if (p) return true;
       menuList = this.__menuList.length > 1 ? this.__menuList : (menuList || []);
       if (menuList.length === 0) return true;
       return menuList.some(item => item.route === to.name);

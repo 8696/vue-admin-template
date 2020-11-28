@@ -59,7 +59,7 @@
 
 <script>
   import vueScroll from 'vuescroll';
-  import {cloneDeep} from '@/utils/utils';
+  import {cloneDeep} from '../../../utils/utils';
 
   export default {
     components: {vueScroll},

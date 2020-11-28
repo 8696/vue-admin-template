@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import vm from '@/vm.vue';
+  import vm from '../vm.vue';
 
   export default {
     async mounted() {

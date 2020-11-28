@@ -2,11 +2,12 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+import { permissionWhiteList, routeWhiteList } from '../config';
 
 NProgress.configure({easing: 'ease', speed: 600});
 Vue.use(Router);
 import merge from 'webpack-merge';
-import vm from '@/vm.vue';
+import vm from '../vm.vue';
 
 const router = new Router(merge({
     routes: [
@@ -283,9 +284,7 @@ const router = new Router(merge({
           {
             path: '/login',
             name: 'login',
-            meta: {
-              permission: false
-            },
+            meta: {},
             component: () => import('@/views/pages/login/login.page')
           }
         ]
@@ -298,8 +297,7 @@ const router = new Router(merge({
             path: 'reload',
             name: 'reload',
             meta: {
-              name: '...',
-              permission: false
+              name: '...'
             },
             component: () => import('@/views/default/page/reload.page')
           },
@@ -307,8 +305,7 @@ const router = new Router(merge({
             path: 'permission-denied',
             name: '401',
             meta: {
-              name: '401 Permission denied',
-              permission: false
+              name: '401 Permission denied'
             },
             component: () => import('@/views/default/page/401.page')
           },
@@ -316,8 +313,7 @@ const router = new Router(merge({
             path: '*',
             name: '404',
             meta: {
-              name: '404 Not found',
-              permission: false
+              name: '404 Not found'
             },
             component: () => import('@/views/default/page/404.page')
           }
@@ -327,12 +323,7 @@ const router = new Router(merge({
   },
 ));
 
-/**
- * @description 路由白名单
- * */
-const routeWhiteList = [
-  'login'
-];
+
 
 /**
  * 当一个导航触发时，全局前置守卫按照创建顺序调用。守卫是异步解析执行，此时导航在所有守卫 resolve 完之前一直处于 等待中。
@@ -353,6 +344,8 @@ router.beforeEach(async (to, from, next) => {
   if (!window.localStorage.getItem('token')) {
     return router.app.__logout(from.name ? from : to);
   }
+  // 权限白名单
+  if (permissionWhiteList.includes(to.name)) return next();
   // 校验权限
   if (!router.app.__testPermissions(to)) {
     return router.app.__notPermission();

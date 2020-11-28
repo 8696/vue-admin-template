@@ -62,7 +62,7 @@
 
 <script>
 import Vue from 'vue';
-import vm from '@/vm.vue';
+import vm from '../../../vm.vue';
 
 import MenuScrollComponent from '../layout/menu.scroll.component';
 import PageTagsComponent from '../layout/page-tags.component';

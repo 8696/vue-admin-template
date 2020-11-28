@@ -13,3 +13,17 @@ export const titleSuffix = ' - Vue Admin template';
  * @type {Boolean}
  * */
 export const permission = true
+
+/**
+ * @description 权限白名单
+ * */
+export const permissionWhiteList = [
+  'personal', '404', '401', 'reload'
+];
+
+/**
+ * @description 路由白名单
+ * */
+export const routeWhiteList = [
+  'login'
+];
