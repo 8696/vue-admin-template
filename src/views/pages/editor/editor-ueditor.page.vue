@@ -43,9 +43,9 @@
       };
     },
     async mounted() {
-      await asyncLoadScript().js('http://static.icode.link/ueditor/utf8-php/ueditor.config.js');
-      await asyncLoadScript().js('http://static.icode.link/ueditor/utf8-php/ueditor.all.min.js');
-      await asyncLoadScript().js('http://static.icode.link/ueditor/utf8-php/lang/zh-cn/zh-cn.js');
+      await asyncLoadScript().js('http://file.cdn.icode.link/ueditor/utf8-php/ueditor.config.js');
+      await asyncLoadScript().js('http://file.cdn.icode.link/ueditor/utf8-php/ueditor.all.min.js');
+      await asyncLoadScript().js('http://file.cdn.icode.link/ueditor/utf8-php/lang/zh-cn/zh-cn.js');
       this.ueditor = UE.getEditor('ueditor', {
         initialFrameHeight: 300,
         autoHeightEnabled: false
