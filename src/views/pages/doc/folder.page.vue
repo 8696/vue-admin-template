@@ -9,7 +9,9 @@
       |-- build-next.js                           扩展配置
       |-- ...                                     CLI内置配置
   |-- config                                      CLI内置配置
-      |-- prod.env.js                             扩展配置
+      |-- build                                   打包环境配置
+      |-- local                                   开发环境配置
+      |-- build.config.js                         自定义打包配置
       |-- ...                                     CLI内置配置
   |-- dist                                        打包完成后的资源目录
       |-- production-static                       实时版本

@@ -31,7 +31,7 @@
 >
 > npm install
 >
-> npm run dev
+> npm run local:dev
 
 ##### 打包
 
