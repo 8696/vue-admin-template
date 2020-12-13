@@ -1,10 +1,10 @@
 <div align="center">
-  <img width="100" src="http://vue-admin.icode.link/vue.png?t=1">
+  <img width="100" src="http://vue-admin.icode.link/readme.img/vue.png">
   &nbsp;
   &nbsp;
   &nbsp;
   &nbsp;
-  <img width="350" src="http://vue-admin.icode.link/element-ui.svg?t=1">
+  <img width="350" src="http://vue-admin.icode.link/readme.img/element-ui.svg">
   <br>
   <h1>vue-admin-template</h1>
 </div>
@@ -42,7 +42,7 @@
 
 |  Chrome|Firefox |Edge| Safari | nodeJs |
 | :----:| :----: | :----: |:----: |:----: |
-| <img width="24" src="http://vue-admin.icode.link/chrome_48x48.png?t=1"> | <img width="24" src="http://vue-admin.icode.link/firefox_48x48.png?t=1"> | <img width="24" src="http://vue-admin.icode.link/edge_48x48.png?t=1"> |   <img width="24" src="http://vue-admin.icode.link/safari_48x48.png?t=1"> | <img width="24" src="http://vue-admin.icode.link/nodejs_48_48.png?t=1"> |
+| <img width="24" src="http://vue-admin.icode.link/readme.img/chrome_48x48.png"> | <img width="24" src="http://vue-admin.icode.link/readme.img/firefox_48x48.png"> | <img width="24" src="http://vue-admin.icode.link/readme.img/edge_48x48.png"> |   <img width="24" src="http://vue-admin.icode.link/readme.img/safari_48x48.png"> | <img width="24" src="http://vue-admin.icode.link/readme.img/nodejs_48_48.png"> |
 | * |  * | * | * |  ^10.0 |
 
 
