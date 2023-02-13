@@ -29,7 +29,7 @@
 >
 > cd vue-admin-template
 >
-> npm install
+> yarn
 >
 > npm run local:dev
 
@@ -40,10 +40,10 @@
 
 ### 环境支持
 
-|  Chrome|Firefox |Edge| Safari | nodeJs |
-| :----:| :----: | :----: |:----: |:----: |
+|  Chrome|Firefox |Edge| Safari |                                     nodeJs                                     |
+| :----:| :----: | :----: |:----: |:------------------------------------------------------------------------------:|
 | <img width="24" src="http://vue-admin.icode.link/readme.img/chrome_48x48.png"> | <img width="24" src="http://vue-admin.icode.link/readme.img/firefox_48x48.png"> | <img width="24" src="http://vue-admin.icode.link/readme.img/edge_48x48.png"> |   <img width="24" src="http://vue-admin.icode.link/readme.img/safari_48x48.png"> | <img width="24" src="http://vue-admin.icode.link/readme.img/nodejs_48_48.png"> |
-| * |  * | * | * |  ^10.0 |
+| * |  * | * | * |                                     ^14.0                                      |
 
 
 
