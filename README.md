@@ -31,7 +31,7 @@
 >
 > yarn
 >
-> npm run local:dev
+> yarn run local:dev
 
 ##### 打包
 
