@@ -3,7 +3,7 @@
     <el-row>
       <div class="card">
         <div class="card-header">
-          <h2>ueditor</h2>
+          <h2>ueditor（官方已不在维护）</h2>
         </div>
         <div class="card-body">
           <div id="ueditor"></div>
@@ -43,9 +43,9 @@
       };
     },
     async mounted() {
-      await asyncLoadScript().js('http://file.cdn.icode.link/ueditor/utf8-php/ueditor.config.js');
-      await asyncLoadScript().js('http://file.cdn.icode.link/ueditor/utf8-php/ueditor.all.min.js');
-      await asyncLoadScript().js('http://file.cdn.icode.link/ueditor/utf8-php/lang/zh-cn/zh-cn.js');
+      await asyncLoadScript().js('http://file.icode.link/ueditor/utf8-php/ueditor.config.js');
+      await asyncLoadScript().js('http://file.icode.link/ueditor/utf8-php/ueditor.all.min.js');
+      await asyncLoadScript().js('http://file.icode.link/ueditor/utf8-php/lang/zh-cn/zh-cn.js');
       this.ueditor = UE.getEditor('ueditor', {
         initialFrameHeight: 300,
         autoHeightEnabled: false
