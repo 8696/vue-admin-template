@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import {permissionWhiteList, routeWhiteList} from '../config';
+import { localStorageTokenKey, permissionWhiteList, routeWhiteList } from '../config';
 
 NProgress.configure({easing: 'ease', speed: 600});
 Vue.use(Router);
@@ -340,7 +340,7 @@ router.beforeEach(async (to, from, next) => {
   // 白名单
   if (routeWhiteList.includes(to.name)) return next();
   // token 不存在
-  if (!window.localStorage.getItem('token')) {
+  if (!window.localStorage.getItem(localStorageTokenKey)) {
     return router.app.__logout(from.name ? from : to);
   }
   // 权限白名单

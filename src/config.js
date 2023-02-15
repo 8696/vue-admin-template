@@ -27,3 +27,8 @@ export const permissionWhiteList = [
 export const routeWhiteList = [
   'login'
 ];
+
+/**
+ * @description localStorage token key
+ * */
+export const localStorageTokenKey = 'token'

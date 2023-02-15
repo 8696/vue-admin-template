@@ -29,4 +29,4 @@ export const logo = {
  * @description 固定 Header
  * @type {Boolean}
  * */
-export const fixedHeader = false;
+export const fixedHeader = true;

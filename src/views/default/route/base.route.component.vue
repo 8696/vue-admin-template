@@ -1,6 +1,7 @@
 <template>
   <div class="base-layout"
        v-loading="__menuList.length === 0"
+       element-loading-text="系统加载中..."
        element-loading-background="rgba(255, 255, 255, 0.8)"
   >
     <div class="layout-menu-p">
@@ -53,7 +54,7 @@
           </keep-alive>
         </section>
         <div class="page-list-empty" v-if="__menuList.length === 0">
-          <!--<span>loading...</span>-->
+<!--          <span>loading...</span>-->
         </div>
       </div>
     </div>
@@ -175,7 +176,7 @@ export default {
     // 这里请求数据
     setTimeout(async () => {
       this.setMenuStoreConfig(remoteMenuData)
-    }, 2000);
+    }, 300);
   },
   created() {
     this.onCreated();

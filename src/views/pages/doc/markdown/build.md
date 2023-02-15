@@ -2,7 +2,7 @@
 
 ### 打包：
 
-> npm run (build:dev | build:test | build:beta | build:prod)
+> yarn run (build:dev | build:test | build:beta | build:prod)
 
 ### 版本
 

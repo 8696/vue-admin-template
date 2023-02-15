@@ -140,6 +140,17 @@
         // 渲染
         this.$refs['g2-pie'].render();
       }
+    },
+    mounted() {
+      !window.localStorage.getItem('system-tips')
+      && this.$alert('感谢支持，该项目不在维护', '提示', {
+        confirmButtonText: '不在提示',
+        showClose: false,
+        showCancelButton: true,
+        callback: action => {
+          action === 'confirm' && window.localStorage.setItem('system-tips', '1')
+        }
+      });
     }
   };
 </script>

@@ -3,8 +3,14 @@ import merge from 'webpack-merge';
 export default {
   namespaced: true,
   state: {
+    /**
+     * @description logo
+     * */
     logo: null,
-    fixedHeader: false
+    /**
+     * @description 头部固定
+     * */
+    fixedHeader: true
   },
   mutations: {
     /**

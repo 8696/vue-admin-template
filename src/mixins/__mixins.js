@@ -1,7 +1,7 @@
 import {mapState, mapMutations} from 'vuex';
 import {cloneDeep, getParentJson} from '../utils/utils';
 import * as storeConfig from '../store.config';
-import {titleSuffix, permission, permissionWhiteList} from '../config';
+import { titleSuffix, permission, permissionWhiteList, localStorageTokenKey } from '../config';
 import vm from '../vm.vue';
 
 export default {
@@ -359,8 +359,10 @@ export default {
      * @param route {Object | Null}
      * */
     __logout(route = null) {
-      window.localStorage.clear();
-      window.sessionStorage.clear();
+      // 清除所有本地存储
+      // window.localStorage.clear();
+      // window.sessionStorage.clear();
+      window.localStorage.removeItem(localStorageTokenKey)
       this.__clearTagsList();
       this.__clearMenuList();
       this.__clearPermission();
