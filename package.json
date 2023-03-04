@@ -10,7 +10,8 @@
     "build:dev": "cross-env ENV_CONFIG=dev node build/build.js production",
     "build:test": "cross-env ENV_CONFIG=test node build/build.js production",
     "build:beta": "cross-env ENV_CONFIG=beta node build/build.js production",
-    "build:prod": "cross-env ENV_CONFIG=prod node build/build.js production"
+    "build:prod": "cross-env ENV_CONFIG=prod node build/build.js production",
+    "put:oss": "node script/putOss.js"
   },
   "private": false,
   "author": {
@@ -34,6 +35,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/vue-fontawesome": "^0.1.10",
     "address": "^1.2.2",
+    "ali-oss": "^6.17.1",
     "autoprefixer": "^7.2.6",
     "axios": "^0.27.2",
     "babel-core": "^6.26.3",
@@ -69,7 +71,6 @@
     "marked": "^1.2.9",
     "mavon-editor": "^2.10.4",
     "node-notifier": "^5.4.5",
-    "node-sass": "^4.14.1",
     "nprogress": "^0.2.0",
     "optimize-css-assets-webpack-plugin": "^3.2.1",
     "ora": "^1.4.0",
@@ -79,6 +80,7 @@
     "postcss-url": "^7.3.2",
     "qs": "^6.11.0",
     "rimraf": "^2.7.1",
+    "sass": "1.58.3",
     "sass-loader": "^7.3.1",
     "screenfull": "^5.2.0",
     "semver": "^5.7.1",
@@ -102,7 +104,7 @@
   },
   "engines": {
     "node": ">= 14.0.0",
-    "npm": ">= 3.0.0"
+    "npm": ">= 6.0.0"
   },
   "browserslist": [
     "> 1%",
